@@ -1,0 +1,5 @@
+twig:
+    file_name_pattern: '*.twig'
+    paths:
+        '%kernel.project_dir%/src/Themes/default': ~
+    default_path: '%kernel.project_dir%/src/Themes/default'

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AICMF - Articles{% endblock %}
+
+{% block content %}
+<h1>Articles</h1>
+{% if articles is empty %}
+    <p>No articles yet. Run <code>bin/console app:sync</code> to index content.</p>
+{% else %}
+<ul class="articles">
+    {% for article in articles %}
+    <li>
+        <h2><a href="/article/{{ article.slug }}">{{ article.title }}</a></h2>
+        {% if article.description %}<p>{{ article.description }}</p>{% endif %}
+        <small>
+            {{ article.date }}
+            {% for tag in article.tagsArray %}
+                <span class="tag">{{ tag }}</span>
+            {% endfor %}
+        </small>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

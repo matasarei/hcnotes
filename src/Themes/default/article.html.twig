@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - AICMF{% endblock %}
+
+{% block content %}
+<article>
+    <h1>{{ article.title }}</h1>
+    <small>
+        {{ article.date }}
+        {% for tag in article.tagsArray %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </small>
+    {% if article.description %}<p><em>{{ article.description }}</em></p>{% endif %}
+    <hr>
+    <div class="content">{{ article.content|raw }}</div>
+</article>
+<p><a href="/">← Back</a></p>
+{% endblock %}

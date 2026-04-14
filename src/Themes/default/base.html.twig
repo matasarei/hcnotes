@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AICMF{% endblock %}</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        nav a { margin-right: 1rem; }
+        .articles { list-style: none; padding: 0; }
+        .articles li { margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+        .tag { background: #e0e0e0; padding: 2px 6px; border-radius: 3px; font-size: 0.8em; margin-right: 4px; }
+        pre { background: #f5f5f5; padding: 1rem; overflow-x: auto; }
+        code { background: #f5f5f5; padding: 1px 4px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/api/search?q=">Search API</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

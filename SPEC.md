@@ -12,18 +12,29 @@
 ├── bin/console             # Symfony CLI
 ├── config/                 # Service & Route definitions
 ├── content/                # Article Markdown files
-├── data/                   # SQLite + Cache (Writeable)
+├── data/                   # SQLite databases (writeable, gitignored)
+├── docker/
+│   ├── nginx/
+│   │   ├── Dockerfile      # Nginx Alpine image
+│   │   └── nginx.conf      # Virtual host config (try_files → index.php)
+│   └── php/
+│       ├── Dockerfile      # PHP 8.2-FPM Alpine image + Composer
+│       └── php.ini         # Runtime settings (memory, opcache)
 ├── src/
 │   ├── Command/            # app:sync
 │   ├── Controller/         # API & Web routes
 │   ├── Modules/            # PSR-4 dynamic extensions
 │   ├── Repository/         # SQLite access
-│   └── Themes/             # Twig templates
-├── tests/                  # PHPUnit suites
+│   ├── Service/            # ContentParser (frontmatter + Markdown)
+│   └── Themes/
+│       └── default/        # Twig templates (base, index, article)
+├── tests/
+│   ├── Command/            # SyncCommandTest
+│   ├── Controller/         # SearchControllerTest
+│   └── Integration/        # DatabaseTest
 ├── public/                 # Web root
 │   ├── index.php
-│   ├── .htaccess           # Apache Fallback
-│   └── nginx.conf          # Nginx Site Config
+│   └── .htaccess           # Apache fallback rewrite rules
 ├── docker-compose.yml
 └── composer.json
 ```
@@ -42,8 +53,8 @@
 3. **Output:** JSON array of matching article metadata.
 
 ### C. Infrastructure & Hosting
-- **Nginx:** Serve `public/` as root. Try files `$uri /index.php$is_args$args`.
-- **Apache:** `.htaccess` must redirect all non-file requests to `index.php`.
+- **Nginx:** Config lives in `docker/nginx/nginx.conf`. Serves `public/` as root with `try_files $uri /index.php$is_args$args`.
+- **Apache:** `public/.htaccess` redirects all non-file requests to `index.php`.
 - **Permissions:** `data/` and `content/` must be writeable by `www-data`.
 
 ## 4. Development Workflow: TDD-First
@@ -54,13 +65,24 @@ AICMF follows a TDD-First workflow for all functional logic, commands, and APIs:
 4. **Validation:** Features are considered complete only when their behavior is verified by the test suite.
 
 ## 5. [AGENT INSTRUCTION SET]
-1. **Bootstrap:** `git init`. Initialize Symfony Flex project.
-2. **Setup:** Install `erusev/parsedown`, `symfony/orm-pack`, `phpunit/phpunit`.
-3. **Environment:** Generate `.env.local` with `APP_SECRET`.
-4. **Implementation Path:**
+1. **Docker First:** Build and start containers before any PHP/Composer work.
+   - `docker-compose build && docker-compose up -d`
+   - All subsequent commands run via `docker-compose exec php ...`
+2. **Bootstrap:** Initialize Symfony Flex inside the container.
+   - `docker-compose exec php composer create-project symfony/skeleton . --no-interaction`
+3. **Setup:** Install dependencies inside the container.
+   - `docker-compose exec php composer require erusev/parsedown symfony/orm-pack twig symfony/twig-bundle`
+   - `docker-compose exec php composer require --dev phpunit/phpunit symfony/test-pack`
+4. **Environment:** Generate `.env.local` with `APP_SECRET` inside container.
+5. **Implementation Path:**
+   - [TDD] Create `tests/Integration/DatabaseTest.php` -> Setup SQLite Schema.
    - [TDD] Create `tests/Command/SyncCommandTest.php` -> Implement `app:sync`.
    - [TDD] Create `tests/Controller/SearchControllerTest.php` -> Implement `/api/search`.
-   - [TDD] Create `tests/Integration/DatabaseTest.php` -> Setup SQLite Schema.
-5. **UI:** Setup Twig in `src/Themes/default/`.
-6. **Docker:** Create Alpine-based PHP 8.2-FPM and Nginx containers.
-7. **Demo:** Add `/content/articles/hello.md` and run `app:sync`.
+6. **UI:** Setup Twig in `src/Themes/default/`.
+7. **Demo:** Add `/content/articles/hello.md` and run `app:sync` inside container.
+
+## 6. Container-First Development Rules
+- **Never** run `composer`, `php`, or `bin/console` directly on the host.
+- Always prefix commands: `docker-compose exec php <command>`.
+- The `data/` directory is volume-mounted and persisted outside the container.
+- Rebuild containers after `docker/php/Dockerfile` changes: `docker-compose build php`.

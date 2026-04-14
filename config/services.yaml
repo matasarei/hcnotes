@@ -1,0 +1,28 @@
+parameters:
+    content_dir: '%kernel.project_dir%/content'
+    data_dir: '%kernel.project_dir%/data'
+    database_path: '%kernel.project_dir%/data/app.db'
+
+when@test:
+    parameters:
+        database_path: '%kernel.project_dir%/data/test.db'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Repository\ArticleRepository:
+        arguments:
+            $databasePath: '%database_path%'
+
+    App\Command\SyncCommand:
+        arguments:
+            $contentDir: '%content_dir%'
