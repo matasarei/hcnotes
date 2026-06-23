@@ -346,6 +346,18 @@ a:hover { color: var(--pink); }
 
 /* image cards (experience + games) */
 .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+/* full-width, image-less bar (e.g. AI) — .cards prefix beats base .card rules */
+.cards .card--wide {
+  grid-column: 1 / -1;
+  aspect-ratio: auto;
+  background: rgba(2, 4, 8, 0.86);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 0.5rem 1.4rem;
+  padding: 1rem 1.2rem;
+}
+.cards .card--wide::after { content: none; }     /* no scanline veil — no photo under it */
+.card--wide .card__title { white-space: nowrap; }
+.card--wide .card__badges { line-height: 1.9; text-align: right; }
 .card {
   position: relative; overflow: hidden;
   border: 1px solid var(--line);
@@ -414,6 +426,9 @@ a:hover { color: var(--pink); }
 .b-c      { --bc: #8aa6ff; }   /* steel   → neon steel    */
 .b-cpp    { --bc: #3a9bff; }   /* blue    → toxic azure   */
 .b-esp    { --bc: #ff3b3b; }   /* espressif red           */
+.b-claude { --bc: #ff8a6b; }   /* Anthropic coral → toxic */
+.b-mcp    { --bc: #2de2e6; }   /* protocol cyan           */
+.b-agy    { --bc: #9b8cff; }   /* Antigravity violet-blue */
 
 .game__tag {
   font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
@@ -450,6 +465,8 @@ a:hover { color: var(--pink); }
   .terminal__body { padding: 1.3rem 1.1rem 1.5rem; }
   body { font-size: 16px; }
   .cards { grid-template-columns: 1fr; }
+  .card--wide { flex-direction: column; align-items: flex-start; gap: 0.7rem; }
+  .card--wide .card__badges { text-align: left; }
   .about { padding-top: 6rem; }
   .about__head { gap: 0.9rem; }
   .avatar { width: 70px; height: 70px; }
