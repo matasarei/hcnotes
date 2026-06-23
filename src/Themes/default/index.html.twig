@@ -1,25 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}AICMF - Articles{% endblock %}
+{% block title %}HCNOTES{% endblock %}
 
 {% block content %}
-<h1>Articles</h1>
-{% if articles is empty %}
-    <p>No articles yet. Run <code>bin/console app:sync</code> to index content.</p>
-{% else %}
-<ul class="articles">
-    {% for article in articles %}
-    <li>
-        <h2><a href="/article/{{ article.slug }}">{{ article.title }}</a></h2>
-        {% if article.description %}<p>{{ article.description }}</p>{% endif %}
-        <small>
-            {{ article.date }}
-            {% for tag in article.tagsArray %}
-                <span class="tag">{{ tag }}</span>
+<section class="hero">
+    <div class="terminal">
+        <div class="terminal__bar">
+            <span class="dot dot--c"></span>
+            <span class="dot dot--p"></span>
+            <span class="dot dot--w"></span>
+            <span class="path">~/hcnotes — ssh</span>
+        </div>
+        <div class="terminal__body">
+            <p class="line"><span class="prompt"></span><span class="cmd">whoami</span></p>
+            <p class="role out">
+                <b>web.dev</b> <span class="sep">·</span>
+                <b>gamer</b> <span class="sep">·</span>
+                <b>father</b>
+            </p>
+
+            <p class="intro">A personal blog — notes on software development, AI-first tooling, and the things I build on the side. <a href="/about">More about me</a>.</p>
+
+            <p class="line contact"><span class="prompt"></span><span class="cmd">contact --reveal</span></p>
+            <p class="out">
+                ‹<a href="#" class="reveal" id="field_email">email</a>›<span class="caret"></span>
+            </p>
+        </div>
+    </div>
+
+    {% if articles is defined and articles is not empty %}
+    <div class="notes">
+        <div class="notes__h">transmissions</div>
+        <ul>
+            {% for article in articles %}
+            <li>
+                <a href="/article/{{ article.slug }}">{{ article.title }}</a>
+                <small>
+                    {{ article.date }}
+                    {% for tag in article.tagsArray %}<span class="tag">{{ tag }}</span>{% endfor %}
+                </small>
+            </li>
             {% endfor %}
-        </small>
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <p class="credit">
+        Background: a generative reimagining of <span class="k-cyan">Aleph&nbsp;2</span> —
+        <a href="https://web.archive.org/web/20230606143351/https://mkweb.bcgsc.ca/infinity/math.of.infinity.mhtml" target="_blank" rel="noopener">Martin Krzywinski</a>
+        &amp; <a href="https://www.youtube.com/watch?v=tNYfqklRehM" target="_blank" rel="noopener">Max Cooper</a>.
+        Counting to <span class="k-pink">infinity</span>, one glitch at a time.
+    </p>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        var el = document.getElementById('field_email');
+        if (!el) return;
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            var email = atob('bWF0YXNhci5laUBnbWFpbC5jb20=');
+            el.textContent = email;
+            el.setAttribute('href', 'mailto:' + email);
+        });
+    })();
+</script>
 {% endblock %}
