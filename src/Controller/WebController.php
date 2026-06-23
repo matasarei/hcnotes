@@ -26,6 +26,12 @@ class WebController extends AbstractController
         return $this->render('index.html.twig', ['articles' => $articles]);
     }
 
+    #[Route('/about', name: 'about')]
+    public function about(): Response
+    {
+        return $this->render('about.html.twig');
+    }
+
     #[Route('/article/{slug}', name: 'article_show', requirements: ['slug' => '.+'])]
     public function show(string $slug): Response
     {

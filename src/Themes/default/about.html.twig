@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}About — HCNOTES{% endblock %}
+{% block description %}Yevhen Matasar — web developer from Kyiv, Ukraine. Tech Lead at a European fintech company.{% endblock %}
+
+{% block content %}
+<section class="about">
+    <div class="terminal">
+        <div class="terminal__bar">
+            <span class="dot dot--c"></span>
+            <span class="dot dot--p"></span>
+            <span class="dot dot--w"></span>
+            <span class="path">~/hcnotes/about</span>
+        </div>
+        <div class="terminal__body">
+            <p class="line"><span class="prompt"></span><span class="cmd">cat ./about.md</span></p>
+            <div class="about__head">
+                <div class="avatar">
+                    <img src="https://github.com/matasarei.png?size=200" alt="Yevhen Matasar" width="200" height="200" loading="lazy">
+                </div>
+                <div class="about__headtext">
+                    <h1 class="about__name glitch" data-text="YEVHEN MATASAR">Yevhen Matasar</h1>
+                    <p class="about__handle">@matasarei <span class="sep">·</span> 🇧🇬 Varna, Bulgaria</p>
+                </div>
+            </div>
+            <div class="about__bio">
+                <p>
+                    A Web-developer originally from Kyiv, Ukraine&nbsp;🇺🇦. Graduated in 2014 from the
+                    <a href="https://partner.kubg.edu.ua/" target="_blank" rel="noopener">IT department</a>&nbsp;💻,
+                    I have more than 10 years of experience in software development, worked for several
+                    companies and on multiple projects — mostly as a backend developer.
+                </p>
+                <p>
+                    Today, I serve as a Tech Lead at a European fintech company. My dream is a healthy
+                    and open planet Earth&nbsp;🌎, with no wars and borders. Sadly, the current situation
+                    <a href="https://www.americanbanker.com/payments/news/you-can-hear-the-bombs-a-fintech-developers-life-in-ukraine" target="_blank" rel="noopener">is worsening</a>&nbsp;🔥,
+                    but I believe better times are ahead&nbsp;🍀.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section__h">my experience</div>
+        <div class="cards">
+            <div class="card">
+                <img src="/shared/img/symfony.jpg" alt="Web applications" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__title">Web applications</div>
+                    <div class="card__badges">
+                        <span class="badge b-php">PHP</span>
+                        <span class="badge b-js">JavaScript</span>
+                        <span class="badge b-sql">MySQL</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/shared/img/service.jpg" alt="Server applications" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__title">Server applications</div>
+                    <div class="card__badges">
+                        <span class="badge b-go">Go</span>
+                        <span class="badge b-node">Node.js</span>
+                        <span class="badge b-cs">C#</span>
+                        <span class="badge b-mongo">MongoDB</span>
+                        <span class="badge b-dynamo">DynamoDB</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/shared/img/docker.jpg" alt="Environments and CI" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__title">Environments &amp; CI</div>
+                    <div class="card__badges">
+                        <span class="badge b-docker">Docker</span>
+                        <span class="badge b-k8s">Kubernetes</span>
+                        <span class="badge b-gitlab">GitLab</span>
+                        <span class="badge b-jenkins">Jenkins</span>
+                        <span class="badge b-aws">AWS</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/shared/img/micro_and_cpp.jpg" alt="Embedded systems" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__title">Embedded systems</div>
+                    <div class="card__badges">
+                        <span class="badge b-c">C</span>
+                        <span class="badge b-cpp">C++</span>
+                        <span class="badge b-esp">ESP32</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="links-row">
+            <a class="btn-link" href="https://github.com/matasarei" target="_blank" rel="noopener">› See more on GitHub</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section__h">favorite games</div>
+        <div class="cards">
+            <div class="card card--game">
+                <img src="/shared/img/wow.jpg" alt="World of Warcraft" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__top"><span class="game__tag">Since 2005</span></div>
+                    <div class="card__title">World of Warcraft</div>
+                </div>
+            </div>
+            <div class="card card--game">
+                <img src="/shared/img/zelda.jpg" alt="The Legend of Zelda" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__top"><span class="game__tag game__tag--alt">Must play</span></div>
+                    <div class="card__title">The Legend of Zelda</div>
+                </div>
+            </div>
+            <div class="card card--game">
+                <img src="/shared/img/horizon.jpg" alt="Horizon" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__top"></div>
+                    <div class="card__title">Horizon</div>
+                </div>
+            </div>
+            <div class="card card--game">
+                <img src="/shared/img/watch_dogs.jpg" alt="Watch_Dogs" loading="lazy">
+                <div class="card__overlay">
+                    <div class="card__top"></div>
+                    <div class="card__title">Watch_Dogs</div>
+                </div>
+            </div>
+        </div>
+        <div class="links-row">
+            <a class="btn-link" href="https://steamcommunity.com/id/matasarei/games/?tab=all&amp;sort=playtime" target="_blank" rel="noopener">› Steam</a>
+            <a class="btn-link" href="https://raider.io/characters/eu/ravencrest/Magazar" target="_blank" rel="noopener">› Raider.IO</a>
+        </div>
+    </div>
+
+    <p class="about__footer">
+        Powered by 🚲 <a href="https://github.com/matasarei/aicmf" target="_blank" rel="noopener">AICMF</a>
+    </p>
+</section>
+{% endblock %}
