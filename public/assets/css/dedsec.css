@@ -367,18 +367,21 @@ a:hover { color: var(--pink); }
 }
 .card__overlay {
   position: absolute; inset: 0; z-index: 2;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column; justify-content: space-between;
   gap: 0.5rem; padding: 0.9rem 1rem;
-  background: linear-gradient(to top, rgba(2,4,8,0.82) 0%, rgba(2,4,8,0.22) 48%, rgba(2,4,8,0) 100%);
+  /* darker at both ends so top labels and the bottom title both stay legible */
+  background: linear-gradient(to top, rgba(2,4,8,0.88) 0%, rgba(2,4,8,0.18) 50%, rgba(2,4,8,0.5) 100%);
 }
-.card--game .card__overlay { justify-content: space-between; }
 .card__top { display: flex; justify-content: flex-end; }
 .card__title {
   color: var(--white); font-size: 0.92rem; letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 .card__title::before { content: "› "; color: var(--cyan); }
-.card__badges { line-height: 2; }
+.card__badges { line-height: 1.95; }
+.card__badges .badge {
+  font-size: 0.72rem; padding: 0.16rem 0.5rem; margin: 0.16rem 0.28rem 0.16rem 0;
+}
 
 .badge {
   --bc: var(--cyan);
