@@ -1,26 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}AICMF{% endblock %}</title>
-    <style>
-        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
-        nav a { margin-right: 1rem; }
-        .articles { list-style: none; padding: 0; }
-        .articles li { margin-bottom: 1.5rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
-        .tag { background: #e0e0e0; padding: 2px 6px; border-radius: 3px; font-size: 0.8em; margin-right: 4px; }
-        pre { background: #f5f5f5; padding: 1rem; overflow-x: auto; }
-        code { background: #f5f5f5; padding: 1px 4px; }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#03050a">
+    <meta name="description" content="{% block description %}hcnotes — web developer, gamer, father.{% endblock %}">
+    <title>{% block title %}HCNOTES{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="/assets/css/dedsec.css" rel="stylesheet">
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/api/search?q=">Search API</a>
+    <canvas id="aleph-bg" aria-hidden="true"></canvas>
+    <div class="fx-overlay scanlines" aria-hidden="true"></div>
+    <div class="fx-overlay flicker" aria-hidden="true"></div>
+    <div class="fx-overlay vignette" aria-hidden="true"></div>
+
+    <nav class="nav">
+        <a href="/" class="nav__brand">HCNOTES</a>
+        <div class="nav__links">
+            <a href="/about">About</a>
+            <a href="https://github.com/matasarei" target="_blank" rel="noopener">GitHub</a>
+        </div>
     </nav>
-    <main>
+
+    <div class="shell">
         {% block content %}{% endblock %}
-    </main>
+    </div>
+
+    <script src="/assets/js/aleph.js" defer></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
