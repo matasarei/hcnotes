@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ article.title }} - AICMF{% endblock %}
+{% block title %}{{ article.title }} — HCNOTES{% endblock %}
+{% block description %}{{ article.description ?? article.title }}{% endblock %}
 
 {% block content %}
-<article>
+<article class="prose">
     <h1>{{ article.title }}</h1>
     <small>
         {{ article.date }}
-        {% for tag in article.tagsArray %}
-            <span class="tag">{{ tag }}</span>
-        {% endfor %}
+        {% for tag in article.tagsArray %}<span class="tag">{{ tag }}</span>{% endfor %}
     </small>
     {% if article.description %}<p><em>{{ article.description }}</em></p>{% endif %}
     <hr>
     <div class="content">{{ article.content|raw }}</div>
+    <a href="/" class="back">‹ back</a>
 </article>
-<p><a href="/">← Back</a></p>
 {% endblock %}
