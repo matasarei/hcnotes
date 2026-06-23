@@ -412,14 +412,6 @@ a:hover { color: var(--pink); }
 .b-cpp    { --bc: #3a9bff; }   /* blue    → toxic azure   */
 .b-esp    { --bc: #ff3b3b; }   /* espressif red           */
 
-.games { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
-.game {
-  background: rgba(2, 4, 8, 0.86); border: 1px solid var(--line);
-  padding: 0.95rem 1.1rem; display: flex; align-items: center;
-  justify-content: space-between; gap: 0.6rem;
-}
-.game__name { color: var(--white); }
-.game__name::before { content: "▸ "; color: var(--cyan); }
 .game__tag {
   font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--cyan); border: 1px solid rgba(45,226,230,0.4);
@@ -454,7 +446,7 @@ a:hover { color: var(--pink); }
   .nav__links { gap: 1rem; }
   .terminal__body { padding: 1.3rem 1.1rem 1.5rem; }
   body { font-size: 16px; }
-  .games { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
   .about { padding-top: 6rem; }
   .about__head { gap: 0.9rem; }
   .avatar { width: 70px; height: 70px; }
