@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
-    <link href="/assets/css/dedsec.css" rel="stylesheet">
+    <link href="{{ asset_v('/assets/css/dedsec.css') }}" rel="stylesheet">
 </head>
 <body>
     <canvas id="aleph-bg" aria-hidden="true"></canvas>
@@ -29,7 +29,7 @@
         {% block content %}{% endblock %}
     </div>
 
-    <script src="/assets/js/aleph.js" defer></script>
+    <script src="{{ asset_v('/assets/js/aleph.js') }}" defer></script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
