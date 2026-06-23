@@ -52,7 +52,32 @@ docker compose exec php composer install
 docker compose exec php php bin/console app:sync   # index the articles
 ```
 
-The site is served at **http://localhost:8081**.
+The site is served at **http://localhost:8081**. It boots in `dev` out of the box —
+`.env` ships a dummy secret, so no extra setup is needed locally.
+
+## Configuration & production
+
+Configuration is read by Symfony from `.env` (committed dev defaults) and `.env.local`
+(your overrides, git-ignored). `docker-compose` does **not** inject `APP_ENV`,
+`APP_SECRET`, or `DATABASE_URL` as container env vars — real environment variables
+would take precedence over `.env.local` and prevent switching to production. So
+`.env.local` is the single source of truth on the server.
+
+To deploy in production mode, create `.env.local` from the template and warm the cache:
+
+```bash
+cp .env.local.example .env.local      # then set APP_ENV=prod and a real APP_SECRET
+docker compose up -d --build
+docker compose exec php composer install --no-dev --optimize-autoloader
+docker compose exec php php bin/console cache:clear --env=prod
+docker compose exec php php bin/console app:sync
+```
+
+Run the tests with:
+
+```bash
+docker compose exec php php vendor/bin/phpunit
+```
 
 ## Project structure
 
