@@ -7,7 +7,17 @@
 # On the server the env (APP_ENV=prod) comes from .env.local, so cache:clear
 # targets the right environment automatically.
 
-EXEC := docker compose exec -T php
+# Detect container engine and compose command
+COMPOSE_CMD := $(shell command -v podman-compose >/dev/null 2>&1 && echo "podman-compose" || (command -v docker-compose >/dev/null 2>&1 && echo "docker-compose" || echo "docker compose"))
+ENGINE_CMD := $(shell command -v podman >/dev/null 2>&1 && echo "podman" || echo "docker")
+
+# Define how to execute commands inside the PHP container.
+# With podman, exec as root (-u 0) via native podman to avoid rootless permission issues.
+ifeq ($(ENGINE_CMD),podman)
+EXEC := podman exec -u 0 aicmf_php
+else
+EXEC := $(COMPOSE_CMD) exec -T php
+endif
 
 .DEFAULT_GOAL := update
 .PHONY: update fetch pull cache-clear sync up install help
@@ -30,7 +40,7 @@ sync: ## Re-index /content into the SQLite database
 	$(EXEC) php bin/console app:sync
 
 up: ## Build & (re)start the containers
-	docker compose up -d --build
+	$(COMPOSE_CMD) up -d --build
 
 install: ## Install PHP dependencies (production)
 	$(EXEC) composer install --no-dev --optimize-autoloader
