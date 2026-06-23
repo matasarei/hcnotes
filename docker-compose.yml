@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   php:
     build:
@@ -9,11 +7,11 @@ services:
       - .:/var/www/html
       - ./data:/var/www/html/data
       - ./content:/var/www/html/content
-    environment:
-      APP_ENV: ${APP_ENV:-dev}
-      APP_SECRET: ${APP_SECRET:-changeme}
-      DATABASE_URL: ${DATABASE_URL:-sqlite:///%kernel.project_dir%/data/app.db}
-      AI_KEY: ${AI_KEY:-}
+    # App configuration (APP_ENV, APP_SECRET, DATABASE_URL, AI_KEY) is loaded from
+    # .env / .env.local by Symfony Dotenv inside the mounted project. We deliberately
+    # do NOT inject these as container environment variables: real env vars take
+    # precedence over .env.local, which would block setting APP_ENV=prod (and other
+    # production values) in .env.local on the server. See .env.local.example.
     networks:
       - aicmf
 
