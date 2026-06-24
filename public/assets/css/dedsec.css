@@ -196,6 +196,8 @@ a:hover { color: var(--pink); }
   97%, 100% { transform: translate(0, 0); }
 }
 
+.glitch--404 { font-size: clamp(4rem, 18vw, 8rem); letter-spacing: 0.04em; }
+
 /* terminal lines */
 .line { margin: 0.15rem 0; }
 .prompt { color: var(--pink); }

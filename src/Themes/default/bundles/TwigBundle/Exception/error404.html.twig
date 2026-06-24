@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}404 — HCNOTES{% endblock %}
+{% block description %}Page not found.{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="terminal">
+        <div class="terminal__bar">
+            <span class="dot dot--c"></span>
+            <span class="dot dot--p"></span>
+            <span class="dot dot--w"></span>
+            <span class="path">~/hcnotes — 404</span>
+        </div>
+        <div class="terminal__body">
+            <h1 class="glitch glitch--404" data-text="404">404</h1>
+
+            <p class="line"><span class="prompt"></span><span class="cmd">locate {{ app.request.pathInfo|default('?') }}</span></p>
+            <p class="out muted">// signal lost — this page doesn't exist (or never did).</p>
+
+            <p class="line"><span class="prompt"></span><a href="/" class="cmd cmd--link">cd&nbsp;~</a> <span class="muted"># back home</span></p>
+        </div>
+    </div>
+</section>
+{% endblock %}
