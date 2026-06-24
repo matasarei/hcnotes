@@ -314,16 +314,30 @@ a:hover { color: var(--pink); }
   box-shadow: 0 0 0 1px rgba(255,46,151,0.4), 0 0 18px -4px rgba(45,226,230,0.5);
 }
 .avatar::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 2;
   background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,0.18) 3px, transparent 4px);
   mix-blend-mode: multiply;
 }
-.avatar img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-  filter: grayscale(0.35) contrast(1.05);
-  transition: filter 0.3s ease;
+/* spinning loader shown behind the image until it finishes loading */
+.avatar::before {
+  content: ""; position: absolute; inset: 0; margin: auto; z-index: 0;
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid rgba(45, 226, 230, 0.22);
+  border-top-color: var(--cyan);
+  animation: avatar-spin 0.8s linear infinite;
 }
+.avatar.is-loaded::before,
+.avatar.is-error::before { animation: none; opacity: 0; }
+.avatar img {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  color: transparent;                 /* hide alt text while loading */
+  filter: grayscale(0.35) contrast(1.05);
+  transition: filter 0.3s ease, opacity 0.4s ease;
+}
+.avatar:not(.is-loaded) img { opacity: 0; }   /* JS reveals on load; img is opaque and covers the spinner */
 .avatar:hover img { filter: grayscale(0) contrast(1.1); }
+@keyframes avatar-spin { to { transform: rotate(360deg); } }
 .about__headtext { min-width: 0; }
 .about__name {
   font-size: clamp(1.6rem, 5.5vw, 2.6rem);

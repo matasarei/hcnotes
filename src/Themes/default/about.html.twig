@@ -16,7 +16,9 @@
             <p class="line"><span class="prompt"></span><span class="cmd">cat ./about.md</span></p>
             <div class="about__head">
                 <div class="avatar">
-                    <img src="https://github.com/matasarei.png?size=200" alt="Yevhen Matasar" width="200" height="200" loading="lazy">
+                    <img src="https://github.com/matasarei.png?size=200" alt="Yevhen Matasar" width="200" height="200" loading="lazy"
+                         onload="this.parentNode.classList.add('is-loaded')"
+                         onerror="this.parentNode.classList.add('is-error')">
                 </div>
                 <div class="about__headtext">
                     <h1 class="about__name glitch" data-text="YEVHEN MATASAR">Yevhen Matasar</h1>
