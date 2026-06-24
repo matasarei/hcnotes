@@ -451,6 +451,7 @@ a:hover { color: var(--pink); }
 }
 .game__tag--alt { color: var(--pink); border-color: rgba(255,46,151,0.45); }
 
+.section-note { margin: 0.9rem 0 0; font-size: 0.74rem; color: var(--fg-dim); letter-spacing: 0.02em; }
 .links-row { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.4rem; }
 .btn-link {
   padding: 0.5rem 1rem;

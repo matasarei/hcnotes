@@ -124,4 +124,17 @@ from the files.
 
 ## License
 
-[MIT](LICENSE) © Yevhen Matasar
+The **source code** — PHP, Twig, CSS, JavaScript, and config — is released under the
+[MIT License](LICENSE) © Yevhen Matasar.
+
+MIT does **not** cover the site's content or media:
+
+- **Articles** (`content/`) — © Yevhen Matasar, all rights reserved.
+- **Images** (`public/shared/img/`) — the photographs are mine, but several depict
+  third-party game artwork and logos that remain the property of their owners:
+  World of Warcraft (Blizzard Entertainment), The Legend of Zelda (Nintendo),
+  Horizon (Sony Interactive Entertainment / Guerrilla), and Watch_Dogs (Ubisoft).
+  They are included for illustrative, non-commercial purposes only and are **not**
+  licensed under MIT.
+
+All trademarks and game artwork belong to their respective owners.
