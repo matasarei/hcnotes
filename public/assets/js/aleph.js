@@ -45,7 +45,10 @@
   var lastTick = 0;
 
   function build() {
-    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    // Cap DPR at 1.5: this is a dim field behind scanlines/vignette/content,
+    // so 1.5 is visually indistinguishable from 2 but rasterises ~44% fewer
+    // pixels per glyph.
+    DPR = Math.min(window.devicePixelRatio || 1, 1.5);
     W = canvas.clientWidth;
     H = canvas.clientHeight;
     canvas.width = Math.floor(W * DPR);
@@ -71,6 +74,8 @@
   }
 
   function newToken(x, y) {
+    var hot = Math.random() < 0.07;
+    var bright = Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22;
     return {
       x: x, y: y,
       state: COUNT,
@@ -78,8 +83,11 @@
       step: 1,
       glyph: '',
       // base dimness gives the field depth; a few cells run hot (favourite numbers)
-      bright: Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22,
-      hot: Math.random() < 0.07,
+      bright: bright,
+      hot: hot,
+      // precomputed COUNT colour — only changes on respawn, so we cache it
+      // instead of rebuilding the rgba() string for every token every frame
+      fill: rgba(hot ? WHITE : CYAN, bright),
       timer: 200 + Math.random() * 1400, // ms until next state event
       life: 0,
       jitter: 0
@@ -120,6 +128,7 @@
           t.state = COUNT;
           t.value = 1 + ((Math.random() * 30) | 0);
           t.bright = Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22;
+          t.fill = rgba(t.hot ? WHITE : CYAN, t.bright);
           t.timer = 400 + Math.random() * 1800;
           t.jitter = 0;
         }
@@ -136,7 +145,7 @@
       var t = tokens[i];
 
       if (t.state === COUNT) {
-        ctx.fillStyle = rgba(t.hot ? WHITE : CYAN, t.bright);
+        ctx.fillStyle = t.fill;
         ctx.fillText('' + t.value, t.x, t.y);
       } else if (t.state === ALEPH) {
         // hot glyph — chromatic RGB split, additive
@@ -170,13 +179,19 @@
   }
 
   /* ---- loops ---------------------------------------------------------- */
+  // Target ~30fps. The field is discrete glyph swaps, not smooth motion, so
+  // this is visually indistinguishable from 60fps but halves the draw work
+  // (and quarters it on 120Hz displays). Real elapsed time still drives the
+  // simulation, so the counting cadence is unchanged.
+  var FRAME_MS = 1000 / 30;
+
   function frame(now) {
-    if (document.hidden) { lastTick = now; raf = requestAnimationFrame(frame); return; }
-    var dt = Math.min(now - lastTick, 60);
-    lastTick = now;
-    update(dt);
-    draw();
     raf = requestAnimationFrame(frame);
+    var since = now - lastTick;
+    if (since < FRAME_MS - 1) return;   // not time to draw yet — skip
+    lastTick = now;
+    update(Math.min(since, 60));        // cap dt so a tab-return doesn't jump
+    draw();
   }
 
   var raf = null;
@@ -186,6 +201,17 @@
     lastTick = performance.now();
     raf = requestAnimationFrame(frame);
   }
+
+  // Truly pause when the tab is hidden, and resume cleanly on return.
+  document.addEventListener('visibilitychange', function () {
+    if (reduceMotion) return;
+    if (document.hidden) {
+      if (raf) { cancelAnimationFrame(raf); raf = null; }
+    } else if (!raf) {
+      lastTick = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+  });
 
   // debounced resize
   var rt;
