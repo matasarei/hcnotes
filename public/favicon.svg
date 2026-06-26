@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#03050a"/>
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="none" stroke="#2de2e6" stroke-opacity="0.35" stroke-width="1.5"/>
+  <g font-family="'JetBrains Mono','SFMono-Regular',Consolas,monospace" font-weight="800" font-size="44" text-anchor="middle" dominant-baseline="central">
+    <!-- chromatic-split glitch: pink + cyan offsets behind the white glyph -->
+    <text x="34.2" y="34" fill="#ff2e97" fill-opacity="0.85">&#8501;</text>
+    <text x="29.8" y="34" fill="#2de2e6" fill-opacity="0.85">&#8501;</text>
+    <text x="32" y="34" fill="#eafdff">&#8501;</text>
+  </g>
+</svg>
