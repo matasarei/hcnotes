@@ -31,11 +31,14 @@ somebody else's business model wearing its skin.
 
 So I run a **personal AzerothCore server** with bots. My own realm, on my own
 hardware, populated by AI-driven characters so the world doesn't feel empty. And to
-be clear about the ethics: this is not piracy. I bought World of Warcraft once
-already. I believe that gives me the right to keep playing the version I paid for —
-but Blizzard doesn't sell or host 3.3.5a anymore, so there is literally no legal
-storefront to give my money to. A personal server for a game I own, with no players
-and no profit, is preservation, not theft.
+be clear about the ethics: this is not piracy — I'm not even a lapsed customer. I
+still play on official servers; my main,
+[Magazar of Ravencrest](https://raider.io/characters/eu/ravencrest/Magazar), is
+linked right on my [about page](/about). But I also bought World of Warcraft as it
+was back then, and I believe that gives me the right to keep playing the version I
+paid for — Blizzard just doesn't sell or host 3.3.5a anymore, so there is literally
+no legal storefront to give my money to. A personal server for a game I own, with no
+players and no profit, is preservation, not theft.
 
 ## The Mac problem
 
