@@ -58,7 +58,7 @@ It assembles a fully self-contained `WoW335.app` — the wine stack, the transla
 layers, the prefix, everything baked into one bundle — with a native SwiftUI manager
 in front. CrossOver and WoWSilicon are needed only once, at build time, as file
 sources; after that they can be uninstalled. The result behaves like any other Mac
-app: you double-click it and you play. On my M4 Max it holds **~120 FPS at native
+app: you start it and you play. On my M4 Max it holds **~120 FPS at native
 Retina resolution** — limited only by the screen's refresh rate.
 
 <div class="shots">
