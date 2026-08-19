@@ -22,4 +22,8 @@
 
 ###> claude-code ###
 /.claude/settings.local.json
+/.claude/repo-profile.json
 ###< claude-code ###
+
+# Planning briefs (local only)
+.tasks/
