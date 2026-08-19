@@ -49,15 +49,18 @@ The existing options didn't fit:
 
 - **CrossOver** works, but it isn't cheap — and I'd be paying a subscription-grade
   price to run exactly one game from 2010.
-- **WoWSilicon** is a great project, but it leans on CrossOver heavily: it patches a
-  CrossOver installation and drives it from outside, so you still need CrossOver
-  present and cooperative.
+- **WoWSilicon** is a great project — it's actually the upstream that makes the
+  performance possible — but it's a different shape of thing: a patcher/launcher that
+  manages games living elsewhere on your disk and a shared wine prefix, with profiles
+  for several expansions. I wanted a single-game appliance, not a system.
 
 So I built my own: [**wow335-launcher**](https://github.com/matasarei/wow335-launcher).
 It assembles a fully self-contained `WoW335.app` — the wine stack, the translation
 layers, the prefix, everything baked into one bundle — with a native SwiftUI manager
-in front. CrossOver and WoWSilicon are needed only once, at build time, as file
-sources; after that they can be uninstalled. The result behaves like any other Mac
+in front. Nothing needs to be bought or installed first: one `make` downloads the
+open-source wine runtime and the patch payloads from WoWSilicon's releases —
+checksum-verified — and bakes everything into the bundle. Deleting the app removes
+every trace. The result behaves like any other Mac
 app: you start it and you play. On my M4 Max it holds **~120 FPS at native
 Retina resolution** — limited only by the screen's refresh rate.
 
@@ -68,8 +71,9 @@ Retina resolution** — limited only by the screen's refresh rate.
 
 The manager installs and patches a client, verifies its integrity with one-click
 repair, manages addons and the server list, and handles window mode, resolution and
-Retina matching automatically. No terminal needed — though everything the GUI does
-is also scriptable.
+Retina matching automatically — with a choice of renderer: DXVK by default, or the
+Metal-native MTLd3D with HDR output. No terminal needed — though everything the GUI
+does is also scriptable.
 
 ## "There is no way" — and then there was
 
@@ -121,6 +125,9 @@ and wrong. The thing that got us past it was experience and, more importantly,
 the judgement to stop inventing and adopt what already works. That's the part only
 the human brings. The AI will out-read you, out-type you, and out-patience you — but
 it doesn't refuse to believe.
+
+(Since then the wrapper has shed even the build-time donors: it now builds on
+WoWSilicon's open-source wine runtime, so CrossOver is out of the chain entirely.)
 
 ## Northrend at 120 frames
 
