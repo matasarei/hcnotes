@@ -2,6 +2,7 @@ parameters:
     content_dir: '%kernel.project_dir%/content'
     data_dir: '%kernel.project_dir%/data'
     database_path: '%kernel.project_dir%/data/app.db'
+    site_base_url: '%env(SITE_BASE_URL)%'
 
 when@test:
     parameters:
@@ -26,3 +27,7 @@ services:
     App\Command\SyncCommand:
         arguments:
             $contentDir: '%content_dir%'
+
+    App\Controller\SitemapController:
+        arguments:
+            $siteBaseUrl: '%site_base_url%'

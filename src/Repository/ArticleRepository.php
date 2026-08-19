@@ -92,7 +92,7 @@ class ArticleRepository
     public function findAll(): array
     {
         $stmt = $this->pdo->query('
-            SELECT id, slug, title, description, tags, date
+            SELECT id, slug, title, description, tags, date, updated_at
             FROM search_index
             ORDER BY date DESC, updated_at DESC
         ');
