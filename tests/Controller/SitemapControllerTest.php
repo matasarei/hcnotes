@@ -74,6 +74,44 @@ class SitemapControllerTest extends WebTestCase
         $this->assertSame('2026-02-03', (string) $found->lastmod);
     }
 
+    public function testArticleWithoutDateFallsBackToUpdatedAtForLastmod(): void
+    {
+        $client = static::createClient();
+
+        /** @var \App\Repository\ArticleRepository $repo */
+        $repo = static::getContainer()->get(\App\Repository\ArticleRepository::class);
+        $repo->upsert([
+            'slug'        => 'sitemap-dateless-article',
+            'title'       => 'Dateless',
+            'content'     => '<p>No frontmatter date</p>',
+            'description' => null,
+            'tags'        => '',
+            'date'        => null,
+            'embedding'   => null,
+        ]);
+
+        // Read updated_at back rather than computing "today" — avoids UTC/midnight flakes.
+        $row = $repo->findBySlug('sitemap-dateless-article');
+        $expected = substr($row['updated_at'], 0, 10);
+
+        $client->request('GET', '/sitemap.xml');
+        $this->assertResponseIsSuccessful();
+
+        $xml = simplexml_load_string($client->getResponse()->getContent());
+        $this->assertNotFalse($xml);
+
+        $baseUrl = static::getContainer()->getParameter('site_base_url');
+        $found = null;
+        foreach ($xml->url as $url) {
+            if ((string) $url->loc === $baseUrl . '/article/sitemap-dateless-article') {
+                $found = $url;
+            }
+        }
+
+        $this->assertNotNull($found, 'Dateless article must still appear in the sitemap');
+        $this->assertSame($expected, (string) $found->lastmod);
+    }
+
     public function testSitemapDoesNotListSearchApi(): void
     {
         $client = static::createClient();
