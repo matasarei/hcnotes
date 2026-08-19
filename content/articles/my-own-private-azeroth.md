@@ -7,7 +7,7 @@ tags: [gaming, wow, macos, ai]
 
 > **TL;DR** — I play World of Warcraft 3.3.5a — the original Wrath of the Lich King —
 > as a single-player RPG, on my own AzerothCore server with bots. To play it on a Mac
-> I built [wow335-launcher](https://github.com/matasarei/wow335-launcher): a fully
+> I built [wow-launcher](https://github.com/matasarei/wow-launcher): a fully
 > self-contained wrapper that runs the 2010 client at ~120 FPS on Apple Silicon.
 > The AI first told me ~30 FPS was the ceiling. It was wrong, and the story of how
 > we got past that is the interesting part.
@@ -30,8 +30,16 @@ and sooner or later a cash shop — donate or lose. That's not the game I liked;
 somebody else's business model wearing its skin.
 
 So I run a **personal AzerothCore server** with bots. My own realm, on my own
-hardware, populated by AI-driven characters so the world doesn't feel empty. And to
-be clear about the ethics: this is not piracy — I'm not even a lapsed customer. I
+hardware, populated by AI-driven characters so the world doesn't feel empty. And I
+do mean my own — here it is on a random night: the realm's authserver console up on
+the big screen, Northshire on the laptop, the whole of Azeroth answering at
+`127.0.0.1`.
+
+<div class="shots">
+  <img src="/shared/img/wow335/azerothcore.jpg" alt="AzerothCore authserver console on the big screen, the game running on the laptop below" loading="lazy">
+</div>
+
+And to be clear about the ethics: this is not piracy — I'm not even a lapsed customer. I
 still play on official servers; my main,
 [Magazar of Ravencrest](https://raider.io/characters/eu/ravencrest/Magazar), is
 linked right on my [about page](/about). But I also bought World of Warcraft as it
@@ -54,8 +62,8 @@ The existing options didn't fit:
   manages games living elsewhere on your disk and a shared wine prefix, with profiles
   for several expansions. I wanted a single-game appliance, not a system.
 
-So I built my own: [**wow335-launcher**](https://github.com/matasarei/wow335-launcher).
-It assembles a fully self-contained `WoW335.app` — the wine stack, the translation
+So I built my own: [**wow-launcher**](https://github.com/matasarei/wow-launcher).
+It assembles a fully self-contained `WoW.app` — the wine stack, the translation
 layers, the prefix, everything baked into one bundle — with a native SwiftUI manager
 in front. Nothing needs to be bought or installed first: one `make` downloads the
 open-source wine runtime and the patch payloads from WoWSilicon's releases —
@@ -65,8 +73,8 @@ app: you start it and you play. On my M4 Max it holds **~120 FPS at native
 Retina resolution** — limited only by the screen's refresh rate.
 
 <div class="shots">
-  <img src="/shared/img/wow335/launcher-play.png" alt="WoW335 launcher — Play tab" loading="lazy">
-  <img src="/shared/img/wow335/launcher-display.png" alt="WoW335 launcher — Display settings" loading="lazy">
+  <img src="/shared/img/wow335/launcher-play.png" alt="WoW Launcher — Play tab" loading="lazy">
+  <img src="/shared/img/wow335/launcher-display.png" alt="WoW Launcher — Display settings" loading="lazy">
 </div>
 
 The manager installs and patches a client, verifies its integrity with one-click
@@ -144,4 +152,4 @@ better on this machine than it ever ran on the hardware it was made for.
 The launcher is open source under MIT — it ships no game data and is built around
 the original 3.3.5a client. If you have a Mac, an old love for Northrend, and your
 own copy of the game, everything you need is in the
-[repo](https://github.com/matasarei/wow335-launcher).
+[repo](https://github.com/matasarei/wow-launcher).
