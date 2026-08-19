@@ -65,6 +65,14 @@ would take precedence over `.env.local` and prevent switching to production. So
 
 To deploy in production mode, create `.env.local` from the template and warm the cache:
 
+Search engines see the site through two files: a static `public/robots.txt` and a
+dynamic `/sitemap.xml` rendered straight from the SQLite index — so every
+`app:sync` refreshes the sitemap automatically, nothing extra to run. Sitemap links
+are built from `SITE_BASE_URL` (set it to `https://hcnotes.cc` in `.env.local`;
+the container only sees plain HTTP behind the TLS proxy, so the request scheme
+can't be trusted). In dev mode Symfony adds `X-Robots-Tag: noindex` on its own,
+which keeps localhost out of the index — in `prod` the header disappears.
+
 ```bash
 cp .env.local.example .env.local      # then set APP_ENV=prod and a real APP_SECRET
 docker compose up -d --build
