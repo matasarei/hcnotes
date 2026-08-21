@@ -1,7 +1,7 @@
 ---
 title: My Own Private Azeroth
 date: 2026-08-19
-description: Why I play the original WotLK offline on a personal AzerothCore server, and how I built a native macOS launcher that runs a 2010 Windows game at 120 FPS on Apple Silicon — with AI doing the labour and human intuition doing the steering.
+description: Why I play the original WotLK offline on a personal AzerothCore server, and how I built a native macOS launcher that runs a 2010 Windows game at full speed on Apple Silicon — with AI doing the labour and human intuition doing the steering.
 tags: [gaming, wow, macos, ai]
 ---
 
@@ -9,7 +9,7 @@ tags: [gaming, wow, macos, ai]
 > as a single-player RPG, on my own AzerothCore server with bots. To play it on a Mac
 > I built [wow-launcher](https://github.com/matasarei/wow-launcher): a fully
 > self-contained wrapper that runs the 2010 client at ~120 FPS on Apple Silicon.
-> The AI first told me ~30 FPS was the ceiling. It was wrong, and the story of how
+> The AI first told me the real ceiling was a quarter of that. It was wrong, and the story of how
 > we got past that is the interesting part.
 
 I like World of Warcraft. Specifically, I like *Wrath of the Lich King* — patch
@@ -97,7 +97,7 @@ ARM remains the only path that would meaningfully change that."* In other words:
 there is no way to do what you want.
 
 I didn't accept that. Not because I knew better technically — because it *felt*
-wrong. An M4 Max stalling at 30 FPS on a 2010 game isn't a hardware limit, it's a
+wrong. An M4 Max crawling through a 2010 game isn't a hardware limit, it's a
 software problem, and software problems have authors.
 
 **Session two** began as a graveyard of clever failures. DXVK builds that showed a
@@ -109,7 +109,8 @@ that went nowhere.
 
 Then I changed the strategy. Instead of asking the AI to *invent* the solution, I
 went looking for proof that one existed — and found it: WoWSilicon's stack ran the
-game at 120 FPS on my machine. The moment I saw that number, the task transformed
+game flat-out on my machine — the very performance the AI had ruled out. The
+moment I saw it, the task transformed
 from research into engineering. I came back with a different instruction: *stop
 inventing — this works; understand exactly why it works, then adopt it properly.*
 
@@ -118,7 +119,7 @@ wine, DXVK async for D3D9→Vulkan→Metal, winerosetta and rosettax87 for fast 
 math under Rosetta 2, libSiliconPatch client hooks — worked out what each piece did
 and why, and then rebuilt the whole thing as one self-contained app bundle that
 depends on none of the donor tools. Then, on top of it, a native SwiftUI manager:
-installer, 41-check verifier with repair, addon manager, display logic, even Cyrillic
+installer, integrity verifier with repair, addon manager, display logic, even Cyrillic
 chat input solved the way the community solved it years ago, with glyph-remapped
 fonts. Together we succeeded — and the whole thing took **a few days**. Before AI,
 this was weeks of work, most of it too tedious to ever actually do in the evenings.
@@ -127,7 +128,7 @@ But notice where each contribution came from. The AI supplied depth and speed:
 tracing a deadlock to a specific polling loop in `Wow.exe`, patching a loader name in
 a compiled `ntdll.so` so the Dock says "WoW", grinding through 41 verification
 checks. What it could not supply was the refusal. Left alone, it reasoned its way to
-"30 FPS is the ceiling, buy Parallels" — a defensible conclusion, honestly argued,
+"this is the ceiling, buy Parallels" — a defensible conclusion, honestly argued,
 and wrong. The thing that got us past it was experience and, more importantly,
 **intuition**: the itch that says a conclusion is wrong before you can prove it, and
 the judgement to stop inventing and adopt what already works. That's the part only
@@ -137,15 +138,15 @@ it doesn't refuse to believe.
 (Since then the wrapper has shed even the build-time donors: it now builds on
 WoWSilicon's open-source wine runtime, so CrossOver is out of the chain entirely.)
 
-## Northrend at 120 frames
+## Northrend, smooth as glass
 
 So now it just works. One icon in the Dock. Click, play, quest, log off whenever —
 no queue, no chat, no shop. The game I paid for, the way I remember it, running
 better on this machine than it ever ran on the hardware it was made for.
 
 <div class="shots">
-  <img src="/shared/img/wow335/dalaran.jpg" alt="Dalaran at ~120 FPS" loading="lazy">
-  <img src="/shared/img/wow335/elwynn.jpg" alt="Flying over Elwynn Forest at ~120 FPS" loading="lazy">
+  <img src="/shared/img/wow335/dalaran.jpg" alt="Dalaran, buttery smooth" loading="lazy">
+  <img src="/shared/img/wow335/elwynn.jpg" alt="Flying over Elwynn Forest" loading="lazy">
   <img src="/shared/img/wow335/westfall.jpg" alt="Sentinel Hill inn in Westfall" loading="lazy">
 </div>
 
