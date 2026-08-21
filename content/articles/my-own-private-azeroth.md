@@ -138,7 +138,7 @@ it doesn't refuse to believe.
 (Since then the wrapper has shed even the build-time donors: it now builds on
 WoWSilicon's open-source wine runtime, so CrossOver is out of the chain entirely.)
 
-## Northrend, smooth as glass
+## Northrend, smooth as ice
 
 So now it just works. One icon in the Dock. Click, play, quest, log off whenever —
 no queue, no chat, no shop. The game I paid for, the way I remember it, running
