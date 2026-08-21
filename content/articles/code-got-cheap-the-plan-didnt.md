@@ -72,14 +72,14 @@ Two examples I actually use:
 [grinchenkoedu/claude-skills](https://github.com/grinchenkoedu/claude-skills) and
 [grinchenkoedu/antigravity-skills](https://github.com/grinchenkoedu/antigravity-skills).
 
-At a glance they're "just another collection of skills," and fine, they are: plan,
+At a glance they're "just another collection of skills", and fine, they are: plan,
 implement, review, pr-review, pr-resolve, verify. But the point isn't the list. The
 point is that the same discipline — investigate before planning, plan before coding,
 review before pushing, verify by actually running the thing — is encoded once and then
 enforced consistently, by different agents, on different platforms, with different
 models underneath. One set targets Claude Code; the other targets Google Antigravity
 running Gemini. Not identical, but close enough that the *work* comes out the same
-shape. And they've been proven on real tasks, not demos.
+shape. And I've proven them on real tasks, not demos.
 
 That's the inversion. The framework used to be the reusable asset and the app was
 disposable. Now the skill is the reusable asset and the code it generates is
