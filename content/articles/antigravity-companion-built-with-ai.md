@@ -1,6 +1,6 @@
 ---
 title: Two Bugs in 2,000 Lines — A JetBrains Plugin Built by AI
-date: 2026-05-21
+date: 2026-06-24
 description: Antigravity Companion is a JetBrains IDE plugin I built almost entirely with an AI agent, in a few spare days. Six releases, ~2,000 lines, two bugs. The numbers say a lot about where development is heading — and what still can't be skipped.
 tags: [ai, jetbrains, plugin, antigravity]
 ---
@@ -55,17 +55,19 @@ I went back and checked the actual record, because vibes aren't evidence.
 Put the bugs against the code and you get a defect density of roughly **one bug per
 thousand lines** — or, if you prefer the optimistic framing, about **99.9% of the
 codebase shipped without a single reported defect**. For typical software that ratio
-would be a good year. Here it was a side project.
+would be a good year — the
+[commonly cited industry average](https://www.mayerdan.com/ruby/2012/11/11/bugs-per-line-of-code-ratio)
+is 15 to 50 per thousand. Here it was a side project.
 
-So as a raw proof point, it's blunt: an AI agent can take a non-trivial, platform-
-specific product from nothing to thousands of users, at near-professional quality,
+So as a raw proof point, it's blunt: an AI agent can take a non-trivial,
+platform-specific product from nothing to thousands of users, at near-professional quality,
 in the gaps of a normal work week. That's not a demo. That's the new baseline.
 
 ## But the numbers hide the part that matters
 
 Here's what I want to be honest about, because the hype usually isn't.
 
-**This is not "anyone can do it now."** It looks effortless in the changelog, but the
+**This is not "anyone can do it now".** It looks effortless in the changelog, but the
 reason it went smoothly is that I knew exactly what I was steering toward. Ten-plus
 years of building software is doing quiet work behind every one of those clean
 releases:
