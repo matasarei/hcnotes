@@ -10,6 +10,10 @@ is intentionally small and completely open.
 ![PHP 8.2](https://img.shields.io/badge/php-8.2-777bb4)
 ![Symfony 7](https://img.shields.io/badge/symfony-7.x-000000)
 
+> Just here to read? The articles are waiting on the live site —
+> **[hcnotes.cc](https://hcnotes.cc)** — and there is a bit more
+> [about me](https://hcnotes.cc/about).
+
 ## The generative background
 
 The header used to ship a ~MB MP4 of Max Cooper's *Aleph 2* (visualised by
