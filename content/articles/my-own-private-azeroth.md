@@ -24,12 +24,12 @@ obligations, no communication for the sake of communication. The world of WotLK 
 big enough and dense enough to be a great single-player game — it just was never
 shipped as one.
 
-The usual answer is "join a private server," and that's exactly what I don't want.
+The usual answer is "join a private server", and that's exactly what I don't want.
 Public pirate servers are full of questionable customizations, "seasonal" gimmicks,
 and sooner or later a cash shop — donate or lose. That's not the game I liked; that's
 somebody else's business model wearing its skin.
 
-So I run a **personal AzerothCore server** with bots. My own realm, on my own
+So I run a personal [**AzerothCore**](https://www.azerothcore.org/) server with bots. My own realm, on my own
 hardware, populated by AI-driven characters so the world doesn't feel empty. And I
 do mean my own — here it is on a random night: the realm's authserver console up on
 the big screen, Northshire on the laptop, the whole of Azeroth answering at
@@ -57,7 +57,7 @@ The existing options didn't fit:
 
 - **CrossOver** works, but it isn't cheap — and I'd be paying a subscription-grade
   price to run exactly one game from 2010.
-- **WoWSilicon** is a great project — it's actually the upstream that makes the
+- [**WoWSilicon**](https://github.com/WoWSilicon/WoWSilicon) is a great project — it's actually the upstream that makes the
   performance possible — but it's a different shape of thing: a patcher/launcher that
   manages games living elsewhere on your disk and a shared wine prefix, with profiles
   for several expansions. I wanted a single-game appliance, not a system.

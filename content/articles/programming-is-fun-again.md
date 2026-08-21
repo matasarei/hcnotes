@@ -85,8 +85,8 @@ the human who clicks "approve" on someone else's thinking. That fear gets the ro
 backwards.
 
 The agent types faster than me, reads more than me, and never gets tired of yet
-another verification check. What it doesn't have is intuition — the itch that says a
-conclusion is wrong before you can prove it — and it doesn't carry responsibility.
+another verification check. What it doesn't have is intuition — the quiet certainty that an
+answer is wrong before the proof exists — and it doesn't carry responsibility.
 Both of those stayed with me. I've [written before](/article/articles-code-got-cheap-the-plan-didnt)
 that code got cheap while the plan didn't; this is the same inversion seen from the
 inside. The thinking, the taste, the refusal to accept a bad answer — that's the
