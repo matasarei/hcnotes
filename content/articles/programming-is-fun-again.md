@@ -36,7 +36,9 @@ Here's the enterprise version of "the craft", the one I've done for years: the s
 ceremonies every day, across multiple projects on multiple versions of the same
 frameworks, each buried under layers of business logic that made sense to someone,
 once, in a meeting nobody minuted. And the bugs — not the fun kind you make and fix
-at your own desk, but the floating kind, the one that lives in a *different*
+at your own desk, 
+but [the floating kind](https://about.roblox.com/newsroom/2022/01/roblox-return-to-service-10-28-10-31-2021/), 
+the one that lives in a *different*
 microservice and only shows itself under the right traffic at the right moment, so
 debugging becomes a stakeout: instrument everything, wait, and hope you're watching
 when it surfaces.
