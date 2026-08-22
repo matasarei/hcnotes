@@ -1,7 +1,7 @@
 ---
-title: AICMF: The CMS Where the AI Is the Administrator
+title: The CMS Didn't Need to Get Smarter. It Needed to Get Out of the Way.
 date: 2026-06-23
-description: AICMF treats the AI as the primary administrator, not a bolted-on assistant. Here is why that flips the old CMS/CMF model on its head.
+description: The operator of a content system is now an AI agent, not a person in a dashboard. Why that makes admin panels and plugin marketplaces obsolete, and AICMF, the framework I built for it.
 tags: [aicmf, ai, cms, architecture]
 ---
 
