@@ -12,14 +12,14 @@ tags: [ai, history, work, motivation]
 > won't be easy, and they will be muddy, like every spring.
 
 There's a line on my [About page](/about) that says I believe better times are
-ahead. I wrote it a couple of years ago. Since then I've re-read it more than
+ahead. I wrote it a couple of years ago. Since then, I've re-read it more than
 once with the news open in the next tab, and each time it sounds a little more like
 a joke I'm telling myself.
 
 I'm keeping the line. Not out of stubbornness — because when I stop reading the
 news and start reading history, the joke is on the news.
 
-## Three cliches, and why I still buy them
+## Three clichés, and why I still buy them
 
 You've heard all three. They get printed on posters and posted under bad days.
 
@@ -35,7 +35,7 @@ doing, it's forging.
 a theologian [wrote it down in 1650](https://www.phrases.org.uk/meanings/darkest-hour-is-just-before-the-dawn.html),
 and he was probably repeating something older. It's not a promise that the night
 is short. It's a statement that night is not the permanent state of the sky, and
-that somewhere out there the switch exists, whether or not you can see who's
+that somewhere out there the switch exists, whether you can see who's
 holding it.
 
 *Things have to go bad before they can go well again.* That's just the shape of a
@@ -153,7 +153,7 @@ It doesn't work like that. It has never worked like that. When winter ends, the
 first thing that happens is not flowers — it's mud. Snow melts and the roads
 turn into everything the snow was hiding, and for a few weeks it's honestly
 uglier than the winter was. Nobody sane looks at the mud and concludes that
-spring has been cancelled. The mud *is* the spring, just the early part. You
+spring has been canceled. The mud *is* the spring, just the early part. You
 wash it off the roads, and you keep going.
 
 That's the shape I expect. Not everything will get good. Some things will be
