@@ -4,8 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#03050a">
+    <meta name="generator" content="AICMF (https://github.com/matasarei/aicmf)">
+    {% set page_url = site_base_url ~ app.request.pathInfo %}
     <meta name="description" content="{% block description %}hcnotes — web developer, gamer, father.{% endblock %}">
     <title>{% block title %}HCNOTES{% endblock %}</title>
+    <link rel="canonical" href="{{ page_url }}">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="HCNOTES">
+    <meta property="og:url" content="{{ page_url }}">
+    <meta property="og:title" content="{{ block('title') }}">
+    <meta property="og:description" content="{{ block('description') }}">
+    <meta property="og:image" content="{% block og_image %}{{ site_base_url }}/apple-touch-icon.png{% endblock %}">
+    <meta name="twitter:card" content="summary">
+    {% block head_extra %}{% endblock %}
     <link rel="icon" href="{{ asset_v('/favicon.svg') }}" type="image/svg+xml">
     <link rel="icon" href="{{ asset_v('/favicon-32.png') }}" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset_v('/apple-touch-icon.png') }}">

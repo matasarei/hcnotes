@@ -3,3 +3,5 @@ twig:
     paths:
         '%kernel.project_dir%/src/Themes/default': ~
     default_path: '%kernel.project_dir%/src/Themes/default'
+    globals:
+        site_base_url: '%site_base_url%'
