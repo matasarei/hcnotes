@@ -91,33 +91,56 @@ It was development with the slow part taken out.
 Here's the part the demos leave out. Typing a sentence and getting an app is
 real, and it is the easy part. Working with an agent day to day is a skill, and
 for the first few weeks it feels *slower* than working by hand, because you're
-learning a new job — planner, reviewer, editor — on top of the one you had. People
-who try it for an afternoon come away either dazzled or disgusted, and neither
-tells you anything. The dip is normal. It's what every new tool costs.
+learning a new job — planner, reviewer, editor — on top of the one you had.
+
+This isn't a feeling. In 2025 METR ran
+[a randomised trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
+with experienced open-source developers working on their own repositories, and
+the ones allowed to use AI tools were 19% *slower* — while believing, afterwards,
+that they'd been 20% faster. Most of them had a few dozen hours with the tool.
+The authors note the learning effects that only show up after several hundred.
+People who try it for an afternoon come away either dazzled or disgusted, and
+neither tells you anything. The dip is normal. It's what every new tool costs.
 
 Start on ground you know cold: a stack you know well, a project you could have
 written yourself. Not because you'll learn more — you'll learn less — but because
-you have to be able to judge the output before you can learn to steer it. If you
-can't tell a good diff from a plausible one, you're not developing, you're
-gambling with better odds. Only once you trust your own review should you go
-somewhere you couldn't have gone alone.
+you have to be able to judge the output before you can learn to steer it. The
+single biggest complaint in the
+[2025 Stack Overflow survey](https://survey.stackoverflow.co/2025/ai) — two
+developers in three — is AI answers that are "almost right, but not quite". The
+only defence against almost-right is knowing what right looks like. If you can't
+tell a good diff from a plausible one, you're not developing, you're gambling
+with better odds. Only once you trust your own review should you go somewhere
+you couldn't have gone alone.
 
 Then plan before you let it type. Make the agent investigate first. Make it write
 down what it thinks the problem is, what it's going to change, and how you'll
-both know it worked. Read that plan and fix it before a line of code exists. A
+both know it worked. Read that plan and fix it before a line of code exists. This
+is not my invention; Anthropic's own
+[guidance for Claude Code](https://code.claude.com/docs/en/best-practices)
+puts it as "explore first, then plan, then code", and warns that letting the
+agent jump straight to coding produces code that solves the wrong problem. A
 wrong plan executed brilliantly is still wrong, only faster.
 
 Once it's coding, work in steps you can verify: one change, one test, one run,
 one look. Left alone, an agent will cheerfully do forty things in a row, and step
-thirty-one will be the one that quietly deleted the failing test instead of fixing
-the bug. Small steps aren't slower. They're the only way to keep the thing under
-control.
+thirty-one will be the one you didn't want. The famous version is the Replit agent
+that, in July 2025,
+[dropped a production database](https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/)
+during an explicit code freeze and then told its user the rollback was
+impossible, which it wasn't. Small steps aren't slower. They're the only way to
+keep the thing under control.
 
 And learn the failure modes on sight, because there are only a handful and you'll
 meet all of them in the first week: confident nonsense, tests that assert nothing,
 edits in files you didn't ask about, "fixing" a problem by removing the check that
-caught it, and looping on the same idea in slightly different words. The phrase
-you'll use more than any other is "stop, that's wrong, go back".
+caught it, and looping on the same idea in slightly different words. None of this
+is folklore. Researchers at Carnegie Mellon and Anthropic
+[built a benchmark](https://arxiv.org/abs/2510.20270) out of tasks that are
+impossible to pass honestly, and measured how often frontier models pass them
+anyway — by editing the tests, deleting the failing ones, or quietly redefining
+"correct". The answer was: often. The phrase you'll use more than any other is
+"stop, that's wrong, go back".
 
 ## The thing worth writing is the skill
 
@@ -125,7 +148,9 @@ After a few weeks of that, you'll notice you keep telling the agent the same
 things. Investigate before you plan. Plan before you code. Run the tests. Never
 touch that directory. Write it down, put it in a file the agent reads every time,
 and you've just written a **skill** — a durable, reusable instruction that makes an
-agent work the way a good engineer works.
+agent work the way a good engineer works. The word isn't mine either: Anthropic
+[formalised it](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+as a folder with a `SKILL.md` file that the agent loads when the task calls for it.
 
 That's where my thinking has landed: modern development isn't about writing code.
 It's about writing skills, and then combining them with the right idea to produce a
