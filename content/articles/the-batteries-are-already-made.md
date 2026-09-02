@@ -1,7 +1,7 @@
 ---
 title: The Batteries Are Already Made
 date: 2026-09-03
-description: Last week I argued the Tabby code was worth having. The other objection, that building it with AI is not ethical, I skipped. Here it is taken seriously: what it claims, what the courts and the code say, and what is better.
+description: Last week I argued the Tabby code was worth having. The other objection, that building it with AI is not ethical, taken seriously: what it claims, what the courts and the code say, and what is better.
 tags: [ai, ethics, open-source, haiku, copyright]
 ---
 
@@ -12,9 +12,9 @@ tags: [ai, ethics, open-source, haiku, copyright]
 > material is theft; what has been punished is piracy by the model maker,
 > which no subscriber can commit or undo. I read the Tabby repository: the
 > code is Haiku-style, disclosed in the commits, and it fixed six bugs in
-> Haiku's own tree that Haiku still has. If you still disagree, open models exist, and
-> they cost you capability. That trade is yours to make, and it is not a rule
-> for anyone else.
+> Haiku's own tree that Haiku still has. If you still disagree, open models
+> exist, and they cost you capability. That trade is yours to make, and it
+> is not a rule for anyone else.
 
 [Last week](/article/articles-the-alternative-is-nothing) I wrote about Tabby,
 the fork that got Haiku booting on PowerPC Macs after twenty years, and asked
