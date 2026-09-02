@@ -42,9 +42,9 @@ a:hover { color: var(--pink); }
   height: 100%;
   z-index: 0;
   display: block;
-  /* let the centre breathe so foreground text stays legible */
-  -webkit-mask-image: radial-gradient(ellipse 80% 75% at 50% 45%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.78) 55%, #000 100%);
-          mask-image: radial-gradient(ellipse 80% 75% at 50% 45%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.78) 55%, #000 100%);
+  /* the centre is dimmed so foreground text stays legible; aleph.js bakes
+     that radial fade into each glyph, a CSS mask here would cost the
+     compositor a full-canvas pass on every frame */
 }
 
 /* scanlines + vignette + faint grid, all non-interactive overlays */

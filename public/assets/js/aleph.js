@@ -50,7 +50,28 @@
   var PINK  = [255, 46, 151];
   var WHITE = [234, 253, 255];
 
-  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+  function rgba(c, a) {
+    return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (Math.round(a * 1000) / 1000) + ')';
+  }
+
+  /* ---- radial fade ---------------------------------------------------- */
+  // The centre of the field is dimmed so foreground text stays legible. This
+  // used to be a CSS mask-image on the canvas, which costs the compositor a
+  // full-canvas pass on every frame. Token positions are fixed at build time,
+  // so the same ellipse (80% x 75%, centred at 50%/45%, 0.35 at the centre,
+  // 0.78 at 55% of the radius, 1 at the edge) is folded into each token's
+  // alpha once instead.
+  function fadeAt(x, y) {
+    var nx = (x - W * 0.5) / (W * 0.8);
+    var ny = (y - H * 0.45) / (H * 0.75);
+    var d = Math.sqrt(nx * nx + ny * ny);
+    if (d >= 1) return 1;
+    if (d <= 0.55) return 0.35 + (0.78 - 0.35) * (d / 0.55);
+    return 0.78 + (1 - 0.78) * ((d - 0.55) / 0.45);
+  }
+  // Below this effective alpha a glyph is not visible over the background at
+  // all, so the token is never created and never drawn.
+  var MIN_ALPHA = 0.05;
 
   /* ---- the vocabulary of infinity ------------------------------------- */
   var ALEPHS = ['ℵ₀', 'ℵ₁', 'ℵ₂', 'ℶ₀', 'ℶ₁'];
@@ -92,7 +113,8 @@
       for (var c = 0; c < cols; c++) {
         // sparse field — only some cells carry a token
         if (Math.random() > scene.density) continue;
-        tokens.push(newToken(c * cell + cell / 2, r * cell + cell / 2));
+        var t = newToken(c * cell + cell / 2, r * cell + cell / 2);
+        if (t.bright * t.fade >= MIN_ALPHA) tokens.push(t);
       }
     }
   }
@@ -101,25 +123,41 @@
     return (Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22) * scene.brightness;
   }
 
+  // Colour strings are built only here, on a state change, never per frame:
+  // fill is what every state draws with, fillL/fillR are the pink/cyan halves
+  // of the chromatic split an aleph glyph gets in the full scene.
+  function paint(t) {
+    var f = t.fade;
+    if (t.state === COUNT) {
+      t.fill = rgba(t.hot ? WHITE : CYAN, t.bright * f);
+    } else if (t.state === ALEPH && scene.glitch) {
+      t.fill  = rgba(WHITE, 0.95 * f);
+      t.fillL = rgba(PINK, 0.85 * f);
+      t.fillR = rgba(CYAN, 0.85 * f);
+    } else if (t.state === ALEPH) {
+      t.fill = rgba(PINK, 0.6 * scene.brightness * f);
+    } else {
+      t.fill = rgba(PINK, (0.45 + Math.random() * 0.2) * f);
+    }
+  }
+
   function newToken(x, y) {
-    var hot = Math.random() < scene.hotShare;
-    var bright = baseBright();
-    return {
+    var t = {
       x: x, y: y,
+      fade: fadeAt(x, y),
       state: COUNT,
       value: 1 + ((Math.random() * 40) | 0),
       step: 1,
       glyph: '',
       // base dimness gives the field depth; a few cells run hot (favourite numbers)
-      bright: bright,
-      hot: hot,
-      // precomputed COUNT colour — only changes on respawn, so we cache it
-      // instead of rebuilding the rgba() string for every token every frame
-      fill: rgba(hot ? WHITE : CYAN, bright),
+      bright: baseBright(),
+      hot: Math.random() < scene.hotShare,
+      fill: '', fillL: '', fillR: '',
       timer: 200 + Math.random() * 1400, // ms until next state event
-      life: 0,
-      jitter: 0
+      life: 0
     };
+    paint(t);
+    return t;
   }
 
   /* ---- simulation tick (slow cadence; numbers don't need 60fps) ------- */
@@ -141,7 +179,7 @@
           t.state = ALEPH;
           t.glyph = Math.random() < 0.45 ? pick(ALEPHS) : pick(SETSYM);
           t.timer = 260 + Math.random() * 900;
-          t.jitter = 1;
+          paint(t);
         } else if (t.timer <= 0) {
           t.timer = 300 + Math.random() * 1600;
         }
@@ -150,50 +188,58 @@
           t.state = DECAY_S;
           t.glyph = pick(DECAY);
           t.timer = 180 + Math.random() * 420;
+          paint(t);
         }
       } else { // DECAY_S — crumble to dots, then respawn as a fresh count
         if (t.timer <= 0) {
           t.state = COUNT;
           t.value = 1 + ((Math.random() * 30) | 0);
           t.bright = baseBright();
-          t.fill = rgba(t.hot ? WHITE : CYAN, t.bright);
           t.timer = 400 + Math.random() * 1800;
-          t.jitter = 0;
+          paint(t);
         }
       }
     }
   }
 
   /* ---- render --------------------------------------------------------- */
+  // Aleph glyphs in the full scene are drawn additively. They are collected
+  // during the main pass and drawn together afterwards, so the composite mode
+  // is switched twice per frame rather than twice per glyph.
+  var alephs = [];
+
   function draw() {
     ctx.fillStyle = BG;
     ctx.fillRect(0, 0, W, H);
+    alephs.length = 0;
 
     for (var i = 0; i < tokens.length; i++) {
       var t = tokens[i];
-
       if (t.state === COUNT) {
         ctx.fillStyle = t.fill;
         ctx.fillText('' + t.value, t.x, t.y);
-      } else if (t.state === ALEPH && !scene.glitch) {
-        // calm scene: a single quiet glyph, no additive split
-        ctx.fillStyle = rgba(PINK, 0.6 * scene.brightness);
-        ctx.fillText(t.glyph, t.x, t.y);
-      } else if (t.state === ALEPH) {
-        // hot glyph — chromatic RGB split, additive
-        var dx = 1.4 + Math.random() * 1.8 * intensity * 4;
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.fillStyle = rgba(PINK, 0.85);
-        ctx.fillText(t.glyph, t.x - dx, t.y);
-        ctx.fillStyle = rgba(CYAN, 0.85);
-        ctx.fillText(t.glyph, t.x + dx, t.y);
-        ctx.fillStyle = rgba(WHITE, 0.95);
-        ctx.fillText(t.glyph, t.x, t.y);
-        ctx.globalCompositeOperation = 'source-over';
-      } else { // decay
-        ctx.fillStyle = rgba(PINK, 0.45 + Math.random() * 0.2);
+      } else if (t.state === ALEPH && scene.glitch) {
+        alephs.push(t);
+      } else { // calm aleph, or decay
+        ctx.fillStyle = t.fill;
         ctx.fillText(t.glyph, t.x, t.y);
       }
+    }
+
+    if (alephs.length) {
+      // hot glyphs — chromatic RGB split, additive
+      ctx.globalCompositeOperation = 'lighter';
+      for (var a = 0; a < alephs.length; a++) {
+        var g = alephs[a];
+        var dx = 1.4 + Math.random() * 1.8 * intensity * 4;
+        ctx.fillStyle = g.fillL;
+        ctx.fillText(g.glyph, g.x - dx, g.y);
+        ctx.fillStyle = g.fillR;
+        ctx.fillText(g.glyph, g.x + dx, g.y);
+        ctx.fillStyle = g.fill;
+        ctx.fillText(g.glyph, g.x, g.y);
+      }
+      ctx.globalCompositeOperation = 'source-over';
     }
 
     // occasional horizontal slice displacement — a render glitch
