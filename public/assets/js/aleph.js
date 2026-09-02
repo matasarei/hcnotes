@@ -257,19 +257,22 @@
   }
 
   /* ---- loops ---------------------------------------------------------- */
-  // Frame cap per scene (30 for full, 10 for calm). The field is discrete
-  // glyph swaps, not smooth motion, so a cap well under the display rate is
-  // visually indistinguishable but cuts the draw work proportionally. Real
-  // elapsed time still drives the simulation, so the counting cadence is
-  // unchanged.
+  // Frame cap per scene. The field is discrete glyph swaps, not smooth
+  // motion, so a cap well under the display rate is visually indistinguishable
+  // but cuts the draw work proportionally. Real elapsed time still drives the
+  // simulation, so the counting cadence is unchanged.
   var FRAME_MS = 1000 / scene.fps;
+  // A frame normally covers about FRAME_MS of real time; anything much longer
+  // is a return from a hidden tab, and the simulation must not jump to catch
+  // up.
+  var MAX_DT = FRAME_MS * 2;
 
   function frame(now) {
     raf = requestAnimationFrame(frame);
     var since = now - lastTick;
     if (since < FRAME_MS - 1) return;   // not time to draw yet — skip
     lastTick = now;
-    update(Math.min(since, 60));        // cap dt so a tab-return doesn't jump
+    update(Math.min(since, MAX_DT));    // cap dt so a tab-return doesn't jump
     draw();
   }
 
