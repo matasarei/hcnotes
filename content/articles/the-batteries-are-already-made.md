@@ -217,17 +217,16 @@ for me, any more than mine is for Haiku. They chose. I respect it. If I ever
 want their kernel to do something it doesn't, I'll do what Sean did: fork
 it, name it, and say so on the About window.
 
-## P.S. What would change my mind
+## The final word
 
-Three things, none of which has happened.
+Using AI is better than not using it. Not as a slogan — as the score.
 
-The Ninth Circuit could throw out the identical-copy requirement in the
-GitHub case, which would make near-copies with stripped licence text
-actionable. A court could find that training itself infringes, which no
-court has. Or someone could document a verbatim-copy claim against a small
-downstream project — a maintainer who shipped a generated block and got a
-real letter about it. Any of those, and this article gets a follow-up.
-
-Until then, the argument I found in that thread was better than the one I
-expected, and it was made by someone consistent enough to argue with. That
-is worth more than agreement.
+Twenty years without it produced no Haiku on PowerPC. A few weeks with it
+produced one that boots, in Haiku's own style, with every commit signed.
+The same tool found six bugs in the code every Haiku user runs, bugs that
+are still there because the rule that keeps the tool out keeps the fixes
+out too. On the other side of the ledger: a theft that no court has found,
+a training cost that was sunk before I subscribed, and a supply chain that
+every tool on my desk shares. If a court ever rules that learning itself is
+infringement, I'll write the follow-up. Until then, the alternative is still
+nothing, and nothing has never fixed a bug.
