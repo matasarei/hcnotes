@@ -19,8 +19,8 @@ tags: [ai, ethics, open-source, haiku, copyright]
 [Last week](/article/articles-the-alternative-is-nothing) I wrote about Tabby,
 the fork that got Haiku booting on PowerPC Macs after twenty years, and asked
 what the alternative was. That dealt with "slop". It skipped the harder
-objection, the one I've seen in more than one place and left out because it
-needs more than a paragraph: fine, it boots, but it's not ethical to build
+objection, the one I've seen in more than one place, because it needs more
+than a paragraph: fine, it boots, but it's not ethical to build
 it this way.
 
 That deserves thinking through instead of a shrug. And thinking it through
@@ -126,12 +126,13 @@ But here's the honest turn. The Haiku developer's argument was never
 economic. It was cultural: show that building software without LLMs is
 possible. You can't refute a values choice with a cost argument, and I'm not
 going to try. What I can say is that it's a choice for their project, not a
-duty for mine. And Sean honoured that choice exactly the way you should
-honour a values choice you don't share: he didn't submit the code. He
-forked, named it Tabby, and said so on the first screen anyone sees.
+duty for mine. And Sean Malseed, who built Tabby, honoured that choice
+exactly the way you should honour a values choice you don't share: he didn't
+submit the code. He forked, named it, and said so on the first screen anyone
+sees.
 
-One more thing, for the end: the laptop this is typed
-on, and the G4 Tabby boots on, sit on a supply chain that nobody in that
+One more thing, for later: the laptop this is typed on, and the G4 Tabby
+boots on, sit on a supply chain that nobody in that
 thread has audited either. Every tool does. Where you stop caring is a
 choice, and it is always a choice.
 
@@ -215,8 +216,8 @@ And you still need a GPU to run them, made from metals mined and refined in
 places nobody in this argument has audited. The purity chain doesn't end.
 You pick where you stop, and picking is fine — but your stop is not a rule
 for me, any more than mine is for Haiku. They chose. I respect it. If I ever
-want their kernel to do something it doesn't, I'll do what Sean did: fork
-it, name it, and say so on the About window.
+want their kernel to do something it doesn't, I'll do what Sean did and
+fork it.
 
 ## The score
 
