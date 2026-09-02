@@ -1,29 +1,30 @@
 ---
 title: The Batteries Are Already Made
 date: 2026-09-03
-description: The reply to my Tabby piece wasn't "slop", it was "not ethical". I split that into what it actually says, checked it against the courts and the Tabby code, and found six bugs Haiku still has.
+description: Last week I argued the Tabby code was worth having. The other objection, that building it with AI is not ethical, I skipped. Here it is taken seriously: what it claims, what the courts and the code say, and what is better.
 tags: [ai, ethics, open-source, haiku, copyright]
 ---
 
-> **TL;DR** — Last week's piece got the "slop" replies I expected and one I
-> didn't: "it's not ethical". Taken seriously, that is four different
-> objections with four different owners, and only one of them is theft. No
-> court has found that training a model on lawfully obtained material is
-> theft; what has been punished is piracy by the model maker, which no
-> subscriber can commit or undo. I read the Tabby repository: the code is
-> Haiku-style, disclosed in every commit, and it fixed six bugs in Haiku's own
-> tree that Haiku still has. If you still disagree, open models exist, and
+> **TL;DR** — Last week's piece dealt with "slop" and skipped the harder
+> objection: that building this way is not ethical. Taken seriously, that is
+> four different objections with four different owners, and only one of them
+> is theft. No court has found that training a model on lawfully obtained
+> material is theft; what has been punished is piracy by the model maker,
+> which no subscriber can commit or undo. I read the Tabby repository: the
+> code is Haiku-style, disclosed in the commits, and it fixed six bugs in
+> Haiku's own tree that Haiku still has. If you still disagree, open models exist, and
 > they cost you capability. That trade is yours to make, and it is not a rule
 > for anyone else.
 
 [Last week](/article/articles-the-alternative-is-nothing) I wrote about Tabby,
 the fork that got Haiku booting on PowerPC Macs after twenty years, and asked
-what the alternative was. Most of what came back was what I expected. The
-reply worth answering, and I've now seen it in more than one place, is:
-fine, it boots, but it's not ethical to build it this way.
+what the alternative was. That dealt with "slop". It skipped the harder
+objection, the one I've seen in more than one place and left out because it
+needs more than a paragraph: fine, it boots, but it's not ethical to build
+it this way.
 
-That deserves a real answer instead of a shrug. And a real answer starts with
-asking what the sentence actually says.
+That deserves thinking through instead of a shrug. And thinking it through
+starts with asking what the sentence actually says.
 
 ## What "not ethical" actually says
 
