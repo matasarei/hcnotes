@@ -221,12 +221,12 @@ it, name it, and say so on the About window.
 
 Using AI is better than not using it. Not as a slogan — as arithmetic.
 
-Twenty years without it produced no Haiku on PowerPC. A few weeks with it
-produced one that boots, in Haiku's own style, with every commit signed.
-The same tool found six bugs in the code every Haiku user runs, bugs that
-are still there because the rule that keeps the tool out keeps the fixes
-out too. On the other side of the ledger: a theft that no court has found,
-a training cost that was sunk before I subscribed, and a supply chain that
-every tool on my desk shares. If a court ever rules that learning itself is
-infringement, I'll write the follow-up. Until then, the alternative is still
-nothing, and nothing has never fixed a bug.
+On one side: things that exist now and didn't before, built in weeks by
+people who had the idea and the judgement but not the years to type it out.
+Bugs found in code that had been read by humans for decades and shipped
+anyway. Fixes that sit in forks because a rule keeps the tool out and, with
+it, the fixes. On the other side: a theft that no court has found, a
+training cost that was sunk before anyone subscribed, and a supply chain
+that every tool on every desk already shares. If a court ever rules that
+learning itself is infringement, I'll write the follow-up. Until then, the
+alternative is still nothing, and nothing has never fixed a bug.
