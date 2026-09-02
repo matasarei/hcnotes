@@ -7,7 +7,11 @@
  * decays into aleph numbers and set-theory symbols, then crumbles into dots.
  *
  * Vanilla, dependency-free. Honours prefers-reduced-motion and tab visibility.
- *   <canvas id="aleph-bg"></canvas>
+ *   <canvas id="aleph-bg" data-scene="full|calm"></canvas>
+ *
+ * The page picks a scene through data-scene. "full" is the living field the
+ * index shows; "calm" is what article pages ask for: a sparser, dimmer, slower
+ * field with the glitch effects off, so the text is the only thing moving.
  */
 (function () {
   'use strict';
@@ -18,6 +22,27 @@
 
   var reduceMotion = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- scenes --------------------------------------------------------- */
+  var SCENES = {
+    full: {
+      density: 0.58,  // share of grid cells that carry a token
+      fps: 30,        // the field is discrete glyph swaps; 30 reads like 60
+      dprCap: 1.5,    // dim field behind overlays: 1.5 is indistinguishable from 2
+      glitch: true,   // chromatic split on aleph glyphs + horizontal slice tears
+      hotShare: 0.07, // share of tokens that run bright white
+      brightness: 1
+    },
+    calm: {
+      density: 0.20,
+      fps: 10,
+      dprCap: 1,
+      glitch: false,
+      hotShare: 0,
+      brightness: 0.6
+    }
+  };
+  var scene = SCENES[canvas.getAttribute('data-scene')] || SCENES.full;
 
   /* ---- toxic palette on near-black ------------------------------------ */
   var BG    = '#03050a';
@@ -45,10 +70,9 @@
   var lastTick = 0;
 
   function build() {
-    // Cap DPR at 1.5: this is a dim field behind scanlines/vignette/content,
-    // so 1.5 is visually indistinguishable from 2 but rasterises ~44% fewer
-    // pixels per glyph.
-    DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+    // Cap DPR: this is a dim field behind scanlines/vignette/content, so a
+    // lower cap rasterises far fewer pixels per glyph without a visible cost.
+    DPR = Math.min(window.devicePixelRatio || 1, scene.dprCap);
     W = canvas.clientWidth;
     H = canvas.clientHeight;
     canvas.width = Math.floor(W * DPR);
@@ -66,16 +90,20 @@
     tokens = [];
     for (var r = 0; r < rows; r++) {
       for (var c = 0; c < cols; c++) {
-        // sparse field — ~58% of cells carry a token
-        if (Math.random() > 0.58) continue;
+        // sparse field — only some cells carry a token
+        if (Math.random() > scene.density) continue;
         tokens.push(newToken(c * cell + cell / 2, r * cell + cell / 2));
       }
     }
   }
 
+  function baseBright() {
+    return (Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22) * scene.brightness;
+  }
+
   function newToken(x, y) {
-    var hot = Math.random() < 0.07;
-    var bright = Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22;
+    var hot = Math.random() < scene.hotShare;
+    var bright = baseBright();
     return {
       x: x, y: y,
       state: COUNT,
@@ -127,7 +155,7 @@
         if (t.timer <= 0) {
           t.state = COUNT;
           t.value = 1 + ((Math.random() * 30) | 0);
-          t.bright = Math.random() < 0.07 ? 0.85 : 0.10 + Math.random() * 0.22;
+          t.bright = baseBright();
           t.fill = rgba(t.hot ? WHITE : CYAN, t.bright);
           t.timer = 400 + Math.random() * 1800;
           t.jitter = 0;
@@ -147,6 +175,10 @@
       if (t.state === COUNT) {
         ctx.fillStyle = t.fill;
         ctx.fillText('' + t.value, t.x, t.y);
+      } else if (t.state === ALEPH && !scene.glitch) {
+        // calm scene: a single quiet glyph, no additive split
+        ctx.fillStyle = rgba(PINK, 0.6 * scene.brightness);
+        ctx.fillText(t.glyph, t.x, t.y);
       } else if (t.state === ALEPH) {
         // hot glyph — chromatic RGB split, additive
         var dx = 1.4 + Math.random() * 1.8 * intensity * 4;
@@ -165,7 +197,7 @@
     }
 
     // occasional horizontal slice displacement — a render glitch
-    if (!reduceMotion && Math.random() < 0.06) {
+    if (scene.glitch && !reduceMotion && Math.random() < 0.06) {
       var bands = 1 + ((Math.random() * 3) | 0);
       for (var b = 0; b < bands; b++) {
         var by = (Math.random() * H) | 0;
@@ -179,11 +211,12 @@
   }
 
   /* ---- loops ---------------------------------------------------------- */
-  // Target ~30fps. The field is discrete glyph swaps, not smooth motion, so
-  // this is visually indistinguishable from 60fps but halves the draw work
-  // (and quarters it on 120Hz displays). Real elapsed time still drives the
-  // simulation, so the counting cadence is unchanged.
-  var FRAME_MS = 1000 / 30;
+  // Frame cap per scene (30 for full, 10 for calm). The field is discrete
+  // glyph swaps, not smooth motion, so a cap well under the display rate is
+  // visually indistinguishable but cuts the draw work proportionally. Real
+  // elapsed time still drives the simulation, so the counting cadence is
+  // unchanged.
+  var FRAME_MS = 1000 / scene.fps;
 
   function frame(now) {
     raf = requestAnimationFrame(frame);
