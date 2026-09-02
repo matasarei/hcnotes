@@ -161,58 +161,41 @@ standards" is a claim about code, and code can be read. So I cloned
 [Tabby](https://github.com/ActionRetro/Tabby-PPC) and diffed it against the
 upstream commit it forked from.
 
-First, what was actually written. The raw diff says 436,000 lines added,
-and almost all of that is vendored with clean provenance: Mesa 7.4.4
-restored from Haiku's own git history, GLU, OpenSSL, a FreeBSD Ethernet
-driver with its BSD headers intact, WiFi firmware. The authored part is
-about 18,000 lines across 265 files, 40 of them new. That's the PCI host
-bridge, two interrupt controllers, the ATA driver, keyboard and trackpad,
-sound, USB on a big-endian machine, page table fixes, signals, fork, AltiVec.
-The missing organs of a twenty-year-old skeleton.
+Strip out the vendored parts — Mesa restored from Haiku's own history, a
+FreeBSD Ethernet driver with its BSD headers intact, firmware — and the
+authored work is about 18,000 lines across 265 files: the PCI host bridge,
+two interrupt controllers, ATA, keyboard and trackpad, sound, big-endian
+USB, page table fixes, signals, fork, AltiVec. The missing organs of a
+twenty-year-old skeleton.
 
-Second, disclosure. 163 of the 174 commits carry a trailer naming the model
-that helped. The eleven without are ReadMe edits and the first three days.
-Every new source file lists "Claude (Anthropic), paired via Claude Code" as
-an author. And on July 23 there's a commit I keep thinking about: the
-model's early drafts had put "Copyright 2026, Haiku, Inc." on new files, and
-Sean caught it and changed every one to his own name, with a message saying
-these are a personal port's files and not Haiku's work. The Linux kernel's
+The disclosure is better than most human pull requests. 163 of the 174
+commits carry a trailer naming the model that helped, and every new source
+file lists "Claude (Anthropic), paired via Claude Code" as an author. On
+July 23 there's a commit I keep thinking about: the model's early drafts had
+put "Copyright 2026, Haiku, Inc." on new files, and Sean caught it and
+changed every one to his own name, because a personal port's files are not
+Haiku's work. The Linux kernel's
 [April 2026 policy](https://docs.kernel.org/process/coding-assistants.html)
 asks for a tag naming the tool and a human who signs and owns the result.
-This is that, and more, from a hobbyist nobody asked.
+This is that, from a hobbyist nobody asked.
 
-Third, style, measured with Haiku's own bar. The tree ships a checkstyle
-tool. I ran it over the new drivers and over comparable upstream ones,
-counting hits on code lines only, because it flags every hyphen in a
-comment. The new interrupt controller: 10 hits in 421 lines. Upstream's
-OpenPIC driver: 16 in 553. The new ATA driver, 19 in 662, against an
-upstream SATA driver at 9 in 410. The audio driver is the weakest at 49 in
-1,923, against the HDA driver's 9 in 1,433. Same band, one outlier. Across
-all 18,000 authored lines there are three TODOs and no FIXME, XXX or HACK.
-A fifth of the lines are comments.
+Style, measured with Haiku's own checkstyle tool, lands in the same band as
+upstream: the new interrupt controller scores 10 hits in 421 lines against
+upstream's OpenPIC driver at 16 in 553. Across all 18,000 authored lines
+there are three TODOs and no FIXME, XXX or HACK. And every commit has a
+body, about 190 words on average, naming the symptom, the mechanism, the
+hardware it was seen on, and what was checked.
 
-Fourth, the commit messages. Every code commit has a body, about 190 words on average, and each
-one names the symptom, the mechanism, the hardware it was seen on, and what
-was checked. The page-table fix explains why an entry in the secondary
-group with the wrong hash bit can never be resolved by the CPU, why it only
-showed up under memory pressure on real hardware, and why the emulator never
-faulted. The filesystem fix explains the mixed-endian B+tree, proves the
-change is a no-op on x86, and reports the checker's results before and
-after.
-
-And then the part that turns the "high standards" argument around. While
+Then the part that turns the "high standards" argument around. While
 bringing up PowerPC, the work found and fixed six bugs in *shared* Haiku
 code — not the port, the code every architecture runs — that x86 never
 triggered. Upstream has not touched any of those files since the fork.
 
-- A job object's destructor left dangling pointers behind in the jobs that
-  depended on it, and the launch daemon crashed on them under timing jitter
-  (about one boot in three before the fix, none in ten after, by the
-  author's count).
+- A job object's destructor left dangling pointers behind, and the launch
+  daemon crashed on them under timing jitter.
 - The package daemon freed a package twice when a commit failed after adding
   it.
-- The launch daemon had a TODO for a restart throttle so a crashing service
-  wouldn't respawn forever. Now it has the throttle.
+- The launch daemon had a TODO for a restart throttle. Now it has one.
 - A half-initialised ICU object crashed two locale formatters.
 - The boot device scan gave up before a slow USB disk had finished
   appearing.
@@ -220,21 +203,18 @@ triggered. Upstream has not touched any of those files since the fork.
   which on x86 compiles to the same thing as the strong one, so nobody
   noticed. Upstream master still has it today.
 
-All six have patches sitting in a fork, and under the current policy none
-can be submitted. That's the cost of the standard, stated plainly: a
-rule that forbids the tool which just found six bugs in your tree is a rule
-that keeps the six bugs. You don't have to let it write your kernel. But not
-letting it *review* your kernel is, on this evidence, worse than letting it.
+All six patches sit in a fork, and under the current policy none can be
+submitted. That's the cost of the standard, stated plainly: a rule that
+forbids the tool which just found six bugs in your tree is a rule that keeps
+the six bugs. You don't have to let it write your kernel. But not letting it
+*review* your kernel is, on this evidence, worse than letting it.
 
-Now the honest list. Three
-places in the kernel are wrapped in an `#ifdef` for PowerPC and leak a page
-or swallow a counter underflow instead of panicking, and USB completions run
-off a polling thread because the interrupt routing wasn't done yet. Every
-one is labelled "bring-up workaround, not a fix" in both the code and the
-commit. And there is one genuine licence problem in the fork: the Broadcom
-WiFi firmware is committed into the tree, where upstream deliberately
-downloads it at install time with a licence notice. That's a human packaging
-decision, not a line the model wrote.
+Now the honest list. Three places in the kernel are wrapped in an `#ifdef`
+for PowerPC and leak a page instead of panicking, each labelled "bring-up
+workaround, not a fix" in the code and the commit. And there is one genuine
+licence problem: the Broadcom WiFi firmware is committed into the tree,
+where upstream deliberately downloads it at install time with a licence
+notice. That's a human packaging decision, not a line the model wrote.
 
 So "it's slop" was wrong about the drivers and right about the workarounds.
 And the author had already said which was which.
