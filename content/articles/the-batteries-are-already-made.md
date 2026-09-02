@@ -217,9 +217,9 @@ for me, any more than mine is for Haiku. They chose. I respect it. If I ever
 want their kernel to do something it doesn't, I'll do what Sean did: fork
 it, name it, and say so on the About window.
 
-## The final word
+## The score
 
-Using AI is better than not using it. Not as a slogan — as the score.
+Using AI is better than not using it. Not as a slogan — as arithmetic.
 
 Twenty years without it produced no Haiku on PowerPC. A few weeks with it
 produced one that boots, in Haiku's own style, with every commit signed.
