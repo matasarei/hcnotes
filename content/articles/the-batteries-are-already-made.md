@@ -168,16 +168,9 @@ two interrupt controllers, ATA, keyboard and trackpad, sound, big-endian
 USB, page table fixes, signals, fork, AltiVec. The missing organs of a
 twenty-year-old skeleton.
 
-The disclosure is better than most human pull requests. 163 of the 174
-commits carry a trailer naming the model that helped, and every new source
-file lists "Claude (Anthropic), paired via Claude Code" as an author. On
-July 23 there's a commit I keep thinking about: the model's early drafts had
-put "Copyright 2026, Haiku, Inc." on new files, and Sean caught it and
-changed every one to his own name, because a personal port's files are not
-Haiku's work. The Linux kernel's
-[April 2026 policy](https://docs.kernel.org/process/coding-assistants.html)
-asks for a tag naming the tool and a human who signs and owns the result.
-This is that, from a hobbyist nobody asked.
+None of it is hidden: 163 of the 174 commits carry a trailer naming the
+model that helped, and every new source file lists Claude as a co-author
+next to Sean's name.
 
 Style, measured with Haiku's own checkstyle tool, lands in the same band as
 upstream: the new interrupt controller scores 10 hits in 421 lines against
