@@ -230,40 +230,27 @@ signs it, and looks up any block they couldn't have written themselves.
 
 ## If you still disagree
 
-Then you have an honest option, and I'd rather describe it accurately than
-pretend it doesn't exist.
+Then you have an honest option. There are models trained only on data their
+makers can account for — [Comma v0.1](https://arxiv.org/abs/2506.05209),
+[Apertus](https://arxiv.org/pdf/2509.14233) and
+[StarCoder2](https://arxiv.org/html/2402.19173) — built on openly licensed
+or opt-out-respecting data, with the weights and the data published. They
+answer the copyright objection, and the lock-in one too: the weights are
+yours, on your hardware, and nobody can cancel them from under you.
 
-There are models trained only on data their makers could account for.
-[Comma v0.1](https://arxiv.org/abs/2506.05209) is a 7-billion-parameter
-model trained on the Common Pile, eight terabytes of openly licensed text
-and code, weights and data published.
-[Apertus](https://arxiv.org/pdf/2509.14233), from ETH Zurich and EPFL,
-respects robots.txt retroactively, honours opt-outs, and releases the
-weights, the data and the recipe.
-[StarCoder2](https://arxiv.org/html/2402.19173) was trained on permissively
-licensed code with an opt-out. If the copyright objection is the one that
-moves you, these answer it. They answer the lock-in one too: the weights
-are yours, on your hardware, and no subscription can be cancelled from
-under you.
-
-Here's the price. They are weaker, by a generation or two — Comma's own
-paper puts it at Llama 2 level — and none of them would have produced a
-Tabby-level result. They are weaker precisely *because* they are open: less data,
-more carefully chosen. And even the careful set isn't clean; a
-[2025 audit](https://arxiv.org/abs/2501.02628) of the permissive code set
-found mislabelled files pulling non-permissive code in, and thousands of
+Here's the price. They are weaker by a generation or two, and none of them
+would have produced a Tabby-level result. They are weaker precisely
+*because* they are open: less data, more carefully chosen. And even the
+careful data isn't clean; a [2025 audit](https://arxiv.org/abs/2501.02628)
+of the permissive code set found mislabelled files and thousands of
 known-vulnerable ones.
 
-And you still need a GPU to run them. A GPU made from metals mined and
-refined in places that nobody in this argument has audited, on a board
-assembled by people whose conditions nobody in this argument has asked
-about. The purity chain doesn't end. There is no bottom where the tool is clean. You pick where you
-stop, and picking is fine — but your stop is not a rule for me, any more
-than mine is for Haiku.
-
-Haiku chose. I respect it. If I ever want their kernel to do something it
-doesn't, I'll do what Sean did: fork it, name it, and say so on the About
-window.
+And you still need a GPU to run them, made from metals mined and refined in
+places nobody in this argument has audited. The purity chain doesn't end.
+You pick where you stop, and picking is fine — but your stop is not a rule
+for me, any more than mine is for Haiku. They chose. I respect it. If I ever
+want their kernel to do something it doesn't, I'll do what Sean did: fork
+it, name it, and say so on the About window.
 
 ## P.S. What would change my mind
 
