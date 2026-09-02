@@ -168,10 +168,6 @@ two interrupt controllers, ATA, keyboard and trackpad, sound, big-endian
 USB, page table fixes, signals, fork, AltiVec. The missing organs of a
 twenty-year-old skeleton.
 
-None of it is hidden: 163 of the 174 commits carry a trailer naming the
-model that helped, and every new source file lists Claude as a co-author
-next to Sean's name.
-
 Style, measured with Haiku's own checkstyle tool, lands in the same band as
 upstream: the new interrupt controller scores 10 hits in 421 lines against
 upstream's OpenPIC driver at 16 in 553. Across all 18,000 authored lines
@@ -202,15 +198,10 @@ forbids the tool which just found six bugs in your tree is a rule that keeps
 the six bugs. You don't have to let it write your kernel. But not letting it
 *review* your kernel is, on this evidence, worse than letting it.
 
-Now the honest list. Three places in the kernel are wrapped in an `#ifdef`
-for PowerPC and leak a page instead of panicking, each labelled "bring-up
-workaround, not a fix" in the code and the commit. And there is one genuine
-licence problem: the Broadcom WiFi firmware is committed into the tree,
-where upstream deliberately downloads it at install time with a licence
-notice. That's a human packaging decision, not a line the model wrote.
-
-So "it's slop" was wrong about the drivers and right about the workarounds.
-And the author had already said which was which.
+And none of it is hidden or dressed up as something else: 163 of the 174
+commits carry a trailer naming the model that helped, and every new source
+file lists Claude as a co-author next to Sean's name. Anyone who wants to
+judge the code can see exactly how it was made.
 
 ## My own shelf
 
