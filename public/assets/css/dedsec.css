@@ -54,7 +54,15 @@ a:hover { color: var(--pink); }
   z-index: 1;
   pointer-events: none;
 }
-.fx-overlay.scanlines {
+/* The scanline texture sits on a pseudo-element one period (8px) taller than
+   the viewport and drifts with a transform, which the compositor can move
+   without repainting. Animating background-position instead repaints the
+   whole viewport on every display frame. */
+.fx-overlay.scanlines { mix-blend-mode: multiply; overflow: hidden; }
+.fx-overlay.scanlines::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -8px; bottom: 0;
   background: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 0px,
@@ -62,7 +70,6 @@ a:hover { color: var(--pink); }
     rgba(0, 0, 0, 0.18) 3px,
     rgba(0, 0, 0, 0) 4px
   );
-  mix-blend-mode: multiply;
   animation: scan-drift 8s linear infinite;
 }
 .fx-overlay.vignette {
@@ -70,7 +77,7 @@ a:hover { color: var(--pink); }
 }
 .fx-overlay.flicker { animation: bg-flicker 7s steps(1) infinite; background: rgba(45,226,230,0.012); }
 
-@keyframes scan-drift { from { background-position-y: 0; } to { background-position-y: 8px; } }
+@keyframes scan-drift { from { transform: translateY(0); } to { transform: translateY(8px); } }
 @keyframes bg-flicker {
   0%, 96%, 100% { opacity: 0; }
   97% { opacity: 0.5; transform: translateX(-2px); }
@@ -80,6 +87,14 @@ a:hover { color: var(--pink); }
 
 /* everything above the field */
 .shell { position: relative; z-index: 2; }
+
+/* calm scene (article pages): the overlays hold still and the article box
+   drops its backdrop blur. Re-blurring an 800px column against an animated
+   canvas is the most expensive thing on the page, and on a box this opaque
+   the blur is invisible anyway; a touch more opacity keeps the contrast. */
+.scene-calm .fx-overlay.scanlines::before,
+.scene-calm .fx-overlay.flicker { animation: none; }
+.scene-calm .prose { backdrop-filter: none; background: rgba(2, 4, 8, 0.94); }
 
 /* ---- navbar -------------------------------------------------------- */
 .nav {
@@ -530,7 +545,7 @@ body.lightbox-open { overflow: hidden; }
 /* respect reduced motion: kill the CSS animations (canvas self-stills) */
 @media (prefers-reduced-motion: reduce) {
   .glitch::before, .glitch::after,
-  .fx-overlay.scanlines, .fx-overlay.flicker,
+  .fx-overlay.scanlines::before, .fx-overlay.flicker,
   .caret { animation: none; }
   .glitch::before { clip-path: none; opacity: 0; }
   .glitch::after  { clip-path: none; opacity: 0; }
