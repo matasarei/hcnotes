@@ -134,8 +134,9 @@ of that; it already happened, and it keeps happening at a scale where my
 purchase doesn't register. A model is the same object. Training is a sunk
 cost. Claude exists whether I subscribe or not, and my not subscribing
 un-trains nothing. What the subscription pays for is inference — actually
-running the thing — and for a fork of a hobby operating system, or a
-launcher for a 2010 game, that is the small part.
+running the thing — and for a fork of a hobby operating system, or
+[a launcher for a 2010 game](/article/articles-my-own-private-azeroth), that
+is the small part.
 
 So the economic version of "it's not ethical to use it" doesn't hold. The
 harm it names happened before I showed up and continues regardless of me.
