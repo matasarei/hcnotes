@@ -78,38 +78,31 @@ say at the end what would change my mind.
 
 ## What a model takes from your code
 
-The theft argument usually pictures the model as a zip file of GitHub with a
-chat window on top. It isn't. Training turns text into weights — billions of
+The theft argument pictures the model as a zip file of GitHub with a chat
+window on top. It isn't. Training turns text into weights — billions of
 numbers nudged until the model predicts the next token better — and what
 comes out is shaped by frequency: things that appeared thousands of times
 are reproduced closely, things that appeared once leave barely a trace.
 
-That cuts both ways, and the enthusiasts skip the second half. Memorisation
-is real. Code models
+That cuts both ways. Memorisation is real: code models
 [do reproduce training data verbatim](https://arxiv.org/html/2408.02487v1),
-more so the more common the snippet, and Copilot's filter for output
-overlapping public code
-[has been bypassed](https://arxiv.org/pdf/2210.17546) by asking for the same
-code in a different style.
+more so the more common the snippet, and Copilot's overlap filter
+[has been bypassed](https://arxiv.org/pdf/2210.17546). But the risk that
+leaves is a specific one — verbatim reproduction of one licensed snippet —
+and it is the same risk you carry with a human who pastes from Stack
+Overflow. You check it the same way: search a distinctive line, run a
+licence scanner, look up any block you couldn't have written yourself. What
+comes back verbatim most is boilerplate, which is also the least worth
+protecting, and structural similarity has never been treated as
+infringement by any court.
 
-But look at what the risk actually is: verbatim reproduction of one specific
-licensed snippet. That is the risk you already carry with a human who pastes
-from Stack Overflow, and you check it the same way — search a distinctive
-line, run a licence scanner before a release, look up any block you couldn't
-have written yourself. What comes back verbatim most is boilerplate, which
-is also the least worth protecting. Structural similarity — "this looks like
-how project X does it" — is not something any court has treated as
-infringement.
-
-Then there's "we don't know what it was trained on", which is true.
-Anthropic's
+"We don't know what it was trained on" is true. Anthropic's
 [current disclosure](https://crfm.stanford.edu/fmti/December-2025/company-reports/Anthropic_FinalReport_FMTI2025.html)
-is one paragraph: public internet data, non-public data from third parties,
-paid labelling, users who opted in, internal data. The EU's AI Act
+is one paragraph. The EU's AI Act
 [changes that](https://www.mayerbrown.com/en/insights/publications/2025/08/eu-ai-act-news-rules-on-general-purpose-ai-start-applying-guidelines-and-template-for-summary-of-training-data-finalized):
 a structured summary of training content on a fixed template, due by
-August 2, 2027 for models already on the market. The not-knowing is real,
-and it has an expiry date.
+August 2027 for models already on the market. The not-knowing has an expiry
+date.
 
 ## The batteries are already made
 
