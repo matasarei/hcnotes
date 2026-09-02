@@ -26,7 +26,7 @@ browser. See [`public/assets/js/aleph.js`](public/assets/js/aleph.js). It respec
 
 The page picks a scene through `data-scene` on the canvas (a Twig block in the base
 layout). The index runs the `full` field; article pages ask for `calm`, a sparser,
-dimmer field at 10fps with the glitch effects off, so nothing competes with the text.
+dimmer field at 5fps with the glitch effects off, so nothing competes with the text.
 
 ## Built on AICMF
 

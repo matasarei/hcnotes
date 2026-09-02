@@ -11,7 +11,7 @@
  *
  * The page picks a scene through data-scene. "full" is the living field the
  * index shows; "calm" is what article pages ask for: a sparser, dimmer, slower
- * field with the glitch effects off, so the text is the only thing moving.
+ * field with the glitch effects off, so the text is what the eye settles on.
  */
 (function () {
   'use strict';
@@ -35,8 +35,8 @@
     },
     calm: {
       density: 0.20,
-      fps: 10,
-      dprCap: 1,
+      fps: 5,         // slow enough to read past, not so slow it looks stuck
+      dprCap: 1.5,    // same crispness as the index; the savings come from density and fps
       glitch: false,
       hotShare: 0,
       brightness: 0.6
