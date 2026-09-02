@@ -61,33 +61,27 @@ has to be settled. So let's settle them one at a time.
 
 ## Is it theft? What the courts have said
 
-Three cases, all American, because that's the only place these questions
-have actually been tried.
-
-**Bartz v. Anthropic.** In June 2025 the judge ruled that training a model
-on lawfully purchased books is transformative and fair use. What was *not*
-fair use was downloading millions of books from pirate libraries and keeping
-them. That second part is what the
-[$1.5 billion settlement](https://natlawreview.com/article/ai-vs-authors-update-court-approves-historic-anthropic-settlement-while-meta)
-paid for — final approval on July 20, 2026, covering roughly 482,000 works.
-
-**Kadrey v. Meta.** Same month, same conclusion on training. What's still
-alive in that case is a claim about torrenting, not about learning.
-
-**Doe v. GitHub**, the one about code. Most of the claims were dismissed in
-January 2024. What's left is narrow: whether stripping licence text is
-actionable only when the output is an identical copy. The Ninth Circuit
-[heard it](https://courthousenews.com/ai-companies-urge-ninth-circuit-to-make-copyright-decisions-clear/)
-on February 11, 2026, and as I write there is no decision.
+Three cases, all American, because that's where these questions have
+actually been tried. In
+[Bartz v. Anthropic](https://natlawreview.com/article/ai-vs-authors-update-court-approves-historic-anthropic-settlement-while-meta)
+the judge ruled in June 2025 that training on lawfully purchased books is
+fair use; what was not fair use was downloading millions of them from pirate
+libraries, and that is what the $1.5 billion settlement, approved in July
+2026, paid for. Kadrey v. Meta reached the same conclusion on training the
+same month. And Doe v. GitHub, the one about code, has been narrowed to a
+single question — whether stripping licence text is actionable only for
+identical copies — which the Ninth Circuit
+[heard](https://courthousenews.com/ai-companies-urge-ninth-circuit-to-make-copyright-decisions-clear/)
+in February 2026 and has not yet decided.
 
 So the wrong that has actually been punished is *acquisition*, not
-*learning*. Piracy, by the model maker. And that is a wrong I can neither
-commit nor undo from my desk. Whether I subscribe or not, the books were
-downloaded or they weren't, and the settlement was paid. Calling my
-subscription theft borrows the guilt of a different act by a different party.
+*learning*: piracy, by the model maker. That is a wrong I can neither commit
+nor undo from my desk. Whether I subscribe or not, the books were downloaded
+or they weren't, and the settlement was paid. Calling my subscription theft
+borrows the guilt of a different act by a different party.
 
-The honest caveat: this is one country's law, it is recent, and it can move.
-I'll say at the end what would change my mind.
+The caveat: this is one country's law, it is recent, and it can move. I'll
+say at the end what would change my mind.
 
 ## What a model takes from your code
 
