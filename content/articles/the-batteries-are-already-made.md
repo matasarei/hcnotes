@@ -29,35 +29,28 @@ asking what the sentence actually says.
 
 The best source is the Haiku forum itself, because when the argument
 [got its own thread](https://discuss.haiku-os.org/t/what-are-the-ai-usage-guidelines-for-core-os-contributions/19606)
-a core developer laid out reasons instead of a word. Not one objection.
-Four.
+a core developer laid out reasons instead of a word. Four of them.
+Copyright: generated code has "ambiguous or incompatible licenses", so
+nobody can honestly certify where it came from. Climate: the energy behind
+training and running the models, and the scraper bots hammering the
+project's own servers to feed them. Labour: the people paid badly to label
+the training data. Lock-in: closed, subscription-only tools from a handful
+of companies, in a project whose whole point is not depending on them.
 
-The first is the one the policy cites: code produced with LLMs falls under
-"ambiguous or incompatible licenses", so nobody can honestly certify where it
-came from. The second is climate — the energy behind training and running
-these things, plus the scraper bots hammering the project's own servers to
-feed them. The third is labour: the people paid badly to label and classify
-the training data. The fourth is lock-in: closed, subscription-only tools
-from a handful of companies, in a project whose entire point is not
-depending on those companies.
+I went in expecting a fifth that nobody says out loud — people who spent a
+career on the building side reaching for "unethical" because it's a better
+word than "threatening". I didn't find it. I found a developer who doesn't
+fly or drive for the same reasons, and who framed the position as showing
+that building without LLMs is still possible, not as forbidding anyone else.
+That's a consistent person, and the best version of the other side is the
+one worth arguing with.
 
-There's a fifth that nobody says out loud, and I'll admit I went into the
-thread expecting to find it: people who spent a career on the building side,
-watching the building get cheap, and reaching for "unethical" because it's a
-better word than "threatening". I didn't find it. What I found was a
-developer who doesn't fly or drive for the same reasons, and who framed the
-whole position as showing that building software without LLMs is still
-possible, not as forbidding anyone else from doing otherwise. That's a
-consistent person, not an insecure one. I'm dropping it, and I'm going to
-argue with the best version of the other side instead.
-
-Here's why the split matters. Four objections, four owners. Copyright is a
-question for courts and the companies that trained the models. Climate and
-labour are questions about an entire industry, where one subscriber's choice
-is a rounding error — I'll come back to that. Lock-in is a real engineering
-concern with a real engineering answer. When all four hide behind one word,
-whichever is strongest at the moment does the talking, and none of them ever
-has to be settled. So let's settle them one at a time.
+The split matters because the four have different owners. Copyright is for
+courts and the companies that trained the models. Climate and labour are
+about an entire industry, where one subscriber is a rounding error. Lock-in
+is an engineering concern with an engineering answer. Behind one word,
+whichever is strongest at the moment does the talking and none of them ever
+gets settled. So let's settle them one at a time.
 
 ## Is it theft? What the courts have said
 
