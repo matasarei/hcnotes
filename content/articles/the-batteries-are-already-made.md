@@ -161,19 +161,13 @@ standards" is a claim about code, and code can be read. So I cloned
 [Tabby](https://github.com/ActionRetro/Tabby-PPC) and diffed it against the
 upstream commit it forked from.
 
-Strip out the vendored parts — Mesa restored from Haiku's own history, a
-FreeBSD Ethernet driver with its BSD headers intact, firmware — and the
-authored work is about 18,000 lines across 265 files: the PCI host bridge,
-two interrupt controllers, ATA, keyboard and trackpad, sound, big-endian
-USB, page table fixes, signals, fork, AltiVec. The missing organs of a
-twenty-year-old skeleton.
-
-Style, measured with Haiku's own checkstyle tool, lands in the same band as
-upstream: the new interrupt controller scores 10 hits in 421 lines against
-upstream's OpenPIC driver at 16 in 553. Across all 18,000 authored lines
-there are three TODOs and no FIXME, XXX or HACK. And every commit has a
-body, about 190 words on average, naming the symptom, the mechanism, the
-hardware it was seen on, and what was checked.
+Strip out the vendored parts and the authored work is about 18,000 lines
+across 265 files — PCI, interrupt controllers, ATA, input, sound, USB, page
+tables, signals, fork, AltiVec — the missing organs of a twenty-year-old
+skeleton. Run Haiku's own checkstyle tool over it and it lands in the same
+band as upstream's drivers. There are three TODOs in the whole thing and no
+FIXME, XXX or HACK, and every commit has a body explaining the symptom, the
+mechanism, the hardware it was seen on, and what was checked.
 
 Then the part that turns the "high standards" argument around. While
 bringing up PowerPC, the work found and fixed six bugs in *shared* Haiku
