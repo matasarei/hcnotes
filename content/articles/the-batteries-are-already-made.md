@@ -214,17 +214,11 @@ And the author had already said which was which.
 
 ## My own shelf
 
-The same question applies to me, so here's my shelf.
-[wow-launcher](https://github.com/matasarei/wow-launcher) is Swift, Wine and
-Metal, and took
-[less than a week of evenings](/article/articles-my-own-private-azeroth).
-[Antigravity Companion](https://github.com/matasarei/antigravity-companion)
-is a JetBrains plugin in Kotlin,
-[two thousand lines and two reported bugs](/article/articles-antigravity-companion-built-with-ai)
-across six releases. [AICMF](/article/articles-aicmf-ai-first-cms) and the
-site you're reading. A TCP client library for PHP, an OOP wrapper for a
-government signing library, an old MVC framework, two Moodle plugins. All of
-it MIT.
+The same question applies to me. Everything I've written about here —
+[the launcher](/article/articles-my-own-private-azeroth),
+[the plugin](/article/articles-antigravity-companion-built-with-ai),
+[the CMS](/article/articles-aicmf-ai-first-cms) — was built with AI and
+published under MIT, and so were the libraries and plugins that predate it.
 
 What I actually do is simple. Commits say what was assisted. I read what I
 ship. I sign it, and the bug is mine — nobody gets to blame the tool. And if
