@@ -25,8 +25,9 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="{{ asset_v('/assets/css/dedsec.css') }}" rel="stylesheet">
 </head>
-<body>
-    <canvas id="aleph-bg" aria-hidden="true"></canvas>
+{# Background scene: "full" is the living field; article pages override it with "calm". #}
+<body class="scene-{% block scene %}full{% endblock %}">
+    <canvas id="aleph-bg" data-scene="{{ block('scene') }}" aria-hidden="true"></canvas>
     <div class="fx-overlay scanlines" aria-hidden="true"></div>
     <div class="fx-overlay flicker" aria-hidden="true"></div>
     <div class="fx-overlay vignette" aria-hidden="true"></div>

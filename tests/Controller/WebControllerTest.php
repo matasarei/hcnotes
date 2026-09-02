@@ -104,6 +104,50 @@ class WebControllerTest extends WebTestCase
         $this->assertStringContainsString('https://github.com/matasarei/aicmf', $generator->attr('content'));
     }
 
+    public function testArticlePageUsesTheCalmBackgroundScene(): void
+    {
+        $client = static::createClient();
+
+        /** @var \App\Repository\ArticleRepository $repo */
+        $repo = static::getContainer()->get(\App\Repository\ArticleRepository::class);
+        $repo->upsert([
+            'slug'        => 'scene-test-article',
+            'title'       => 'Scene Test',
+            'content'     => '<p>Scene body</p>',
+            'description' => 'Test',
+            'tags'        => 'test',
+            'date'        => '2026-02-03',
+            'embedding'   => null,
+        ]);
+
+        $crawler = $client->request('GET', '/article/scene-test-article');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSame(
+            1,
+            $crawler->filter('canvas#aleph-bg[data-scene="calm"]')->count(),
+            'Article pages must ask the background for the calm scene'
+        );
+        $this->assertSame(
+            1,
+            $crawler->filter('body.scene-calm')->count(),
+            'Article pages must carry the scene class so CSS can tone down the overlays'
+        );
+    }
+
+    /**
+     * @dataProvider pagePaths
+     */
+    public function testNonArticlePagesUseTheFullBackgroundScene(string $path): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', $path);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSame(1, $crawler->filter('canvas#aleph-bg[data-scene="full"]')->count());
+        $this->assertSame(1, $crawler->filter('body.scene-full')->count());
+    }
+
     public static function pagePaths(): iterable
     {
         yield 'home' => ['/'];
