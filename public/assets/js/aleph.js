@@ -267,8 +267,22 @@
   // up.
   var MAX_DT = FRAME_MS * 2;
 
+  // A low frame cap does not need a display-rate wake-up just to return
+  // early: below 20fps the next frame is scheduled with a timer that fires
+  // when it is due, so the tab can idle in between.
+  var useTimer = scene.fps < 20;
+  function schedule() {
+    if (useTimer) {
+      return setTimeout(function () { frame(performance.now()); }, FRAME_MS);
+    }
+    return requestAnimationFrame(frame);
+  }
+  function unschedule(id) {
+    if (useTimer) clearTimeout(id); else cancelAnimationFrame(id);
+  }
+
   function frame(now) {
-    raf = requestAnimationFrame(frame);
+    raf = schedule();
     var since = now - lastTick;
     if (since < FRAME_MS - 1) return;   // not time to draw yet — skip
     lastTick = now;
@@ -281,17 +295,17 @@
     build();
     if (reduceMotion) { update(0); draw(); return; }  // single static frame
     lastTick = performance.now();
-    raf = requestAnimationFrame(frame);
+    raf = schedule();
   }
 
   // Truly pause when the tab is hidden, and resume cleanly on return.
   document.addEventListener('visibilitychange', function () {
     if (reduceMotion) return;
     if (document.hidden) {
-      if (raf) { cancelAnimationFrame(raf); raf = null; }
+      if (raf) { unschedule(raf); raf = null; }
     } else if (!raf) {
       lastTick = performance.now();
-      raf = requestAnimationFrame(frame);
+      raf = schedule();
     }
   });
 
