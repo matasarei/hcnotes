@@ -247,8 +247,8 @@ are yours, on your hardware, and no subscription can be cancelled from
 under you.
 
 Here's the price. They are weaker, by a generation or two — Comma's own
-paper puts it at Llama 2 level — and none of them would have brought a G4 to
-a desktop. They are weaker precisely *because* they are open: less data,
+paper puts it at Llama 2 level — and none of them would have produced a
+Tabby-level result. They are weaker precisely *because* they are open: less data,
 more carefully chosen. And even the careful set isn't clean; a
 [2025 audit](https://arxiv.org/abs/2501.02628) of the permissive code set
 found mislabelled files pulling non-permissive code in, and thousands of
