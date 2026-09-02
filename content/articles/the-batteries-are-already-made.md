@@ -91,48 +91,38 @@ I'll say at the end what would change my mind.
 
 ## What a model takes from your code
 
-The theft argument usually rests on a picture of the model as a zip file of
-GitHub with a chat window on top. It isn't, and the difference matters for
-what you can actually check.
+The theft argument usually pictures the model as a zip file of GitHub with a
+chat window on top. It isn't. Training turns text into weights — billions of
+numbers nudged until the model predicts the next token better — and what
+comes out is shaped by frequency: things that appeared thousands of times
+are reproduced closely, things that appeared once leave barely a trace.
 
-Training turns text into weights — billions of numbers, adjusted a little at
-a time so the model predicts the next token better. There is no file in
-there. What comes out is shaped by frequency: things that appeared thousands
-of times are reproduced closely, things that appeared once leave barely a
-trace.
-
-Which brings the part the enthusiasts skip. Memorisation is real. Code
-models
+That cuts both ways, and the enthusiasts skip the second half. Memorisation
+is real. Code models
 [do reproduce training data verbatim](https://arxiv.org/html/2408.02487v1),
-and it scales with how common the snippet was, how big the model is, and how
-long the output runs. Early Copilot emitted GPL code word for word. Copilot's
-filter, which blocks output overlapping public code by roughly 150
-characters,
+more so the more common the snippet, and Copilot's filter for output
+overlapping public code
 [has been bypassed](https://arxiv.org/pdf/2210.17546) by asking for the same
 code in a different style.
 
-But notice what the risk actually is: verbatim reproduction of one specific
-licensed snippet. That is exactly the risk you already carry with a human
-contributor who pastes from Stack Overflow, and you check it the same way.
-Search a distinctive line. Run a licence scanner before a release. Any block
-you couldn't rewrite yourself, look up. And the code most likely to come
-back verbatim is boilerplate, which is also the code least worth protecting;
-a novel algorithm rarely comes back verbatim, and an idea re-expressed in
-new code was never what copyright covered. Structural similarity — "this
-looks like how project X does it" — is not something any court has treated
-as infringement.
+But look at what the risk actually is: verbatim reproduction of one specific
+licensed snippet. That is the risk you already carry with a human who pastes
+from Stack Overflow, and you check it the same way — search a distinctive
+line, run a licence scanner before a release, look up any block you couldn't
+have written yourself. What comes back verbatim most is boilerplate, which
+is also the least worth protecting. Structural similarity — "this looks like
+how project X does it" — is not something any court has treated as
+infringement.
 
-Then there's "we don't know what it was trained on", which is simply true.
+Then there's "we don't know what it was trained on", which is true.
 Anthropic's
 [current disclosure](https://crfm.stanford.edu/fmti/December-2025/company-reports/Anthropic_FinalReport_FMTI2025.html)
-is one paragraph: public internet data up to a cutoff, non-public data from
-third parties, paid labelling, users who opted in, internal data. Nothing
-more specific, for competitive reasons. The EU's AI Act
+is one paragraph: public internet data, non-public data from third parties,
+paid labelling, users who opted in, internal data. The EU's AI Act
 [changes that](https://www.mayerbrown.com/en/insights/publications/2025/08/eu-ai-act-news-rules-on-general-purpose-ai-start-applying-guidelines-and-template-for-summary-of-training-data-finalized):
-every general-purpose model has to publish a structured summary of its
-training content on a fixed template, and for models that were already on
-the market before August 2, 2025, the deadline is August 2, 2027. The
-not-knowing is real, and it has an expiry date.
+a structured summary of training content on a fixed template, due by
+August 2, 2027 for models already on the market. The not-knowing is real,
+and it has an expiry date.
 
 ## The batteries are already made
 
