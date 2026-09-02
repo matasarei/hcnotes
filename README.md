@@ -24,6 +24,10 @@ upward that glitch and decay into aleph numbers (ℵ₀, ℵ₁) and set-theory 
 browser. See [`public/assets/js/aleph.js`](public/assets/js/aleph.js). It respects
 `prefers-reduced-motion` and pauses on hidden tabs.
 
+The page picks a scene through `data-scene` on the canvas (a Twig block in the base
+layout). The index runs the `full` field; article pages ask for `calm`, a sparser,
+dimmer field at 5fps with the glitch effects off, so nothing competes with the text.
+
 ## Built on AICMF
 
 This site runs on **[AICMF](https://github.com/matasarei/aicmf)** — an AI-first
