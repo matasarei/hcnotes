@@ -106,16 +106,6 @@ instead of writing assembly — and he was the first to show up with
 everything else once that was true. That's why it happened in 2026 and 
 not in 2010.
 
-Borrowed is not the same as free, though. Generated code is like a generated
-image: it looks right at a glance, and every so often it has six fingers. A
-driver that compiles and boots can still be wrong in the one branch nobody
-exercised, and the model will not tell you which one. If you want the code to
-be yours rather than something you pasted, you have to read it, understand it,
-and find the extra finger yourself. That is also where the learning is. You
-cannot judge a page-table fix without finding out how page tables work, and
-there is no faster way to learn a subject than having to check someone else's
-answer to it.
-
 I've had smaller versions of the same thing.
 [wow-launcher](https://github.com/matasarei/wow-launcher) runs a 2010 Windows
 game at full speed on Apple Silicon, and I'm a web developer, not a Wine or
@@ -126,6 +116,16 @@ a JetBrains plugin in Kotlin, a language I'd barely touched, with
 [two reported bugs in two thousand lines](/article/articles-antigravity-companion-built-with-ai).
 Both times the idea, the domain knowledge, and the judgement were mine, and
 the Wine, the Metal, and the Kotlin were borrowed.
+
+So yes: borrow the code when you need it and can't write it yourself. But
+borrowed is not the same as free. Generated code is like a generated image:
+it looks right at a glance, and every so often it has six fingers. A driver
+that compiles and boots can still be wrong in the one branch nobody
+exercised, and the model will not tell you which one. You have to be ready
+to read what you got, find the extra finger yourself, and go and learn the
+part you don't understand. That last bit is not a cost. There is no faster
+way to learn how page tables work than having to check somebody else's
+page-table fix.
 
 ## This is what development is now
 
