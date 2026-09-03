@@ -117,15 +117,16 @@ a JetBrains plugin in Kotlin, a language I'd barely touched, with
 Both times the idea, the domain knowledge, and the judgement were mine, and
 the Wine, the Metal, and the Kotlin were borrowed.
 
-So yes: borrow the code when you need it and can't write it yourself. But
-borrowed is not the same as free. Generated code is like a generated image:
-it looks right at a glance, and every so often it has six fingers. A driver
+So yes: borrow the code when you need it and can't write it yourself. Just
+don't stop at borrowing it. Generated code is like a generated image: it
+looks right at a glance, and every so often it has six fingers. A driver
 that compiles and boots can still be wrong in the one branch nobody
-exercised, and the model will not tell you which one. You have to be ready
-to read what you got, find the extra finger yourself, and go and learn the
-part you don't understand. That last bit is not a cost. There is no faster
-way to learn how page tables work than having to check somebody else's
-page-table fix.
+exercised, and the only way to catch that is to read what you got. And if
+you read it and don't understand a piece, that is not a problem, that is the
+best part. You now have working code for a thing you didn't know how to do,
+written for your exact case, and a real reason to find out how it works.
+Nobody learns page tables from a textbook. You learn them from a page-table
+fix you have to check.
 
 ## This is what development is now
 
