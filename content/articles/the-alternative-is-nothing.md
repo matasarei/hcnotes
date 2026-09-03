@@ -52,8 +52,8 @@ desktop is shockingly useable", he wrote, and posted the screenshots.
 
 The emulator shot is from [the Tabby README](https://github.com/ActionRetro/Tabby-PPC),
 the Power Mac G4 from [his forum thread](https://discuss.haiku-os.org/t/i-have-made-some-progress-on-the-powerpc-port/19578):
-the desktop in the emulator, and the first boot on real hardware three days
-later.
+the About window in the emulator, and the first boot on real hardware three
+days later.
 
 He did this for free. His own time, his own machines, his own AI subscription.
 He's not asking Haiku to merge it — their [AGENTS.md](https://github.com/haiku/haiku/blob/master/AGENTS.md)
@@ -121,19 +121,20 @@ So yes: borrow the code when you need it and can't write it yourself. Just
 don't stop at borrowing it. Generated code is like a generated image: it
 looks right at a glance, and every so often it has six fingers. A driver
 that compiles and boots can still be wrong in the one branch nobody
-exercised, and the only way to catch that is to read what you got. And if
+exercised, and the only way to catch that is to
+[read what you got](/article/articles-code-got-cheap-the-plan-didnt). And if
 you read it and don't understand a piece, that is not a problem, that is the
 best part. You now have working code for a thing you didn't know how to do,
-written for your exact case, and a real reason to find out how it works.
-Nobody learns page tables from a textbook. You learn them from a page-table
-fix you have to check.
+written for your exact case, and a real reason to find out how it works. A
+page-table fix you have to check teaches you more about page tables than any
+textbook did.
 
 ## This is what development is now
 
 Here's the thing the slop crowd gets wrong, and I think it's the whole
 disagreement. They look at Tabby and see someone who skipped the development
 and kept the result. I see someone who did the development and skipped the
-typing.
+typing. The typing, not the reading.
 
 Development was never the typing. Nobody ever paid for lines of code; they
 paid for a thing that works, and typing was just the slowest step between the
