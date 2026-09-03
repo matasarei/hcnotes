@@ -103,8 +103,8 @@ For twenty years, nobody who had those could also write the low-level code,
 and nobody who could write the code cared enough about a G4. The code turned
 out to be the one part you can now borrow — the way I borrow a compiler
 instead of writing assembly — and he was the first to show up with
-everything else once that was true. That's why it happened in 2026 and not in
-2010.
+everything else once that was true. That's why it happened in 2026 and 
+not in 2010.
 
 Borrowed is not the same as free, though. Generated code is like a generated
 image: it looks right at a glance, and every so often it has six fingers. A
