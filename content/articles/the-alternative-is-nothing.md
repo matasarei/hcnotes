@@ -46,13 +46,14 @@ downloadable image other people booted on their own iBooks. "At 550MHz G4, the
 desktop is shockingly useable", he wrote, and posted the screenshots.
 
 <div class="shots">
-  <img src="https://discuss.haiku-os.org/uploads/default/original/2X/9/97c45f1c4f65d3d328f27c387da85dafa2e27f39.png" alt="Haiku desktop with Tracker and the Deskbar running inside the DingusPPC emulator, the first time the PowerPC port reached a desktop" loading="lazy">
+  <img src="https://github.com/user-attachments/assets/44847081-9f90-4ce1-90ca-9f2cc84c5b69" alt="Haiku's About this system window running inside the DingusPPC emulator, reporting a PowerPC build on a 233 MHz Motorola CPU" loading="lazy">
   <img src="https://discuss.haiku-os.org/uploads/default/optimized/2X/c/c75059fcd7767425eb662c45be90442d23d304f3_2_1332x1000.jpeg" alt="An open Power Mac G4 on a desk next to a monitor showing Haiku's About this system window on a 1.87 GHz Motorola PowerPC" loading="lazy">
 </div>
 
-Photos from [his forum thread](https://discuss.haiku-os.org/t/i-have-made-some-progress-on-the-powerpc-port/19578):
-the first desktop in the emulator, and the first boot on a real Power Mac G4
-three days later.
+The emulator shot is from [the Tabby README](https://github.com/ActionRetro/Tabby-PPC),
+the Power Mac G4 from [his forum thread](https://discuss.haiku-os.org/t/i-have-made-some-progress-on-the-powerpc-port/19578):
+the desktop in the emulator, and the first boot on real hardware three days
+later.
 
 He did this for free. His own time, his own machines, his own AI subscription.
 He's not asking Haiku to merge it — their [AGENTS.md](https://github.com/haiku/haiku/blob/master/AGENTS.md)
@@ -104,6 +105,16 @@ out to be the one part you can now borrow — the way I borrow a compiler
 instead of writing assembly — and he was the first to show up with
 everything else once that was true. That's why it happened in 2026 and not in
 2010.
+
+Borrowed is not the same as free, though. Generated code is like a generated
+image: it looks right at a glance, and every so often it has six fingers. A
+driver that compiles and boots can still be wrong in the one branch nobody
+exercised, and the model will not tell you which one. If you want the code to
+be yours rather than something you pasted, you have to read it, understand it,
+and find the extra finger yourself. That is also where the learning is. You
+cannot judge a page-table fix without finding out how page tables work, and
+there is no faster way to learn a subject than having to check someone else's
+answer to it.
 
 I've had smaller versions of the same thing.
 [wow-launcher](https://github.com/matasarei/wow-launcher) runs a 2010 Windows
