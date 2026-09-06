@@ -46,13 +46,14 @@ downloadable image other people booted on their own iBooks. "At 550MHz G4, the
 desktop is shockingly useable", he wrote, and posted the screenshots.
 
 <div class="shots">
-  <img src="https://discuss.haiku-os.org/uploads/default/original/2X/9/97c45f1c4f65d3d328f27c387da85dafa2e27f39.png" alt="Haiku desktop with Tracker and the Deskbar running inside the DingusPPC emulator, the first time the PowerPC port reached a desktop" loading="lazy">
+  <img src="https://github.com/user-attachments/assets/44847081-9f90-4ce1-90ca-9f2cc84c5b69" alt="Haiku's About this system window running inside the DingusPPC emulator, reporting a PowerPC build on a 233 MHz Motorola CPU" loading="lazy">
   <img src="https://discuss.haiku-os.org/uploads/default/optimized/2X/c/c75059fcd7767425eb662c45be90442d23d304f3_2_1332x1000.jpeg" alt="An open Power Mac G4 on a desk next to a monitor showing Haiku's About this system window on a 1.87 GHz Motorola PowerPC" loading="lazy">
 </div>
 
-Photos from [his forum thread](https://discuss.haiku-os.org/t/i-have-made-some-progress-on-the-powerpc-port/19578):
-the first desktop in the emulator, and the first boot on a real Power Mac G4
-three days later.
+The emulator shot is from [the Tabby README](https://github.com/ActionRetro/Tabby-PPC),
+the Power Mac G4 from [his forum thread](https://discuss.haiku-os.org/t/i-have-made-some-progress-on-the-powerpc-port/19578):
+the About window in the emulator, and the first boot on real hardware three
+days later.
 
 He did this for free. His own time, his own machines, his own AI subscription.
 He's not asking Haiku to merge it — their [AGENTS.md](https://github.com/haiku/haiku/blob/master/AGENTS.md)
@@ -102,8 +103,8 @@ For twenty years, nobody who had those could also write the low-level code,
 and nobody who could write the code cared enough about a G4. The code turned
 out to be the one part you can now borrow — the way I borrow a compiler
 instead of writing assembly — and he was the first to show up with
-everything else once that was true. That's why it happened in 2026 and not in
-2010.
+everything else once that was true. That's why it happened in 2026 and 
+not in 2010.
 
 I've had smaller versions of the same thing.
 [wow-launcher](https://github.com/matasarei/wow-launcher) runs a 2010 Windows
@@ -116,12 +117,24 @@ a JetBrains plugin in Kotlin, a language I'd barely touched, with
 Both times the idea, the domain knowledge, and the judgement were mine, and
 the Wine, the Metal, and the Kotlin were borrowed.
 
+So yes: borrow the code when you need it and can't write it yourself. Just
+don't stop at borrowing it. Generated code is like a generated image: it
+looks right at a glance, and every so often it has six fingers. A driver
+that compiles and boots can still be wrong in the one branch nobody
+exercised, and the only way to catch that is to
+[read what you got](/article/articles-code-got-cheap-the-plan-didnt). And if
+you read it and don't understand a piece, that is not a problem, that is the
+best part. You now have working code for a thing you didn't know how to do,
+written for your exact case, and a real reason to find out how it works. A
+page-table fix you have to check teaches you more about page tables than any
+textbook did.
+
 ## This is what development is now
 
 Here's the thing the slop crowd gets wrong, and I think it's the whole
 disagreement. They look at Tabby and see someone who skipped the development
 and kept the result. I see someone who did the development and skipped the
-typing.
+typing. The typing, not the reading.
 
 Development was never the typing. Nobody ever paid for lines of code; they
 paid for a thing that works, and typing was just the slowest step between the
