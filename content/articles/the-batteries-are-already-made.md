@@ -1,6 +1,6 @@
 ---
 title: The Batteries Are Already Made
-date: 2026-09-03
+date: 2026-09-07
 description: Last week I argued the Tabby code was worth having. The other objection, that building it with AI is not ethical, taken seriously: what it claims, what the courts and the code say, and what is better.
 tags: [ai, ethics, open-source, haiku, copyright]
 ---
