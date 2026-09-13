@@ -103,8 +103,9 @@ The cycle became: make the agent investigate first and tell me what it
 found. Make it write the plan as a file, with steps and acceptance criteria.
 Read the plan. This is where I now do the thinking I used to do in the
 debugger, except it costs minutes and I can see all of it at once. Fix the
-plan. Only then let it implement, one step at a time, with a test and a
-look after each.
+plan. Only then let it implement, one step at a time, and each step starts
+with the test, not the code: write the test that fails, then the code that
+makes it pass, then look at both.
 
 The change wasn't that the agent got better. The change was that the plan
 finally existed somewhere outside my skull, where both of us could read it,
@@ -199,15 +200,46 @@ computed in advance and a script deciding whether it passed, and the gap
 shrinks to something you can live with, on your own hardware, with weights
 nobody can cancel.
 
-## The short version
+## What makes it work
 
-I used to keep the plan in my head and discover its flaws in the debugger.
-That worked only because typing was slow enough to hide it. Agents removed
-the typing and left the flaw in plain sight. Writing the plan down, where
-the model can read it, turned a random walk into a straight line. Writing
-the method down, as skills, made the straight line the default. And once
-the method is precise enough and every step is checked by a script, the
-size of the model matters a lot less than I thought.
+Strip away the tools and the model names, and what's left is a short list
+of habits. None of them are new. They are the things good teams always
+said they did and rarely had time for, and with an agent they stop being
+optional.
+
+Phases, in order, each one producing a file the next one reads.
+Investigate, then plan, then implement, then review, then fix what the
+review found, then verify by actually running the thing. The agent never
+gets to skip forward, and neither do you. The plan is read before the code
+exists, and the review is read before the push.
+
+Tests before code. For every step, the test is written first and fails
+first, and only then does the implementation get written to make it pass.
+This is the oldest advice in the book and it matters more now than it ever
+did, because a failing test is the most precise instruction a model can be
+given: a definition of done it cannot argue with, in a language it reads
+perfectly. It also removes the most common cheat. An agent that writes the
+code first will happily write a test that asserts whatever the code
+happens to do. A test written first has no code to flatter.
+
+Small steps. One step, one diff short enough to read in full, one run. The
+moment a step grows past what you can hold in your head, it has grown past
+what the model can hold in its context, and the same mistakes creep in on
+both sides.
+
+Written context. The conventions live in a file the agent loads every
+time, not in your memory of the last session. If you find yourself
+correcting the same thing twice, it belongs in that file.
+
+Verification by script, not by trust. Whether a test passed, whether a
+quoted line exists, whether the branch is the right one, these are facts,
+and facts are checked mechanically before the model is allowed to reason
+about them.
+
+And you read everything. Not to catch typos, but because code you can't
+explain is code you don't own, and an agent will produce more than you can
+read if you let it. Slow it to the speed of your understanding. It is
+still faster than typing.
 
 Which is the last thing I'd want anyone to take from this: the top model
 does not mean the best result. The best result is the one where you can
