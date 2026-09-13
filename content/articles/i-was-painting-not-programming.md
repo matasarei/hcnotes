@@ -11,9 +11,9 @@ tags: [ai, agents, planning, skills, local-models]
 > time explaining how I would have done it. It didn't work, and the reason is
 > simple: a model can't read what's in your head, only what's in the context.
 > A written plan turned guessing into following. Skills turned the plan into
-> a habit I don't have to repeat. And once the work is precise and every step
-> is verified by a script instead of by faith, even a 30B model running on a
-> laptop can do it. That's what
+> a habit I don't have to repeat. And once the work is precise, the test
+> comes before the code, and every step is verified by a script instead of
+> by faith, even a 30B model running on a laptop can do it. That's what
 > [opencode-skills](https://github.com/matasarei/opencode-skills) is for.
 
 I want to describe how I used to develop, honestly, because I think a lot of
@@ -207,39 +207,41 @@ of habits. None of them are new. They are the things good teams always
 said they did and rarely had time for, and with an agent they stop being
 optional.
 
-Phases, in order, each one producing a file the next one reads.
-Investigate, then plan, then implement, then review, then fix what the
-review found, then verify by actually running the thing. The agent never
-gets to skip forward, and neither do you. The plan is read before the code
-exists, and the review is read before the push.
+The first is the cycle I described above, with two phases added after
+it: investigate, plan, implement, then review, fix what the review found,
+and verify by actually running the thing. Each phase produces a file the
+next one reads, and nobody gets to skip forward, the agent or you. The
+plan is read before the code exists, and the review is read before the
+push.
 
-Tests before code. For every step, the test is written first and fails
-first, and only then does the implementation get written to make it pass.
-This is the oldest advice in the book and it matters more now than it ever
-did, because a failing test is the most precise instruction a model can be
-given: a definition of done it cannot argue with, in a language it reads
-perfectly. It also removes the most common cheat. An agent that writes the
-code first will happily write a test that asserts whatever the code
-happens to do. A test written first has no code to flatter.
+Inside each step, the test is written first and fails first (TDD), and
+only then does the implementation get written to make it pass. That advice
+predates all of this, and it matters more with a model than it ever did
+with a person, because a failing test is the most precise instruction a
+model can be given: a definition of done it cannot argue with, in a
+language it reads perfectly. It also removes the most common cheat. An
+agent that writes the code first will happily write a test that asserts
+whatever the code happens to do. A test written first has no code to
+flatter.
 
-Small steps. One step, one diff short enough to read in full, one run. The
-moment a step grows past what you can hold in your head, it has grown past
-what the model can hold in its context, and the same mistakes creep in on
-both sides.
+Keep the steps small: one step, one diff short enough to read in full, one
+run. The moment a step grows past what you can hold in your head, it has
+grown past what the model can hold in its context, and the same mistakes
+creep in on both sides.
 
-Written context. The conventions live in a file the agent loads every
-time, not in your memory of the last session. If you find yourself
-correcting the same thing twice, it belongs in that file.
+The conventions live in a file the agent loads every time, not in your
+memory of the last session. If you find yourself correcting the same thing
+twice, it belongs in that file.
 
-Verification by script, not by trust. Whether a test passed, whether a
-quoted line exists, whether the branch is the right one, these are facts,
-and facts are checked mechanically before the model is allowed to reason
-about them.
+Verification is done by script, not by trust. Whether a test passed,
+whether a quoted line exists, whether the branch is the right one, these
+are facts, and facts are checked mechanically before the model is allowed
+to reason about them.
 
-And you read everything. Not to catch typos, but because code you can't
-explain is code you don't own, and an agent will produce more than you can
-read if you let it. Slow it to the speed of your understanding. It is
-still faster than typing.
+And you read everything, at the speed of your own understanding. I've
+[made that case already](/article/articles-code-got-cheap-the-plan-didnt)
+and it hasn't changed: code you can't explain is code you don't own, and
+that is the one thing no script can check for you.
 
 Which is the last thing I'd want anyone to take from this: the top model
 does not mean the best result. The best result is the one where you can
