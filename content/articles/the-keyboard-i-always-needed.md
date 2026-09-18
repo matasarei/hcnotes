@@ -9,9 +9,8 @@ tags: [ai, agents, android, keyboard, skills]
 > keyboard you can type on all day that also has a full 60% layout with a
 > real Ctrl, Alt and Fn, and it has no network permission at all. I wanted
 > that keyboard for years. The pieces existed, just never in one app. It
-> took 218 commits over about a day and a half, 188 of them on a single day.
-> The idea, the spec, the testing and the feedback were mine. The routine
-> work, the kind that used to take weeks, was the model's. And the reason
+> took about a day. The idea, the spec, the testing and the feedback were
+> mine. The routine work, the kind that used to take weeks, was the model's. And the reason
 > that split worked is not the model. It's the harness around it.
 
 ## The keyboard nobody made
@@ -36,13 +35,12 @@ exactly like that.
 So the gap was never "a keyboard with Ctrl on it". Those exist. The gap was
 a keyboard that is ordinary until the moment you need it not to be, and
 then, without switching apps or keyboards, it is a computer keyboard. The
-description I wrote at the start of the first pull request says it better
-than I can now: "No existing Android keyboard combined a Gboard-like
-Material look, the feel of the iPhone keyboard, and real developer keys".
+look of Gboard, the feel of the iPhone keyboard, and real developer keys,
+all in one place. Nobody had put those together.
 
 And one more thing I wanted, which turned out to be the simplest to
-deliver: a keyboard that can't talk to anyone. hcboard has no `INTERNET`
-permission in its manifest. No analytics, no sync, no account, nothing you
+deliver: a keyboard that can't talk to anyone. hcboard isn't allowed to
+use the network at all. No analytics, no sync, no account, nothing you
 type is logged. The easiest way to prove a keyboard doesn't send your
 keystrokes anywhere is to make it unable to.
 
@@ -57,7 +55,7 @@ light or dark.
 When you need more, it's already there. Unfold a phone or pick up a tablet
 and you get a full 60% board: Esc, Tab, Caps, Ctrl, Alt, Meta, the symbols
 printed where a PC keyboard prints them, and F1 to F12 behind Fn. On a
-normal phone, one tap on `</>` puts the same keys in a strip above any
+normal phone, one tap puts the same keys in a strip above any
 layer. Modifiers latch the way you'd expect: tap to arm for one key, tap
 twice to lock, or hold and chord. And in a terminal, Ctrl+C is a real
 Ctrl+C, a signal, not a copy.
@@ -77,28 +75,22 @@ install today.
 ## What I brought
 
 I want to be exact about this part, because "I made it with AI" gets read
-as "the AI made it", and the history says otherwise.
+as "the AI made it", and that's not what happened.
 
-The idea came first, and it came as a picture. The very first commit in
-the repository, on September 16 at 18:14, is not Kotlin. It's the design
-mocks: the phone layers, the dark variants, the 60% board on a foldable,
-the modifier states, the password sheet. Before any code existed I knew
+The idea came first, and it came as a picture. Before there was a single
+line of code, there were drawings: the phone layers, the dark version, the
+full board on a foldable, what a key looks like when Ctrl is armed. I knew
 what every screen should look like, and so did the model.
 
-Then the spec. The first pull request was built from a written plan,
-`.tasks/android-keyboard-v1.md`, with acceptance criteria and an explicit
-list of what was out of scope: word suggestions, glide typing, emoji,
-clipboard history. Glide typing landed within hours anyway, but as a decision
-I made, not something that crept in.
+Then the spec. I wrote down what the first version had to do, how I'd know
+it worked, and just as important, what it wouldn't do yet: no suggestions,
+no glide typing, no emoji. Glide typing arrived a few hours later anyway,
+but because I decided it was time, not because it crept in.
 
-Then the testing a model can't do. The same pull request ends with an
-honest list titled "Not tested, needs a phone":
-
-- Termux and the rest of the app matrix
-- inline chips from Enpass or Google Password Manager
-- a real Fold profile
-- haptics
-- two-finger chording by touch
+Then the testing a model can't do. The first version came back with an
+honest list of what it couldn't check without a phone in hand: a real
+terminal app, a real password manager, a real foldable, the haptic tick,
+two fingers chording on glass. That list was mine to work through.
 
 An emulator can tell you the keyboard types "hello". It cannot tell you
 that the keys feel too small under a thumb, that the dark theme looks
@@ -106,14 +98,14 @@ washed out next to every other app on the phone, or that a word you type
 every day never shows up in suggestions. Somebody has to hold the phone.
 
 And then the feedback, which is where most of the product actually came
-from. All of it came from my own testing on the phone, and the history
-shows it: the keys get Samsung's proportions, a Black
-theme appears after Samsung's own dark keyboard, the Ukrainian word list
-gets a curated overlay because its source corpus is news text and
-under-rates the words people actually use in chat, and the English one
-gets a list of modern words the old dictionary never heard of. None of
-those came from a prompt like "make it better". They came from using the
-thing and saying what was wrong.
+from. I carried the phone around, typed on it, and said what was wrong.
+The keys felt small, so they got Samsung's proportions. The dark theme
+wasn't dark enough, so there's a Black one now. The Ukrainian suggestions
+were built from news text and kept offering words nobody uses in a chat,
+so I gave them the words people actually type. The English list had never
+heard of half the words I use every day, so it learned them. None of
+that came from a prompt like "make it better". It came from living with
+the thing for a day.
 
 That's my half: knowing what the keyboard is *for*. It's the part that
 can't be delegated, because nobody else has it.
@@ -122,39 +114,34 @@ can't be delegated, because nobody else has it.
 
 Everything else. And "everything else" is a lot.
 
-The repository today has 5,784 lines of Kotlin and 2,845 lines of tests:
-32 unit test classes and 188 test methods. Of the 218 commits, 175 name
-their co-author in the message, Claude Fable 5.1 on 100 of them and Claude
-Opus 5 on 75. The commits are mine; the typing mostly isn't.
+Almost six thousand lines of Kotlin, and half as much again in tests.
+Every commit is mine, but most of the typing isn't.
 
 What that typing covers is the part of the job I have never enjoyed and
-always had to do. Hosting Jetpack Compose inside an input method service,
-which crashes in creative ways if the lifecycle owners aren't set on
-exactly the right window. The state machine behind a modifier that can be
-armed, locked, chorded, and has to survive a layer switch. Key events with
-the right meta state for a terminal, and editor actions instead of key
-events for a normal text field. Lint at zero errors. CI that runs the
-tests on every pull request and publishes a fresh dev build on every push.
-The scripts that build nine word lists and the notices that credit where
-they came from.
+always had to do. Making a modern UI toolkit run inside an Android
+keyboard, which crashes in creative ways until everything is wired to
+exactly the right window. The logic behind a modifier key that can be
+armed, locked, held with another finger, and has to survive switching
+from letters to symbols and back. Sending a terminal the key presses it
+expects, and a normal text field the copy and paste it expects. The build
+that runs the tests on every change and puts a fresh APK online. The
+scripts that build nine word lists, and the credits for where they came
+from.
 
 Each of those is a day or two of reading documentation and fighting the
-platform. Together, it's weeks. Here it was one long day: 188 commits on
-September 17 alone.
+platform. Together, it's weeks. Here it was one long day.
 
-Not all of it was written from scratch, and it shouldn't have been. The
-glide typing classifier is [FlorisBoard's](https://github.com/florisboard/florisboard),
-Apache-2.0, with its header kept. Most word lists come from the Android
-Open Source Project, the Ukrainian one from Helium314's CC BY 4.0 list.
-Each is credited in the NOTICE file, under its own licence. That's what
-open source is for, and I've
+Not all of it was written from scratch, and it shouldn't have been. Glide
+typing stands on [FlorisBoard's](https://github.com/florisboard/florisboard)
+work, and most of the word lists come from Android itself, all open and
+all credited. That's what open source is for, and I've
 [already said](/article/articles-the-batteries-are-already-made) why I
 don't think using AI for this is theft.
 
 ## Why it worked: the harness
 
 Here is the thing I most want people to take from this, and it's not the
-number of commits.
+speed.
 
 The same model, with the same keyboard in my head, could have produced a
 mess. I know, because I've
@@ -172,24 +159,22 @@ as a claim: the skill is the reusable asset now, and the code is
 comparatively disposable. hcboard is that claim tested on a real product
 instead of a demo. Every feature went through the same loop.
 
-You can see the loop in the history without taking my word for it. 40 pull
-requests in about a day and a half. 85 commits whose subject starts with
-`Fix:`, each one a single review finding applied on its own, so every
-correction is readable and revertable by itself. From the second pull
-request on, CI ran the unit tests and lint on every one.
+You don't have to take my word for it, it's all in the history. Dozens of
+pull requests in a day and a half, most of them followed by a round of
+fixes from review. Each finding was fixed on its own, one at a time, so
+every correction can be read, and undone, by itself.
 
 The second piece is the rules file. hcboard has a `CLAUDE.md` that the
-agent loads every session: how to build, where things live, which file is
-the only one allowed to touch Android's input connection, and the mistakes
-that must not happen again. My favourite line in it is about timestamps:
-key events use `SystemClock.uptimeMillis()`, never compare them with
-`System.currentTimeMillis()`, "that bug has been made twice". That is the
-habit from the painting article, made concrete. If you correct the same
+agent loads every session: how to build, where things live, which one
+part of the code is allowed to talk to Android directly, and the mistakes
+that must not happen again. My favourite line in it is a warning about
+mixing up two different clocks, and it ends with "that bug has been made
+twice". That is the habit from the painting article, made concrete. If you correct the same
 thing twice, it belongs in the file, and then you never correct it a third
 time.
 
 The third piece is verification by something other than trust. Tests
-written with the code, lint that fails the build, CI on the pull requests,
+written with the code, a build that fails the moment something is off,
 and a list of what the emulator could not check, written down instead of
 glossed over. The model never had to be believed about whether something
 worked. It had to show it.
