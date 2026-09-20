@@ -1,7 +1,7 @@
 ---
 title: The Keyboard I Always Needed
 date: 2026-09-18
-description: hcboard is an Android keyboard for everyday typing with a real Ctrl, Alt and Fn, and no network access. I built the first version with AI in about a day. What I brought, what the model did, and why the harness mattered most.
+description: hcboard is an Android keyboard for everyday typing with a real Ctrl, Alt and Fn, and no network access. I built the first version with AI in about a day.
 tags: [ai, agents, android, keyboard, skills]
 ---
 
@@ -10,9 +10,9 @@ tags: [ai, agents, android, keyboard, skills]
 > real Ctrl, Alt and Fn, and it has no network permission at all. I wanted
 > that keyboard for years. The pieces existed, just never in one app. The
 > first version took about a day, and it has been getting better since.
-> The idea, the spec, the testing and the feedback were mine. The routine work, the kind that used to take weeks, was the
-> model's. And the reason that split worked is not the model. It's the
-> harness around it.
+> The idea, the spec, the testing and the feedback were mine. The routine
+> work, the kind that used to take weeks, was the model's. And the reason
+> that split worked is not the model. It's the harness around it.
 
 ## The keyboard nobody made
 
@@ -21,7 +21,8 @@ Every Android keyboard I have used makes me pick a side.
 On one side are the keyboards made for people: Gboard, Samsung's, the
 iPhone one I keep comparing everything to. Glide typing, suggestions, a
 dozen languages, the phone's own colours. Open a terminal in one of them
-and the illusion ends. There is no Esc, no Tab, and "Ctrl" isn't there at all.
+and the illusion ends. There is no Esc, no Tab, and "Ctrl" isn't there at
+all.
 
 On the other side are the keyboards made for tinkerers.
 [Hacker's Keyboard](https://github.com/klausw/hackerskeyboard) gives you a
@@ -29,13 +30,14 @@ full PC-style layout, and
 [Unexpected Keyboard](https://github.com/Julow/Unexpected-Keyboard) puts
 Ctrl, Alt and the rest a swipe away on every key. They are good at what
 they do, and I respect them. But you give up part of everyday typing to
-use them: glide, modern suggestions, the phone's own look.
-Writing a message to a friend on a keyboard designed around SSH feels
-exactly like that.
+use them: glide, modern suggestions, the phone's own look. Writing a
+message to a friend on a keyboard designed around SSH feels exactly like
+that.
 
-Hacker's Keyboard has a second problem, and it's the one that made me stop
-waiting. Its last release came out in 2018 and the last commit landed in
-2024. There are over five hundred open issues and two dozen pull requests
+Hacker's Keyboard also has a problem the other one doesn't: nobody is
+maintaining it, and that is what made me stop waiting. Its last release
+came out in 2018, and the last commit landed in October 2024. There are
+over five hundred open issues and two dozen pull requests
 sitting in front of them, and people are still filing new ones this year
 into a repository where nothing has moved in two years. That's not a dig
 at its author, who gave a lot of people a lot of free years of use. It's
@@ -228,10 +230,12 @@ apps. The people writing these policies have a vision, and they're
 consistent about it, which I respect. But a rule against the tool, rather
 than against bad work, is the old instinct I wrote about
 [a few weeks ago](/article/articles-better-times-are-ahead-bring-boots):
-smash the loom, and the cloth stops being made too. hcboard is tested, reviewed, small, readable and
-credited, and it would be rejected on principle without anyone opening a
-file. Meanwhile the gap that made me build it is still there, because an
-Android keyboard is weeks of work that nobody was volunteering for.
+smash the loom, and the cloth stops being made too. hcboard is tested,
+reviewed, small, readable and credited, and it would be rejected on
+principle without anyone opening a file. Meanwhile the gap that made me
+build it is still there, because an Android keyboard is weeks of work that
+nobody was volunteering for: the same arithmetic that emptied Hacker's
+Keyboard.
 
 So we lose the sharing part. The apps still get made, by the people who
 need them, and they stay in a personal repository instead of reaching the
