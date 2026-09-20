@@ -1,16 +1,16 @@
 ---
 title: The Keyboard I Always Needed
 date: 2026-09-18
-description: hcboard is an Android keyboard for everyday typing with a real Ctrl, Alt and Fn, and no network access. I built it with AI in about a day. What I brought, what the model did, and why the harness mattered most.
+description: hcboard is an Android keyboard for everyday typing with a real Ctrl, Alt and Fn, and no network access. I built the first version with AI in about a day. What I brought, what the model did, and why the harness mattered most.
 tags: [ai, agents, android, keyboard, skills]
 ---
 
 > **TL;DR** — [hcboard](https://github.com/matasarei/hcboard) is an Android
 > keyboard you can type on all day that also has a full 60% layout with a
 > real Ctrl, Alt and Fn, and it has no network permission at all. I wanted
-> that keyboard for years. The pieces existed, just never in one app. It
-> took a day and a half. The idea, the spec, the testing and the feedback
-> were mine. The routine work, the kind that used to take weeks, was the
+> that keyboard for years. The pieces existed, just never in one app. The
+> first version took about a day, and it has been getting better since.
+> The idea, the spec, the testing and the feedback were mine. The routine work, the kind that used to take weeks, was the
 > model's. And the reason that split worked is not the model. It's the
 > harness around it.
 
@@ -106,7 +106,7 @@ were built from news text and kept offering words nobody uses in a chat,
 so I gave them the words people actually type. The English list had never
 heard of half the words I use every day, so it learned them. None of
 that came from a prompt like "make it better". It came from living with
-the thing for a day.
+the thing.
 
 That's my half: knowing what the keyboard is *for*. It's the part that
 can't be delegated, because nobody else has it.
@@ -130,8 +130,8 @@ scripts that build nine word lists, and the credits for where they came
 from.
 
 Each of those is a day or two of reading documentation and fighting the
-platform. Together, it's weeks. Here it was a day and a half, most of it
-on one long Thursday.
+platform. Together, it's weeks. Here the first working version was there
+in about a day, on one long Thursday.
 
 Not all of it was written from scratch, and it shouldn't have been. Glide
 typing stands on [FlorisBoard's](https://github.com/florisboard/florisboard)
@@ -162,7 +162,7 @@ comparatively disposable. hcboard is that claim tested on a real product
 instead of a demo. Every feature went through the same loop.
 
 You don't have to take my word for it, it's all in the history. Dozens of
-pull requests in a day and a half, most of them followed by a round of
+pull requests in the first two days, most of them followed by a round of
 fixes from review. Each finding was fixed on its own, one at a time, so
 every correction can be read, and undone, by itself.
 
@@ -237,8 +237,8 @@ So here is the split, the way I'd put it to anyone who asks. The idea was
 mine, and so was the spec. The testing on a real phone was mine, and so was
 every "this feels wrong" that turned into a fix. The routine was the
 model's: the platform plumbing, the state machines, the tests, the build,
-the licences. Work that would have taken me weeks of evenings took a day
-and a half.
+the licences. Work that would have taken me weeks of evenings put a first
+version in my hand in a day.
 
 I said [before](/article/articles-antigravity-companion-built-with-ai)
 that the barrier didn't disappear, it moved. hcboard is where it moved to.
