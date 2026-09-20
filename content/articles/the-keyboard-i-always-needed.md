@@ -9,9 +9,10 @@ tags: [ai, agents, android, keyboard, skills]
 > keyboard you can type on all day that also has a full 60% layout with a
 > real Ctrl, Alt and Fn, and it has no network permission at all. I wanted
 > that keyboard for years. The pieces existed, just never in one app. It
-> took about a day. The idea, the spec, the testing and the feedback were
-> mine. The routine work, the kind that used to take weeks, was the model's. And the reason
-> that split worked is not the model. It's the harness around it.
+> took a day and a half. The idea, the spec, the testing and the feedback
+> were mine. The routine work, the kind that used to take weeks, was the
+> model's. And the reason that split worked is not the model. It's the
+> harness around it.
 
 ## The keyboard nobody made
 
@@ -129,7 +130,8 @@ scripts that build nine word lists, and the credits for where they came
 from.
 
 Each of those is a day or two of reading documentation and fighting the
-platform. Together, it's weeks. Here it was one long day.
+platform. Together, it's weeks. Here it was a day and a half, most of it
+on one long Thursday.
 
 Not all of it was written from scratch, and it shouldn't have been. Glide
 typing stands on [FlorisBoard's](https://github.com/florisboard/florisboard)
@@ -169,9 +171,10 @@ agent loads every session: how to build, where things live, which one
 part of the code is allowed to talk to Android directly, and the mistakes
 that must not happen again. My favourite line in it is a warning about
 mixing up two different clocks, and it ends with "that bug has been made
-twice". That is the habit from the painting article, made concrete. If you correct the same
-thing twice, it belongs in the file, and then you never correct it a third
-time.
+twice". That is the habit from
+[I Was Painting, Not Programming](/article/articles-i-was-painting-not-programming),
+made concrete. If you correct the same thing twice, it belongs in the
+file, and then you never correct it a third time.
 
 The third piece is verification by something other than trust. Tests
 written with the code, a build that fails the moment something is off,
@@ -184,13 +187,58 @@ The difference is that with an agent it stops being a nice-to-have and
 becomes the thing that decides whether you get a product or a pile of
 plausible code.
 
+## The door that's closing
+
+There is a part of this I find genuinely sad, and it isn't about me.
+
+[IzzyOnDroid](https://izzyondroid.org/docs/general/AppInclusionPolicy/) is
+one of the good places to get Android apps: a curated repository, no
+tracking, no ads, built by people who care. It isn't the only project with
+a rule like this one, and it won't be the last. Its inclusion policy says
+plainly that it is "strongly opposed to apps which are fully or in part
+created by generative AI tools". Vibe-coded apps are rejected. You may use
+a model to research, brainstorm or debug, but "the code itself should be
+free of it". The reasons given are copyright and licensing, the labour
+behind the training data, the energy and water, and the crawlers hammering
+other people's servers.
+
+I've taken those arguments seriously in public, at length, and I still
+think they're wrong. The training was
+[already paid for](/article/articles-the-batteries-are-already-made),
+whether or not I subscribe, and no US court, which is where all of this
+has been tried, has yet found that learning from lawfully obtained code is
+theft. The more interesting question is the one
+the policy doesn't ask: compared to what? That was the whole point of
+[the alternative being nothing](/article/articles-the-alternative-is-nothing).
+An app that nobody was ever going to write doesn't have an ecological
+footprint, or a licence, or a user. It just doesn't exist.
+
+And that's what the rule actually produces. Not fewer bad apps, just fewer
+apps. The people writing these policies have a vision, and they're
+consistent about it, which I respect. But a rule against the tool, rather
+than against bad work, is the old instinct I wrote about
+[a few weeks ago](/article/articles-better-times-are-ahead-bring-boots):
+smash the loom, and the cloth stops being made too. hcboard is tested, reviewed, small, readable and
+credited, and it would be rejected on principle without anyone opening a
+file. Meanwhile the gap that made me build it is still there, because an
+Android keyboard is weeks of work that nobody was volunteering for.
+
+So we lose the sharing part. The apps still get made, by the people who
+need them, and they stay in a personal repository instead of reaching the
+next person with the same problem. That's a pity, and I don't think
+anybody wins it.
+
+It also isn't the reason I built it. I wasn't making a product, and I
+haven't asked anyone to list it. I wanted a keyboard.
+
 ## A day, not weeks
 
 So here is the split, the way I'd put it to anyone who asks. The idea was
 mine, and so was the spec. The testing on a real phone was mine, and so was
 every "this feels wrong" that turned into a fix. The routine was the
 model's: the platform plumbing, the state machines, the tests, the build,
-the licences. Work that would have taken me weeks of evenings took a day.
+the licences. Work that would have taken me weeks of evenings took a day
+and a half.
 
 I said [before](/article/articles-antigravity-companion-built-with-ai)
 that the barrier didn't disappear, it moved. hcboard is where it moved to.
