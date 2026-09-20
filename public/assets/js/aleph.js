@@ -9,9 +9,14 @@
  * Vanilla, dependency-free. Honours prefers-reduced-motion and tab visibility.
  *   <canvas id="aleph-bg" data-scene="full|calm"></canvas>
  *
- * The page picks a scene through data-scene. "full" is the living field the
- * index shows; "calm" is what article pages ask for: a sparser, dimmer, slower
- * field with the glitch effects off, so the text is what the eye settles on.
+ * The page picks a scene through data-scene:
+ * - "full" is the main page theme reflecting human life: the vast majority
+ *   running ordinary daily routines, rare individuals reaching the peak ecstatic
+ *   intensity of their lives (orgasm/climax) or sudden collapse and death,
+ *   eventually resetting or reborn anew.
+ * - "calm" is the shadowed article background when concentrated on reading:
+ *   each cell takes exactly 1.0 second to update—the human minimum time to
+ *   feel and comprehend—slow and tranquil without distraction.
  */
 (function () {
   'use strict';
@@ -30,16 +35,18 @@
       fps: 30,        // the field is discrete glyph swaps; 30 reads like 60
       dprCap: 1.5,    // dim field behind overlays: 1.5 is indistinguishable from 2
       glitch: true,   // chromatic split on aleph glyphs + horizontal slice tears
-      hotShare: 0.07, // share of tokens that run bright white
-      brightness: 1
+      hotShare: 0.07, // share of routine tokens that run bright white
+      brightness: 1,
+      mode: 'life'    // dynamic human life cycle: routine, death, ecstasy/orgasm, reset
     },
     calm: {
       density: 0.20,
-      fps: 5,         // slow enough to read past, not so slow it looks stuck
+      fps: 2,         // tick cadence; cells update strictly once every 1.0s
       dprCap: 1.5,    // same crispness as the index; the savings come from density and fps
       glitch: false,
       hotShare: 0,
-      brightness: 0.6
+      brightness: 0.6,
+      mode: 'second'  // the human second: 1 second per cell update, not faster, not slower
     }
   };
   var scene = SCENES[canvas.getAttribute('data-scene')] || SCENES.full;
@@ -82,8 +89,12 @@
 
   function pick(a) { return a[(Math.random() * a.length) | 0]; }
 
-  /* ---- token states --------------------------------------------------- */
-  var COUNT = 0, ALEPH = 1, DECAY_S = 2;
+  /* ---- token states: life, ecstasy, death, and calm second ------------- */
+  var ROUTINE = 0,    // everyday ordinary counting
+      ECSTASY = 1,    // climax / orgasm: rapid count, blinding hot bloom, surges
+      ALEPH   = 2,    // transcendence / peak infinity glyphs with chromatic split
+      DECAY_S = 3,    // death / collapse: crumbling into dots
+      VOID    = 4;    // dead silence before rebirth
 
   var W, H, DPR, cell, cols, rows;
   var tokens = [];
@@ -128,24 +139,30 @@
   // of the chromatic split an aleph glyph gets in the full scene.
   function paint(t) {
     var f = t.fade;
-    if (t.state === COUNT) {
+    if (t.state === ROUTINE) {
       t.fill = rgba(t.hot ? WHITE : CYAN, t.bright * f);
+    } else if (t.state === ECSTASY) {
+      // Climax / orgasm bloom: searing pure white/hot pink
+      t.fill = rgba(WHITE, 0.98 * f);
     } else if (t.state === ALEPH && scene.glitch) {
       t.fill  = rgba(WHITE, 0.95 * f);
       t.fillL = rgba(PINK, 0.85 * f);
       t.fillR = rgba(CYAN, 0.85 * f);
     } else if (t.state === ALEPH) {
       t.fill = rgba(PINK, 0.6 * scene.brightness * f);
-    } else {
-      t.fill = rgba(PINK, (0.45 + Math.random() * 0.2) * f);
+    } else if (t.state === DECAY_S) {
+      t.fill = rgba(PINK, (0.35 + Math.random() * 0.25) * f);
+    } else if (t.state === VOID) {
+      t.fill = 'transparent';
     }
   }
 
   function newToken(x, y) {
+    var isCalm = (scene.mode === 'second');
     var t = {
       x: x, y: y,
       fade: fadeAt(x, y),
-      state: COUNT,
+      state: ROUTINE,
       value: 1 + ((Math.random() * 40) | 0),
       step: 1,
       glyph: '',
@@ -153,16 +170,52 @@
       bright: baseBright(),
       hot: Math.random() < scene.hotShare,
       fill: '', fillL: '', fillR: '',
-      timer: 200 + Math.random() * 1400, // ms until next state event
+      // Calm scene: each cell takes exactly 1000ms to update, staggered start
+      timer: isCalm ? Math.random() * 1000 : (200 + Math.random() * 1400),
       life: 0
     };
     paint(t);
     return t;
   }
 
-  /* ---- simulation tick (slow cadence; numbers don't need 60fps) ------- */
+  /* ---- simulation tick ------------------------------------------------ */
   function update(dt) {
-    // glitch pressure breathes: swells, then snaps back like the snare hits
+    if (scene.mode === 'second') {
+      // THE HUMAN SECOND:
+      // In shadowed article reading, time slows down to human perception.
+      // Each cell takes exactly 1.0 second (1000ms) to update, not faster, not slower.
+      for (var s = 0; s < tokens.length; s++) {
+        var ct = tokens[s];
+        ct.timer -= dt;
+        while (ct.timer <= 0) {
+          ct.timer += 1000;
+          if (ct.state === ROUTINE) {
+            ct.value += ct.step;
+            // Rare calm transformation into a quiet symbol or pause
+            if (Math.random() < 0.04) {
+              ct.state = ALEPH;
+              ct.glyph = pick(SETSYM);
+              paint(ct);
+            }
+          } else if (ct.state === ALEPH) {
+            // Calm decay to a dot after its tranquil second
+            ct.state = DECAY_S;
+            ct.glyph = pick(DECAY);
+            paint(ct);
+          } else {
+            // Rebirth into calm routine
+            ct.state = ROUTINE;
+            ct.value = 1 + ((Math.random() * 30) | 0);
+            ct.bright = baseBright();
+            paint(ct);
+          }
+        }
+      }
+      return;
+    }
+
+    // FULL SCENE: LIFE, DEATH, AND ORGASM
+    // Glitch pressure breathes: swells, then snaps back like snare hits
     intensity += dt * 0.00003;
     if (intensity > 0.9 || Math.random() < 0.0006) intensity = 0.12 + Math.random() * 0.1;
 
@@ -170,32 +223,86 @@
       var t = tokens[i];
       t.timer -= dt;
 
-      if (t.state === COUNT) {
-        // count upward
+      if (t.state === ROUTINE) {
+        // Everyday life: routine upward counting
         t.life += dt;
         if (t.life > 90) { t.value += t.step; t.life = 0; }
-        // chance to glitch into an aleph, scaled by global pressure
-        if (t.timer <= 0 && Math.random() < intensity) {
-          t.state = ALEPH;
-          t.glyph = Math.random() < 0.45 ? pick(ALEPHS) : pick(SETSYM);
-          t.timer = 260 + Math.random() * 900;
+
+        if (t.timer <= 0) {
+          var dice = Math.random();
+          // Rare ecstasy / climax: the peak feeling of life
+          if (dice < 0.035 * (intensity * 2.5)) {
+            t.state = ECSTASY;
+            t.hot = true;
+            t.timer = 150 + Math.random() * 450;
+            paint(t);
+          // Glitch directly into Aleph transcendence
+          } else if (dice < (0.035 + 0.12 * intensity)) {
+            t.state = ALEPH;
+            t.glyph = Math.random() < 0.45 ? pick(ALEPHS) : pick(SETSYM);
+            t.timer = 240 + Math.random() * 800;
+            paint(t);
+          // Sudden collapse / death: worst feeling or abrupt end of routine
+          } else if (dice < (0.035 + 0.12 * intensity + 0.03)) {
+            t.state = DECAY_S;
+            t.glyph = pick(DECAY);
+            t.timer = 200 + Math.random() * 600;
+            paint(t);
+          } else {
+            // Continue routine
+            t.timer = 300 + Math.random() * 1600;
+          }
+        }
+      } else if (t.state === ECSTASY) {
+        // Climax: counting furiously at 4x speed, blooming brilliant white
+        t.life += dt;
+        if (t.life > 22) { t.value += (t.step * 2); t.life = 0; }
+        if (t.timer <= 0) {
+          // Climax resolves into transcendence or sudden collapse
+          if (Math.random() < 0.65) {
+            t.state = ALEPH;
+            t.glyph = pick(ALEPHS);
+            t.timer = 280 + Math.random() * 700;
+          } else {
+            t.state = DECAY_S;
+            t.glyph = pick(DECAY);
+            t.timer = 200 + Math.random() * 400;
+          }
           paint(t);
-        } else if (t.timer <= 0) {
-          t.timer = 300 + Math.random() * 1600;
         }
       } else if (t.state === ALEPH) {
         if (t.timer <= 0) {
+          // Transcendence crumbles into decay / death
           t.state = DECAY_S;
           t.glyph = pick(DECAY);
           t.timer = 180 + Math.random() * 420;
           paint(t);
         }
-      } else { // DECAY_S — crumble to dots, then respawn as a fresh count
+      } else if (t.state === DECAY_S) {
         if (t.timer <= 0) {
-          t.state = COUNT;
-          t.value = 1 + ((Math.random() * 30) | 0);
+          // Death: decay dissolves into a moment of silent void
+          if (Math.random() < 0.4) {
+            t.state = VOID;
+            t.timer = 300 + Math.random() * 900;
+            paint(t);
+          } else {
+            // Rebirth: back to everyday routine
+            t.state = ROUTINE;
+            t.value = 1 + ((Math.random() * 30) | 0);
+            t.bright = baseBright();
+            t.hot = Math.random() < scene.hotShare;
+            t.timer = 400 + Math.random() * 1800;
+            paint(t);
+          }
+        }
+      } else if (t.state === VOID) {
+        if (t.timer <= 0) {
+          // Reincarnation after death: fresh count starting from 1
+          t.state = ROUTINE;
+          t.value = 1;
           t.bright = baseBright();
-          t.timer = 400 + Math.random() * 1800;
+          t.hot = Math.random() < scene.hotShare;
+          t.timer = 350 + Math.random() * 1600;
           paint(t);
         }
       }
@@ -215,11 +322,13 @@
 
     for (var i = 0; i < tokens.length; i++) {
       var t = tokens[i];
-      if (t.state === COUNT) {
+      if (t.state === ROUTINE || t.state === ECSTASY) {
         ctx.fillStyle = t.fill;
         ctx.fillText('' + t.value, t.x, t.y);
       } else if (t.state === ALEPH && scene.glitch) {
         alephs.push(t);
+      } else if (t.state === VOID) {
+        // void cell: silent empty space
       } else { // calm aleph, or decay
         ctx.fillStyle = t.fill;
         ctx.fillText(t.glyph, t.x, t.y);
