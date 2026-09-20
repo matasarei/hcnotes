@@ -33,6 +33,16 @@ use them: glide, modern suggestions, the phone's own look.
 Writing a message to a friend on a keyboard designed around SSH feels
 exactly like that.
 
+Hacker's Keyboard has a second problem, and it's the one that made me stop
+waiting. Its last release came out in 2018 and the last commit landed in
+2024. There are over five hundred open issues and two dozen pull requests
+sitting in front of them, and people are still filing new ones this year
+into a repository where nothing has moved in two years. That's not a dig
+at its author, who gave a lot of people a lot of free years of use. It's
+what happens to an app that takes weeks of specialist work to write and
+will never be worth anyone's salary. One person gets tired, and there is
+nobody behind them.
+
 So the gap was never "a keyboard with Ctrl on it". Those exist. The gap was
 a keyboard that is ordinary until the moment you need it not to be, and
 then, without switching apps or keyboards, it is a computer keyboard. The
