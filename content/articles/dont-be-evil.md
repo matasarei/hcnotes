@@ -6,11 +6,12 @@ tags: [ai, ethics, history, weapons, gaming]
 ---
 
 > **TL;DR** — "Don't be evil" was Google's motto, and its founders defended it
-> as the better long-term deal, not just the nicer one. They were right. Hostility
-> escalates, and every weapon forces the other side to build one back. Now we're
-> teaching AI to use them. A language model can't want to kill anyone. It predicts the
-> next thing and does what it's pointed at. The threat is the person doing the pointing.
-> So build defence, but know what you're defending against. And don't be evil.
+> as the better long-term deal, not just the nicer one. They were right.
+> Hostility escalates, and every weapon forces the other side to build one back.
+> Now we're teaching AI to use them. A language model can't want to kill anyone.
+> It predicts the next thing and does what it's pointed at. The threat is the
+> person doing the pointing. So build defence, but know what you're defending
+> against. And don't be evil.
 
 Everyone has heard the phrase, but I realised I didn't actually know where it
 came from, what exactly Google wrote, or why. So I went and checked. It turns
@@ -41,9 +42,9 @@ I'll come back to that.
 
 ## Start with the neighbour
 
-Take the smallest version of it. You decide you don't like your neighbour.
-Maybe there's a reason, maybe you just don't like their face. You say something, they say
-something back, and a month later neither of you remembers who started it.
+Take evil at its smallest. You decide you don't like your neighbour. Maybe
+there's a reason, maybe you just don't like their face. You say something, they
+say something back, and a month later neither of you remembers who started it.
 You're both parking worse, sleeping worse, and checking the window more often.
 Nobody won. You just both live in a slightly worse place now, and you did it to
 yourselves.
@@ -70,15 +71,15 @@ threaten someone, you don't only threaten them. You force them to build one
 too, to defend themselves and to be able to answer. Then you have to build a
 bigger one, because theirs exists now.
 
-Hiroshima again, this time as the starting gun. Four years later, on 29 August 1949,
-the Soviet Union tested its own bomb. After that, both sides spent the next
-forty years building more of them, then better ones, then ones that could
+Hiroshima again, this time as the starting gun. Four years later, on 29 August
+1949, the Soviet Union tested its own bomb. After that, both sides spent the
+next forty years building more of them, then better ones, then ones that could
 reach the other side of the planet in half an hour. There's a textbook name for
 this, the security dilemma: everything you do to feel safer makes the other side
 feel less safe, and their answer makes you less safe again.
 
 Nobody came out of that richer. Nobody felt safer. And at least once, the whole
-thing came down to one tired officer in a bunker, which I'll get to.
+thing came down to one officer in a bunker, which I'll get to.
 
 ## Now we're teaching the weapons to think
 
@@ -86,11 +87,13 @@ This is where the old motto stops being history.
 
 In 2018, Google employees found out the company was helping the Pentagon use AI
 to analyse drone footage, a program called Project Maven. More than three
-thousand of them signed a letter that said
-["Google should not be in the business of war"](https://www.business-humanrights.org/en/latest-news/the-business-of-war-google-employees-protest-work-for-the-pentagon/).
+thousand of them signed a letter that said ["Google should not be in the
+business of
+war"](https://www.business-humanrights.org/en/latest-news/the-business-of-war-google-employees-protest-work-for-the-pentagon/).
 Some quit. Google let the contract lapse and published a set of AI principles
-that included a promise not to build AI for weapons. The motto, meanwhile, was
-down to its last sentence.
+that included a promise not to build AI for weapons. That was the same year the
+motto was cut down to its last line, and it was the employees, not the code of
+conduct, who were still living by it.
 
 In February 2025, Google
 [removed that promise](https://www.cnbc.com/2025/02/04/google-removes-pledge-to-not-use-ai-for-weapons-surveillance.html).
@@ -128,7 +131,8 @@ wouldn't be five missiles, and reported a malfunction instead. He was right. The
 satellites had mistaken sunlight reflecting off high clouds for rocket engines.
 
 The software was wrong, and a human caught it. Now ask the obvious question:
-who catches it when the software is also the one deciding?
+who catches it when there's no human left between the software and the
+launch?
 
 ## Why Horizon Zero Dawn is my favourite game
 
@@ -157,13 +161,13 @@ You'll see what I mean.
 
 So why am I so sure the AI itself isn't the threat?
 
-Because of what it is. I
-[went through this a few weeks ago](/article/articles-i-was-painting-not-programming),
-and the short version still holds: a model takes whatever is in front of it and
-continues it the most likely way. There is no one in there wanting anything. It
-could generate a plan to break into a launch system, sure. It could generate
-one for anything. But only because someone asked, or because someone put it in
-a situation where that was the likely next step.
+Because of what it is. I [went through this a few weeks
+ago](/article/articles-i-was-painting-not-programming), and the short version
+still holds: a model takes whatever is in front of it and continues it the most
+likely way. There is no one in there wanting anything. It could generate a plan
+to break into a launch system, sure. It could generate one for anything. But
+only because someone asked, or because someone put it in a situation where that
+was the likely next step.
 
 The fair objection is the famous one. In June 2025, Anthropic
 [tested sixteen models](https://www.anthropic.com/research/agentic-misalignment)
