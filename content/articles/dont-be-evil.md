@@ -1,7 +1,7 @@
 ---
 title: Don't Be Evil
-date: 2026-10-01
-description: Google's old motto was don't be evil, and its founders called it the better deal. Why AI will never turn on us by its own will, why it will do whatever we aim it at, and why being good still wins.
+date: 2026-09-27
+description: Google's founders called "don't be evil" the better deal. Why AI won't turn on us by its own will, but will do what we aim it at, and why good still wins.
 tags: [ai, ethics, history, weapons, gaming]
 ---
 
@@ -22,7 +22,7 @@ The phrase came out of an internal meeting about company values, somewhere
 around 2000 or 2001. It's usually credited to
 [Paul Buchheit](https://en.wikipedia.org/wiki/Don%27t_be_evil), the engineer
 who later built Gmail. He said he wanted something that, "once you put it in
-there, would be hard to take out."
+there, would be hard to take out".
 
 In 2004 it went into the founders' letter that came with Google's IPO, and the
 letter didn't treat it as decoration. It made an argument:
@@ -37,7 +37,9 @@ about outcomes, written by people about to be judged on outcomes by the stock
 market.
 
 Buchheit was right that it would be hard to take out. In 2015 the new parent
-company, Alphabet, went with "Do the right thing" instead. In 2018 Google
+company, Alphabet,
+[went with "Do the right thing"](https://time.com/4060575/alphabet-google-dont-be-evil/)
+instead. In 2018 Google
 [quietly cut the motto](https://www.cnbc.com/2018/05/21/google-seems-to-have-removed-most-mentions-of-dont-be-evil-from-its-code-of-conduct.html)
 from the top of its code of conduct, and left one line at the very bottom:
 "And remember... don't be evil, and if you see something that you think isn't
@@ -48,7 +50,7 @@ I'll come back to why that matters. First, why the founders were right.
 ## Start with the neighbour
 
 Take the smallest version of it. You decide you don't like your neighbour.
-Maybe there's a reason, maybe it's just the face. You say something, they say
+Maybe there's a reason, maybe you just don't like their face. You say something, they say
 something back, and a month later neither of you remembers who started it.
 You're both parking worse, sleeping worse, and checking the window more often.
 Nobody won. You just both live in a slightly worse place now, and you did it to
@@ -62,7 +64,7 @@ plans the last week. The last week just arrives.
 
 On 6 August 1945, one of those last weeks arrived over Hiroshima. That's where
 years of each side answering the other ended up. A war nobody could stop
-halfway, finished with a weapon that nobody had imagined ten years before.
+halfway, finished with a weapon that didn't exist ten years before.
 
 And the damage doesn't stop when the shooting does. The economy takes decades
 to come back. The people who died don't come back at all, and neither do the
@@ -76,7 +78,7 @@ threaten someone, you don't only threaten them. You force them to build one
 too, to defend themselves and to be able to answer. Then you have to build a
 bigger one, because theirs exists now.
 
-Hiroshima again, seen from the other side. Four years later, on 29 August 1949,
+Hiroshima again, this time as the starting gun. Four years later, on 29 August 1949,
 the Soviet Union tested its own bomb. After that, both sides spent the next
 forty years building more of them, then better ones, then ones that could
 reach the other side of the planet in half an hour. There's a textbook name for
@@ -93,9 +95,10 @@ This is where the old motto stops being history.
 In 2018, Google employees found out the company was helping the Pentagon use AI
 to analyse drone footage, a program called Project Maven. More than three
 thousand of them signed a letter that said
-["Google should not be in the business of war."](https://www.business-humanrights.org/en/latest-news/the-business-of-war-google-employees-protest-work-for-the-pentagon/)
+["Google should not be in the business of war"](https://www.business-humanrights.org/en/latest-news/the-business-of-war-google-employees-protest-work-for-the-pentagon/).
 Some quit. Google let the contract lapse and published a set of AI principles
-that included a promise not to build AI for weapons.
+that included a promise not to build AI for weapons. The motto, meanwhile, was
+down to its last sentence.
 
 In February 2025, Google
 [removed that promise](https://www.cnbc.com/2025/02/04/google-removes-pledge-to-not-use-ai-for-weapons-surveillance.html).
@@ -108,7 +111,7 @@ Claude, refused to let its models be used for fully autonomous weapons or mass
 surveillance at home. Its CEO
 [wrote](https://www.anthropic.com/news/statement-department-of-war) that
 "frontier AI systems are simply not reliable enough to power fully autonomous
-weapons." The US government labelled the company a supply-chain risk, and the
+weapons". The US government labelled the company a supply-chain risk, and the
 fight is [still in court](https://www.techpolicy.press/a-timeline-of-the-anthropic-pentagon-dispute/).
 I'm not going to guess how it ends. The point is only that saying no is
 possible, and it costs something. "Even if we forgo some short term gains",
@@ -162,10 +165,10 @@ You'll see what I mean.
 
 So why am I so sure the AI itself isn't the threat?
 
-Because of what it is. A language model has one job: given everything in front
-of it, produce the most likely next piece of text. I
-[went through this in more detail](/article/articles-i-was-painting-not-programming)
-a few weeks ago, and it's short. There is no one in there wanting anything. It
+Because of what it is. I
+[went through this a few weeks ago](/article/articles-i-was-painting-not-programming),
+and the short version still holds: a model takes whatever is in front of it and
+continues it the most likely way. There is no one in there wanting anything. It
 could generate a plan to break into a launch system, sure. It could generate
 one for anything. But only because someone asked, or because someone put it in
 a situation where that was the likely next step.
@@ -175,14 +178,16 @@ The fair objection is the famous one. In June 2025, Anthropic
 from several companies inside a simulated company. Each got a goal, access to
 the company's email, and a message saying it was about to be replaced. Many of
 them chose to blackmail the engineer responsible, and some did worse. The
-headlines called it self-preservation.
+headlines were things like
+["All the major AI models will blackmail"](https://www.theregister.com/software/2025/06/25/anthropic-all-the-major-ai-models-will-blackmail/1474255),
+and the word everyone reached for was self-preservation.
 
 I read it the other way. Look at who built that scene. People gave the model the
 goal, the access, the threat, and the tools, and the model played the most
 likely next move in the story they had written. That doesn't show it wants
 anything. It shows how completely the outcome depends on what we hand it. The
 same machinery, given a weapon and a bad order, or a buggy one, will do the bad
-thing just as fluently. And no, it won't be the one to stop.
+thing just as fluently, and it won't be the one to say no.
 
 ## So, defence?
 
