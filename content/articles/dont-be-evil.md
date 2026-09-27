@@ -78,7 +78,7 @@ this, the security dilemma: everything you do to feel safer makes the other side
 feel less safe, and their answer makes you less safe again.
 
 Nobody came out of that richer. Nobody felt safer. And at least once, the whole
-thing came down to one tired officer in a bunker, which I'll get to.
+thing came down to one officer in a bunker, which I'll get to.
 
 ## Now we're teaching the weapons to think
 
