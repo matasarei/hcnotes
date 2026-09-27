@@ -89,8 +89,9 @@ to analyse drone footage, a program called Project Maven. More than three
 thousand of them signed a letter that said
 ["Google should not be in the business of war"](https://www.business-humanrights.org/en/latest-news/the-business-of-war-google-employees-protest-work-for-the-pentagon/).
 Some quit. Google let the contract lapse and published a set of AI principles
-that included a promise not to build AI for weapons. The motto, meanwhile, was
-down to its last sentence.
+that included a promise not to build AI for weapons. That was the same year the motto was cut
+down to its last line, and it was the employees, not the code of conduct, who
+were still living by it.
 
 In February 2025, Google
 [removed that promise](https://www.cnbc.com/2025/02/04/google-removes-pledge-to-not-use-ai-for-weapons-surveillance.html).
