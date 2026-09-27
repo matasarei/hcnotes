@@ -8,44 +8,36 @@ tags: [ai, ethics, history, weapons, gaming]
 > **TL;DR** — "Don't be evil" was Google's motto, and its founders defended it
 > as the better long-term deal, not just the nicer one. They were right. Hostility
 > escalates, and every weapon forces the other side to build one back. Now we're
-> teaching AI to use them. A language model can't want to kill anyone. It predicts
-> text and does what it's pointed at. The threat is the person doing the pointing.
+> teaching AI to use them. A language model can't want to kill anyone. It predicts the
+> next thing and does what it's pointed at. The threat is the person doing the pointing.
 > So build defence, but know what you're defending against. And don't be evil.
 
-I've known the phrase for as long as I've known Google. What I didn't know,
-until I went and checked, is what exactly they wrote, and why. It turns out
-the answer is better than the slogan.
+Everyone has heard the phrase, but I realised I didn't actually know where it
+came from, what exactly Google wrote, or why. So I went and checked. It turns
+out the answer is better than the slogan.
 
-## What Google actually wrote
+## What Google meant
 
-The phrase came out of an internal meeting about company values, somewhere
-around 2000 or 2001. It's usually credited to
-[Paul Buchheit](https://en.wikipedia.org/wiki/Don%27t_be_evil), the engineer
-who later built Gmail. He said he wanted something that, "once you put it in
-there, would be hard to take out".
-
-In 2004 it went into the founders' letter that came with Google's IPO, and the
-letter didn't treat it as decoration. It made an argument:
+The phrase came from a Google meeting about company values around 2001, and
+it's usually credited to
+[Paul Buchheit](https://en.wikipedia.org/wiki/Don%27t_be_evil), who later
+built Gmail. He meant it as a jab at competitors that were, in his words,
+"kind of exploiting the users". In 2004 the founders put it into their IPO
+letter and explained it:
 
 > Don't be evil. We believe strongly that in the long term, we will be better
 > served — as shareholders and in all other ways — by a company that does good
 > things for the world even if we forgo some short term gains.
 
-Read that again, because it's the whole point of this article. Not "be good
-because it's right". Be good because, over time, it pays better. That's a claim
-about outcomes, written by people about to be judged on outcomes by the stock
-market.
+So they meant something narrower than I do: don't squeeze your users for
+quick money. But the reasoning is the same, and it's the point of this whole
+article. Not "be good because it's right". Be good because, over time, it
+pays better.
 
-Buchheit was right that it would be hard to take out. In 2015 the new parent
-company, Alphabet,
-[went with "Do the right thing"](https://time.com/4060575/alphabet-google-dont-be-evil/)
-instead. In 2018 Google
-[quietly cut the motto](https://www.cnbc.com/2018/05/21/google-seems-to-have-removed-most-mentions-of-dont-be-evil-from-its-code-of-conduct.html)
-from the top of its code of conduct, and left one line at the very bottom:
-"And remember... don't be evil, and if you see something that you think isn't
-right - speak up!" Seventeen years in, it was still hanging on by a sentence.
-
-I'll come back to why that matters. First, why the founders were right.
+The motto itself didn't age well at Google. In 2018 it was
+[quietly cut](https://www.cnbc.com/2018/05/21/google-seems-to-have-removed-most-mentions-of-dont-be-evil-from-its-code-of-conduct.html)
+from the top of the code of conduct, leaving a single line at the very bottom.
+I'll come back to that.
 
 ## Start with the neighbour
 
