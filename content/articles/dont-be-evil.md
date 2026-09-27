@@ -129,7 +129,8 @@ wouldn't be five missiles, and reported a malfunction instead. He was right. The
 satellites had mistaken sunlight reflecting off high clouds for rocket engines.
 
 The software was wrong, and a human caught it. Now ask the obvious question:
-who catches it when the software is also the one deciding?
+who catches it when there's no human left between the software and the
+launch?
 
 ## Why Horizon Zero Dawn is my favourite game
 
