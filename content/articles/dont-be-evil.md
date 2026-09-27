@@ -41,7 +41,7 @@ I'll come back to that.
 
 ## Start with the neighbour
 
-Take the smallest version of it. You decide you don't like your neighbour.
+Take evil at its smallest. You decide you don't like your neighbour.
 Maybe there's a reason, maybe you just don't like their face. You say something, they say
 something back, and a month later neither of you remembers who started it.
 You're both parking worse, sleeping worse, and checking the window more often.
