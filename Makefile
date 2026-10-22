@@ -39,8 +39,9 @@ cache-clear: ## Clear & warm the Symfony cache, restore var/ ownership
 sync: ## Re-index /content into the SQLite database
 	$(EXEC) php bin/console app:sync
 
-up: ## Build & (re)start the containers
-	$(COMPOSE_CMD) up -d --build
+up: ## Rebuild on freshly pulled base images & (re)start the containers
+	$(COMPOSE_CMD) build --pull
+	$(COMPOSE_CMD) up -d
 
 install: ## Install PHP dependencies (production)
 	$(EXEC) composer install --no-dev --optimize-autoloader

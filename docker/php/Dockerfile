@@ -1,4 +1,6 @@
-FROM php:8.2-fpm-alpine
+# Pinned to a patch release: 8.2.35 fixes PHP2Shell (CVE-2026-109618/109619).
+# Bump deliberately; tests/Integration/RuntimeSecurityTest.php guards the floor.
+FROM php:8.2.35-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
