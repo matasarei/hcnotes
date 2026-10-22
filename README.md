@@ -7,7 +7,7 @@ cyan/white/pink accents, render glitches, and a fully generative background. The
 is intentionally small and completely open.
 
 ![License: MIT](https://img.shields.io/badge/license-MIT-2de2e6)
-![PHP 8.2](https://img.shields.io/badge/php-8.2-777bb4)
+![PHP 8.4](https://img.shields.io/badge/php-8.4-777bb4)
 ![Symfony 7](https://img.shields.io/badge/symfony-7.x-000000)
 
 > Just here to read? The articles are waiting on the live site —
@@ -44,7 +44,7 @@ explains the philosophy — and notes that this very site is its proof of concep
 
 ## Tech stack
 
-- **Backend:** PHP 8.2, [Symfony 7](https://symfony.com) Flex micro-kernel
+- **Backend:** PHP 8.4, [Symfony 7](https://symfony.com) Flex micro-kernel
 - **Content:** Markdown + YAML frontmatter, parsed with Parsedown
 - **Index/search:** SQLite (rebuildable from files via `app:sync`)
 - **Templating:** Twig (theme in `src/Themes/default`)

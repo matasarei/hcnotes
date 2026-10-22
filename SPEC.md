@@ -2,7 +2,7 @@
 
 ## 1. System Architecture
 - **Framework:** Symfony Flex (Micro-kernel).
-- **Runtime:** PHP 8.2-FPM (Alpine).
+- **Runtime:** PHP 8.4-FPM (Alpine).
 - **Concept:** A "Context-First" CMF (alternative to traditional CMS) where the filesystem is the editor.
 - **Data Source:** `/content` folder (Markdown + YAML Frontmatter).
 
@@ -18,8 +18,8 @@
 │   │   ├── Dockerfile      # Nginx Alpine image
 │   │   └── nginx.conf      # Virtual host config (try_files → index.php)
 │   └── php/
-│       ├── Dockerfile      # PHP 8.2-FPM Alpine image + Composer
-│       └── php.ini         # Runtime settings (memory, opcache)
+│       ├── Dockerfile      # PHP 8.4-FPM Alpine image + Composer
+│       └── php.ini         # Runtime settings (memory, opcache, request hardening)
 ├── src/
 │   ├── Command/            # app:sync
 │   ├── Controller/         # API & Web routes
@@ -95,4 +95,4 @@ AICMF follows a TDD-First workflow for all functional logic, commands, and APIs:
 - **Never** run `composer`, `php`, or `bin/console` directly on the host.
 - Always prefix commands: `docker-compose exec php <command>`.
 - The `data/` directory is volume-mounted and persisted outside the container.
-- Rebuild containers after `docker/php/Dockerfile` changes: `docker-compose build php`.
+- Rebuild containers after `docker/php/Dockerfile` changes: `docker-compose build --pull php`.
