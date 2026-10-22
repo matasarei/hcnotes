@@ -2,7 +2,7 @@
 
 ## 1. System Architecture
 - **Framework:** Symfony Flex (Micro-kernel).
-- **Runtime:** PHP 8.2-FPM (Alpine).
+- **Runtime:** PHP 8.4-FPM (Alpine).
 - **Concept:** A "Context-First" CMF (alternative to traditional CMS) where the filesystem is the editor.
 - **Data Source:** `/content` folder (Markdown + YAML Frontmatter).
 
@@ -18,7 +18,7 @@
 │   │   ├── Dockerfile      # Nginx Alpine image
 │   │   └── nginx.conf      # Virtual host config (try_files → index.php)
 │   └── php/
-│       ├── Dockerfile      # PHP 8.2-FPM Alpine image + Composer
+│       ├── Dockerfile      # PHP 8.4-FPM Alpine image + Composer
 │       └── php.ini         # Runtime settings (memory, opcache)
 ├── src/
 │   ├── Command/            # app:sync

@@ -181,7 +181,7 @@ AI-content detectors and ruin SEO ranking.
 
 ## Conventions
 
-- PHP 8.2+, Symfony 7 idioms: attributes for routes (`#[Route]`), constructor
+- PHP 8.4+, Symfony 7 idioms: attributes for routes (`#[Route]`), constructor
   promotion, `readonly` dependencies, PSR-4 (`App\` → `src/`).
 - No frontend build step and no npm — hand-written CSS/JS only, referenced
   through `asset_v()`.
