@@ -28,10 +28,13 @@ docker compose exec php php vendor/bin/phpunit     # run the test suite
 - `data/` is a bind-mounted volume; the SQLite index in it is a **derived
   artifact** — delete `data/app.db` and re-run `app:sync` to rebuild it.
 - Rebuild containers after changing `docker/php/Dockerfile`:
-  `docker compose build php`.
-- `Makefile` wraps the deploy flow (`make update`) and works with both Docker
-  and Podman — on the server, `make update` pulls, clears the cache, and
-  re-indexes in one run.
+  `docker compose build --pull php`. The base images track minor-version tags,
+  so `--pull` is what brings in PHP and nginx security patches.
+- `Makefile` wraps the deploy flow and works with both Docker and Podman — on
+  the server, `make update` pulls, clears the cache, and re-indexes in one run.
+  It does **not** rebuild images or reinstall vendor: after a change to
+  `docker/`, `php.ini` or `composer.lock` (and periodically, for base-image
+  patches), deploy with `make upgrade` instead.
 
 ## TDD-first: every change starts with a test
 

@@ -2,6 +2,8 @@
 #
 #   make            # same as `make update`
 #   make update     # fetch + pull + clear cache + re-index content, in one run
+#   make upgrade    # same, plus rebuild images (--pull) and composer install;
+#                   # use it when Dockerfiles, php.ini or composer.lock change
 #
 # App commands run inside the running php container via docker compose.
 # On the server the env (APP_ENV=prod) comes from .env.local, so cache:clear
@@ -20,10 +22,13 @@ EXEC := $(COMPOSE_CMD) exec -T php
 endif
 
 .DEFAULT_GOAL := update
-.PHONY: update fetch pull cache-clear sync up install help
+.PHONY: update upgrade fetch pull cache-clear sync up install help
 
 update: fetch pull cache-clear sync ## Pull latest code and refresh the running site
 	@echo "✓ hcnotes updated"
+
+upgrade: fetch pull up install cache-clear sync ## Also rebuild images and reinstall deps (runtime/dependency changes)
+	@echo "✓ hcnotes upgraded"
 
 fetch: ## Fetch latest refs from origin
 	git fetch --prune origin

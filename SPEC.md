@@ -95,4 +95,4 @@ AICMF follows a TDD-First workflow for all functional logic, commands, and APIs:
 - **Never** run `composer`, `php`, or `bin/console` directly on the host.
 - Always prefix commands: `docker-compose exec php <command>`.
 - The `data/` directory is volume-mounted and persisted outside the container.
-- Rebuild containers after `docker/php/Dockerfile` changes: `docker-compose build php`.
+- Rebuild containers after `docker/php/Dockerfile` changes: `docker-compose build --pull php`.
