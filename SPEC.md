@@ -19,7 +19,7 @@
 │   │   └── nginx.conf      # Virtual host config (try_files → index.php)
 │   └── php/
 │       ├── Dockerfile      # PHP 8.4-FPM Alpine image + Composer
-│       └── php.ini         # Runtime settings (memory, opcache)
+│       └── php.ini         # Runtime settings (memory, opcache, request hardening)
 ├── src/
 │   ├── Command/            # app:sync
 │   ├── Controller/         # API & Web routes
