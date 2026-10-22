@@ -1,6 +1,7 @@
-# Pinned to a patch release: 8.4.27 fixes PHP2Shell (CVE-2026-109618/109619).
-# Bump deliberately; tests/Integration/RuntimeSecurityTest.php guards the floor.
-FROM php:8.4.27-fpm-alpine
+# Minor-version tag on purpose: `make up` builds with --pull, so every patch
+# release lands on rebuild. tests/Integration/RuntimeSecurityTest.php guards the
+# PHP2Shell floor (8.4.27).
+FROM php:8.4-fpm-alpine
 
 # Install system dependencies
 RUN apk add --no-cache \
