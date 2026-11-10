@@ -181,19 +181,23 @@ a:hover { color: var(--accent-2); }
   margin: 0 0 1.35rem;
   color: var(--white);
   position: relative;
+  isolation: isolate;   /* keeps the z-index:-1 copies above the panel */
   text-transform: uppercase;
 }
+/* the red/cyan copies sit BEHIND the white text, offset sideways, so colour
+   shows only as a fringe at the glyph edges, never over the letters */
 .glitch::before, .glitch::after {
   content: attr(data-text);
   position: absolute;
   left: 0; top: 0;
   width: 100%;
   overflow: hidden;
+  z-index: -1;
 }
 /* both halves share one 3s timeline and glitch at the SAME instants,
    sliding in opposite directions for a coherent torn RGB-split */
-.glitch::before { color: var(--glitch-l); clip-path: inset(0 0 50% 0); animation: glitch-top 3.6s steps(1) infinite; }
-.glitch::after  { color: var(--glitch-r); clip-path: inset(50% 0 0 0); animation: glitch-bottom 3.6s steps(1) infinite; }
+.glitch::before { left: -0.04em; color: var(--glitch-l); clip-path: inset(0 0 50% 0); animation: glitch-top 3.6s steps(1) infinite; }
+.glitch::after  { left: 0.04em;  color: var(--glitch-r); clip-path: inset(50% 0 0 0); animation: glitch-bottom 3.6s steps(1) infinite; }
 @keyframes glitch-top {
   0%, 89% { transform: translate(0, 0); }          /* long quiet pause */
   90%   { transform: translate(-4px, -2px); }       /* fast burst ↓ */
