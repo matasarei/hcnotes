@@ -35,7 +35,7 @@
       fps: 30,        // the field is discrete glyph swaps; 30 reads like 60
       dprCap: 1.5,    // dim field behind overlays: 1.5 is indistinguishable from 2
       glitch: true,   // chromatic split on aleph glyphs + horizontal slice tears
-      hotShare: 0.07, // share of routine tokens that run bright white
+      hotShare: 0.07, // share of routine tokens that run bright teal
       brightness: 1,
       mode: 'life'    // dynamic human life cycle: routine, death, ecstasy/orgasm, reset
     },
@@ -51,11 +51,16 @@
   };
   var scene = SCENES[canvas.getAttribute('data-scene')] || SCENES.full;
 
-  /* ---- toxic palette on near-black ------------------------------------ */
-  var BG    = '#03050a';
-  var CYAN  = [45, 226, 230];
-  var PINK  = [255, 46, 151];
-  var WHITE = [234, 253, 255];
+  /* ---- coral/teal palette on neutral black (mirrors dedsec.css) -------- */
+  var BG      = '#0a0a0b';
+  var ACCENT  = [255, 75, 97];    // --accent: alephs, decay, left split half
+  var ACCENT2 = [63, 184, 204];   // --accent-2: hot digits, right split half
+  var INK     = [236, 236, 236];  // --fg: routine digits
+  var WHITE   = [255, 255, 255];
+  // Routine digits used to be cyan; neutral ink is brighter at the same alpha
+  // (WCAG relative luminance 0.84 vs 0.61). Scaling by that ratio keeps the
+  // field exactly as bright behind the text as before.
+  var INK_MATCH = 0.72;
 
   function rgba(c, a) {
     return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (Math.round(a * 1000) / 1000) + ')';
@@ -135,23 +140,23 @@
   }
 
   // Colour strings are built only here, on a state change, never per frame:
-  // fill is what every state draws with, fillL/fillR are the pink/cyan halves
-  // of the chromatic split an aleph glyph gets in the full scene.
+  // fill is what every state draws with, fillL/fillR are the accent/accent-2
+  // halves of the chromatic split an aleph glyph gets in the full scene.
   function paint(t) {
     var f = t.fade;
     if (t.state === ROUTINE) {
-      t.fill = rgba(t.hot ? WHITE : CYAN, t.bright * f);
+      t.fill = t.hot ? rgba(ACCENT2, t.bright * f) : rgba(INK, t.bright * INK_MATCH * f);
     } else if (t.state === ECSTASY) {
-      // Climax / orgasm bloom: searing pure white/hot pink
+      // Climax / orgasm bloom: searing pure white
       t.fill = rgba(WHITE, 0.98 * f);
     } else if (t.state === ALEPH && scene.glitch) {
       t.fill  = rgba(WHITE, 0.95 * f);
-      t.fillL = rgba(PINK, 0.85 * f);
-      t.fillR = rgba(CYAN, 0.85 * f);
+      t.fillL = rgba(ACCENT, 0.85 * f);
+      t.fillR = rgba(ACCENT2, 0.85 * f);
     } else if (t.state === ALEPH) {
-      t.fill = rgba(PINK, 0.6 * scene.brightness * f);
+      t.fill = rgba(ACCENT, 0.6 * scene.brightness * f);
     } else if (t.state === DECAY_S) {
-      t.fill = rgba(PINK, (0.35 + Math.random() * 0.25) * f);
+      t.fill = rgba(ACCENT, (0.35 + Math.random() * 0.25) * f);
     } else if (t.state === VOID) {
       t.fill = 'transparent';
     }
