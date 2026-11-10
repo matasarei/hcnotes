@@ -165,9 +165,9 @@ a:hover { color: var(--accent-2); }
   letter-spacing: 0.1em;
 }
 .terminal__bar .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-.dot--a { background: var(--glitch-l); }
-.dot--a2 { background: var(--glitch-r); }
-.dot--w { background: var(--white); }
+.dot--gl { background: var(--glitch-l); }
+.dot--a2 { background: var(--accent-2); }
+.dot--gr { background: var(--glitch-r); }
 .terminal__bar .path { margin-left: auto; opacity: 0.7; }
 .terminal__body { padding: 2.1rem 1.95rem 2.25rem; text-align: left; }
 
