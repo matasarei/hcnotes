@@ -3,6 +3,24 @@
 {% block title %}{{ article.title }} — HCNOTES{% endblock %}
 {% block description %}{{ article.description ?? article.title }}{% endblock %}
 {% block scene %}calm{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block head_extra %}
+    {% if article.date %}
+    <meta property="article:published_time" content="{{ article.date }}">
+    {% endif %}
+    {# Built as data and encoded in one go: JSON_HEX_TAG turns < and > into
+       </>, so no title or description can close the script element. #}
+    {% set posting = {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        'headline': article.title,
+        'description': article.description ?? article.title,
+        'url': site_base_url ~ '/article/' ~ article.slug,
+        'author': {'@type': 'Person', 'name': 'Yevhen Matasar', 'url': site_base_url ~ '/about'},
+    } %}
+    {% if article.date %}{% set posting = posting|merge({'datePublished': article.date}) %}{% endif %}
+    <script type="application/ld+json">{{ posting|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+{% endblock %}
 
 {% block content %}
 <article class="prose">

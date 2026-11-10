@@ -266,7 +266,7 @@ a:hover { color: var(--accent-2); }
 .k-accent { color: var(--accent); }
 .k-accent2 { color: var(--accent-2); }
 
-.role { margin: 0.25rem 0 1.2rem; font-size: 1.18rem; }
+.role { margin: 0.25rem 0 1.2rem; font-size: 1.18rem; font-weight: inherit; }   /* an h1 on the home page; looks like the other terminal lines */
 .role b { color: var(--white); font-weight: 600; }
 
 .contact { margin-top: 0.4rem; }
