@@ -25,5 +25,6 @@
 /.claude/repo-profile.json
 ###< claude-code ###
 
-# Planning briefs (local only)
+# Planning briefs and skill notes (local only)
 .tasks/
+.gku/
