@@ -51,11 +51,19 @@
   };
   var scene = SCENES[canvas.getAttribute('data-scene')] || SCENES.full;
 
-  /* ---- toxic palette on near-black ------------------------------------ */
-  var BG    = '#03050a';
-  var CYAN  = [45, 226, 230];
-  var PINK  = [255, 46, 151];
-  var WHITE = [234, 253, 255];
+  /* ---- monochrome palette on black (mirrors dedsec.css) --------------- */
+  // Colour appears only in the chromatic split of an aleph glyph.
+  var BG       = '#000000';
+  var INK      = [242, 242, 242];  // --fg: digits, calm alephs, decay
+  var WHITE    = [255, 255, 255];
+  var GLITCH_L = [217, 76, 85];    // --glitch-l
+  var GLITCH_R = [76, 184, 201];   // --glitch-r
+  // Ink is far brighter than the colours it replaces at the same alpha. These
+  // are WCAG relative-luminance ratios (old colour / ink), so the field stays
+  // exactly as bright behind the text as it was: routine digits were cyan
+  // (0.61 / 0.89), calm alephs and decay were pink (0.25 / 0.89).
+  var INK_MATCH = 0.68;
+  var ASH_MATCH = 0.29;
 
   function rgba(c, a) {
     return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (Math.round(a * 1000) / 1000) + ')';
@@ -135,23 +143,23 @@
   }
 
   // Colour strings are built only here, on a state change, never per frame:
-  // fill is what every state draws with, fillL/fillR are the pink/cyan halves
+  // fill is what every state draws with, fillL/fillR are the red/cyan halves
   // of the chromatic split an aleph glyph gets in the full scene.
   function paint(t) {
     var f = t.fade;
     if (t.state === ROUTINE) {
-      t.fill = rgba(t.hot ? WHITE : CYAN, t.bright * f);
+      t.fill = t.hot ? rgba(WHITE, t.bright * f) : rgba(INK, t.bright * INK_MATCH * f);
     } else if (t.state === ECSTASY) {
-      // Climax / orgasm bloom: searing pure white/hot pink
+      // Climax / orgasm bloom: searing pure white
       t.fill = rgba(WHITE, 0.98 * f);
     } else if (t.state === ALEPH && scene.glitch) {
       t.fill  = rgba(WHITE, 0.95 * f);
-      t.fillL = rgba(PINK, 0.85 * f);
-      t.fillR = rgba(CYAN, 0.85 * f);
+      t.fillL = rgba(GLITCH_L, 0.85 * f);
+      t.fillR = rgba(GLITCH_R, 0.85 * f);
     } else if (t.state === ALEPH) {
-      t.fill = rgba(PINK, 0.6 * scene.brightness * f);
+      t.fill = rgba(INK, 0.6 * scene.brightness * ASH_MATCH * f);
     } else if (t.state === DECAY_S) {
-      t.fill = rgba(PINK, (0.35 + Math.random() * 0.25) * f);
+      t.fill = rgba(INK, (0.35 + Math.random() * 0.25) * ASH_MATCH * f);
     } else if (t.state === VOID) {
       t.fill = 'transparent';
     }
