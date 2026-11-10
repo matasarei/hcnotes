@@ -13,6 +13,7 @@
   --tag:       #a0a0a0;   /* article tags */
   --glitch-l:  #d94c55;   /* chromatic split, red half: the only red on the page */
   --glitch-r:  #4cb8c9;   /* chromatic split, cyan half */
+  --link:      var(--glitch-l);   /* links in running text: white would vanish into --fg */
   --white:     #ffffff;
   --line:      rgba(255, 255, 255, 0.14);
   --mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -33,7 +34,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-a { color: var(--accent); text-decoration: none; }
+a { color: var(--link); text-decoration: none; }
 a:hover { color: var(--accent-2); }
 ::selection { background: var(--accent-2); color: var(--bg); }
 
@@ -224,7 +225,7 @@ a:hover { color: var(--accent-2); }
 .cmd--link { border-bottom: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent); transition: color 0.15s ease, border-color 0.15s ease; }
 .cmd--link:hover { color: var(--accent); border-color: var(--accent); }
 .intro { color: var(--fg); font-size: 1.04rem; line-height: 1.7; margin: 0 0 1.5rem; }
-.intro a { color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+.intro a { color: var(--link); border-bottom: 1px solid color-mix(in srgb, var(--link) 50%, transparent); }
 .intro a:hover { color: var(--accent-2); border-color: var(--accent-2); }
 .out { color: var(--fg); padding-left: 0.2rem; }
 .out .sep { color: var(--fg-dim); }
