@@ -42,6 +42,49 @@ class ThemePaletteTest extends TestCase
     }
 
     /**
+     * @dataProvider canvasColours
+     */
+    public function testCanvasColourMatchesCssToken(string $constant, string $token): void
+    {
+        $this->assertSame(
+            1,
+            preg_match('/var ' . $constant . '\s*=\s*\[(\d+),\s*(\d+),\s*(\d+)\]/', $this->read(self::CANVAS), $m),
+            "aleph.js must define $constant as an [r, g, b] triple"
+        );
+        $this->assertSame(
+            strtolower($this->cssToken($token)),
+            sprintf('#%02x%02x%02x', $m[1], $m[2], $m[3]),
+            "aleph.js $constant must mirror $token"
+        );
+    }
+
+    public static function canvasColours(): iterable
+    {
+        yield 'ink'          => ['INK', '--fg'];
+        yield 'glitch left'  => ['GLITCH_L', '--glitch-l'];
+        yield 'glitch right' => ['GLITCH_R', '--glitch-r'];
+    }
+
+    /**
+     * @dataProvider faviconSplit
+     */
+    public function testFaviconSplitMatchesGlitchToken(string $x, string $token): void
+    {
+        $this->assertSame(
+            1,
+            preg_match('/<text x="' . preg_quote($x, '/') . '"[^>]*\bfill="(#[0-9a-f]{6})"/i', $this->read(self::FAVICON), $m),
+            "favicon.svg must have the split glyph at x=$x"
+        );
+        $this->assertSame(strtolower($this->cssToken($token)), strtolower($m[1]), "The favicon split at x=$x must follow $token");
+    }
+
+    public static function faviconSplit(): iterable
+    {
+        yield 'left half'  => ['29.8', '--glitch-l'];
+        yield 'right half' => ['34.2', '--glitch-r'];
+    }
+
+    /**
      * @dataProvider retiredLiterals
      */
     public function testNoSynthwaveLiteralsRemain(string $file, string $pattern): void
@@ -104,7 +147,16 @@ class ThemePaletteTest extends TestCase
 
     private function cssBackground(): string
     {
-        $this->assertSame(1, preg_match('/^\s*--bg:\s*(#[0-9a-f]{6})\s*;/mi', $this->read(self::CSS), $m), '--bg must be a 6-digit hex');
+        return $this->cssToken('--bg');
+    }
+
+    private function cssToken(string $token): string
+    {
+        $this->assertSame(
+            1,
+            preg_match('/^\s*' . preg_quote($token, '/') . ':\s*(#[0-9a-f]{6})\s*;/mi', $this->read(self::CSS), $m),
+            "$token must be a 6-digit hex in dedsec.css"
+        );
 
         return $m[1];
     }
