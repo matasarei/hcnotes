@@ -56,8 +56,8 @@
   var BG       = '#000000';
   var INK      = [242, 242, 242];  // --fg: digits, calm alephs, decay
   var WHITE    = [255, 255, 255];
-  var GLITCH_L = [255, 42, 58];    // --glitch-l
-  var GLITCH_R = [0, 216, 240];    // --glitch-r
+  var GLITCH_L = [217, 76, 85];    // --glitch-l
+  var GLITCH_R = [76, 184, 201];    // --glitch-r
   // Ink is far brighter than the colours it replaces at the same alpha. These
   // are WCAG relative-luminance ratios (old colour / ink), so the field stays
   // exactly as bright behind the text as it was: routine digits were cyan

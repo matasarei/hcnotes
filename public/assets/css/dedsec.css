@@ -11,8 +11,8 @@
   --accent:    #ffffff;   /* links, prompts, headings: colour stays out of the text */
   --accent-2:  #f5e400;   /* acid yellow: hover, selection, small marks */
   --tag:       #a0a0a0;   /* article tags */
-  --glitch-l:  #ff2a3a;   /* chromatic split, red half: the only red on the page */
-  --glitch-r:  #00d8f0;   /* chromatic split, cyan half */
+  --glitch-l:  #d94c55;   /* chromatic split, red half: the only red on the page */
+  --glitch-r:  #4cb8c9;   /* chromatic split, cyan half */
   --white:     #ffffff;
   --line:      rgba(255, 255, 255, 0.14);
   --mono: "JetBrains Mono", "Fira Code", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
