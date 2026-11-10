@@ -2,11 +2,11 @@
 
 The source for **[hcnotes.cc](https://hcnotes.cc)** — my personal site and blog.
 
-It's a black, minimalist take on the *Watch_Dogs / DedSec* aesthetic: toxic
-cyan/white/pink accents, render glitches, and a fully generative background. The site
+It's a black, minimalist take on the *Watch_Dogs / DedSec* aesthetic: coral-red
+and teal accents on neutral black, render glitches, and a fully generative background. The site
 is intentionally small and completely open.
 
-![License: MIT](https://img.shields.io/badge/license-MIT-2de2e6)
+![License: MIT](https://img.shields.io/badge/license-MIT-ff4b61)
 ![PHP 8.4](https://img.shields.io/badge/php-8.4-777bb4)
 ![Symfony 7](https://img.shields.io/badge/symfony-7.x-000000)
 
