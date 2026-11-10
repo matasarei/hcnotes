@@ -183,6 +183,7 @@ a:hover { color: var(--accent-2); }
   position: relative;
   isolation: isolate;   /* keeps the z-index:-1 copies above the panel */
   text-transform: uppercase;
+  animation: glitch-shake 3.2s steps(1) infinite;
 }
 /* the red/cyan copies sit BEHIND the white text, offset sideways, so colour
    shows only as a fringe at the glyph edges, never over the letters */
@@ -194,29 +195,57 @@ a:hover { color: var(--accent-2); }
   overflow: hidden;
   z-index: -1;
 }
-/* both halves share one 3s timeline and glitch at the SAME instants,
-   sliding in opposite directions for a coherent torn RGB-split */
-.glitch::before { left: -0.04em; color: var(--glitch-l); clip-path: inset(0 0 50% 0); animation: glitch-top 3.6s steps(1) infinite; }
-.glitch::after  { left: 0.04em;  color: var(--glitch-r); clip-path: inset(50% 0 0 0); animation: glitch-bottom 3.6s steps(1) infinite; }
+/* All three layers share one 3.2s timeline with two bursts of different
+   length (~19-23% and ~61-68%, i.e. roughly every 1.5s). Between bursts the
+   copies rest as a top/bottom fringe. During a burst every frame cuts them
+   into a different thin band torn sideways (1% = 32ms), red and cyan in
+   opposite directions, while the white heading itself shakes and skews. */
+.glitch::before { left: -0.04em; color: var(--glitch-l); clip-path: inset(0 0 50% 0); animation: glitch-top 3.2s steps(1) infinite; }
+.glitch::after  { left: 0.04em;  color: var(--glitch-r); clip-path: inset(50% 0 0 0); animation: glitch-bottom 3.2s steps(1) infinite; }
 @keyframes glitch-top {
-  0%, 89% { transform: translate(0, 0); }          /* long quiet pause */
-  90%   { transform: translate(-4px, -2px); }       /* fast burst ↓ */
-  91.2% { transform: translate(3px, 1px); }
-  92.4% { transform: translate(-3px, -1px); }
-  93.6% { transform: translate(2px, -2px); }
-  94.8% { transform: translate(-2px, 1px); }
-  96%   { transform: translate(1px, -1px); }
-  97%, 100% { transform: translate(0, 0); }         /* settle */
+  0%, 18%   { clip-path: inset(0 0 50% 0);   transform: translate(0, 0); }
+  19%       { clip-path: inset(8% 0 78% 0);  transform: translate(-0.14em, 0); }
+  20%       { clip-path: inset(40% 0 43% 0); transform: translate(0.09em, 0); }
+  21%       { clip-path: inset(22% 0 61% 0); transform: translate(-0.06em, 0); }
+  22%       { clip-path: inset(66% 0 18% 0); transform: translate(0.11em, 0); }
+  23%, 60%  { clip-path: inset(0 0 50% 0);   transform: translate(0, 0); }
+  61%       { clip-path: inset(30% 0 52% 0); transform: translate(0.15em, 0); }
+  62%       { clip-path: inset(4% 0 84% 0);  transform: translate(-0.1em, 0); }
+  63%       { clip-path: inset(52% 0 30% 0); transform: translate(0.05em, 0); }
+  64%       { clip-path: inset(14% 0 67% 0); transform: translate(-0.12em, 0); }
+  65%       { clip-path: inset(74% 0 9% 0);  transform: translate(0.07em, 0); }
+  66%       { clip-path: inset(36% 0 47% 0); transform: translate(-0.04em, 0); }
+  67%       { clip-path: inset(0 0 58% 0);   transform: translate(0.08em, 0); }
+  68%, 100% { clip-path: inset(0 0 50% 0);   transform: translate(0, 0); }
 }
 @keyframes glitch-bottom {
-  0%, 89% { transform: translate(0, 0); }
-  90%   { transform: translate(4px, 2px); }
-  91.2% { transform: translate(-3px, -1px); }
-  92.4% { transform: translate(3px, 1px); }
-  93.6% { transform: translate(-2px, 2px); }
-  94.8% { transform: translate(2px, -1px); }
-  96%   { transform: translate(-1px, 1px); }
-  97%, 100% { transform: translate(0, 0); }
+  0%, 18%   { clip-path: inset(50% 0 0 0);   transform: translate(0, 0); }
+  19%       { clip-path: inset(70% 0 12% 0); transform: translate(0.12em, 0); }
+  20%       { clip-path: inset(18% 0 66% 0); transform: translate(-0.1em, 0); }
+  21%       { clip-path: inset(56% 0 27% 0); transform: translate(0.07em, 0); }
+  22%       { clip-path: inset(34% 0 50% 0); transform: translate(-0.13em, 0); }
+  23%, 60%  { clip-path: inset(50% 0 0 0);   transform: translate(0, 0); }
+  61%       { clip-path: inset(80% 0 4% 0);  transform: translate(-0.15em, 0); }
+  62%       { clip-path: inset(44% 0 38% 0); transform: translate(0.11em, 0); }
+  63%       { clip-path: inset(10% 0 74% 0); transform: translate(-0.06em, 0); }
+  64%       { clip-path: inset(62% 0 20% 0); transform: translate(0.13em, 0); }
+  65%       { clip-path: inset(26% 0 58% 0); transform: translate(-0.08em, 0); }
+  66%       { clip-path: inset(88% 0 0 0);   transform: translate(0.05em, 0); }
+  67%       { clip-path: inset(46% 0 0 0);   transform: translate(-0.07em, 0); }
+  68%, 100% { clip-path: inset(50% 0 0 0);   transform: translate(0, 0); }
+}
+@keyframes glitch-shake {
+  0%, 18%   { transform: none; }
+  19%       { transform: translate(0.02em, 0) skewX(-6deg); }
+  20%       { transform: translate(-0.03em, 0); }
+  21%       { transform: translate(0.01em, 0) skewX(4deg); }
+  22%, 60%  { transform: none; }
+  61%       { transform: translate(-0.03em, 0) skewX(5deg); }
+  62%       { transform: translate(0.02em, 0); }
+  63%       { transform: none; }
+  64%       { transform: translate(0.03em, 0) skewX(-7deg); }
+  65%       { transform: translate(-0.01em, 0); }
+  66%, 100% { transform: none; }
 }
 
 .glitch--404 { font-size: clamp(4rem, 18vw, 8rem); letter-spacing: 0.04em; }
@@ -552,7 +581,7 @@ body.lightbox-open { overflow: hidden; }
 
 /* respect reduced motion: kill the CSS animations (canvas self-stills) */
 @media (prefers-reduced-motion: reduce) {
-  .glitch::before, .glitch::after,
+  .glitch, .glitch::before, .glitch::after,
   .fx-overlay.scanlines::before, .fx-overlay.flicker,
   .caret { animation: none; }
   .glitch::before { clip-path: none; opacity: 0; }
