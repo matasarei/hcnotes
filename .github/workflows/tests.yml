@@ -1,0 +1,51 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      # The php container runs as www-data, but the bind-mounted checkout is
+      # owned by the runner user: open it up so composer can write vendor/ and
+      # the suite can write var/ and data/test.db. CI-only; docker-compose.yml
+      # stays as it is (AGENTS.md "Configuration rules").
+      - name: Make the checkout writable for the container user
+        run: chmod -R a+rwX .
+
+      # Same image as production, so RuntimeSecurityTest checks the real
+      # php-fpm and docker/php/php.ini.
+      - name: Build and start the php container
+        run: docker compose up -d --build php
+
+      - name: Install dependencies
+        run: docker compose exec -T php composer install --no-interaction --no-progress
+
+      # A skip would mean php-fpm was not found and RuntimeSecurityTest checked
+      # nothing, so a skipped test fails the job.
+      - name: Run the test suite
+        run: docker compose exec -T php php vendor/bin/phpunit --fail-on-skipped
+
+      # Advisories warn without blocking the job: a non-zero audit becomes a
+      # warning annotation on the run, so it shows on the PR checks page.
+      - name: Audit dependencies
+        run: >-
+          docker compose exec -T php composer audit
+          || echo "::warning title=composer audit::Dependency advisories or abandoned packages found; see the Audit dependencies step log."
+
+      - name: Stop the containers
+        if: always()
+        run: docker compose down
