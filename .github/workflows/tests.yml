@@ -39,10 +39,12 @@ jobs:
       - name: Run the test suite
         run: docker compose exec -T php php vendor/bin/phpunit --fail-on-skipped
 
-      # Advisories warn without blocking the job.
+      # Advisories warn without blocking the job: a non-zero audit becomes a
+      # warning annotation on the run, so it shows on the PR checks page.
       - name: Audit dependencies
-        continue-on-error: true
-        run: docker compose exec -T php composer audit
+        run: >-
+          docker compose exec -T php composer audit
+          || echo "::warning title=composer audit::Dependency advisories or abandoned packages found; see the Audit dependencies step log."
 
       - name: Stop the containers
         if: always()
