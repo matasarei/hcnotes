@@ -173,13 +173,50 @@ and
 One targets Claude Code, the other Google Antigravity running Gemini. Different
 agents, different models, and the work still comes out the same shape, because
 the discipline lives in the harness, not in the model. I use them every day,
-on this site and on hcboard, the keyboard above, whose first version took
-about a day.
+on this site and on hcboard, the keyboard from that article, whose first
+version took about a day.
 
 That's the inversion. The framework used to be the reusable asset and the app
 was disposable. Now the harness is the reusable asset, and the code it produces
 is comparatively disposable: regenerable, replaceable, cheap to write. What
 you're really maintaining is the method.
+
+## "But code isn't cheap"
+
+Not everyone buys the premise.
+[The video](https://www.youtube.com/watch?v=66O6zpPpG5g) I mentioned at the
+top argues that "code is cheap" is a slogan that doesn't survive real work,
+and most of the argument is right.
+
+It goes like this. Generating code is fast, nobody disputes that. But code has
+no value on its own, any more than a pile of words is a novel. Its value comes
+from the system it lives in. Once it's going to be used, it has to be
+reviewed, tested, secured, deployed and maintained, and from that moment it's
+a liability somebody owns. When it breaks, nobody cares how cheaply it was
+made. Frontier tokens cost real money too, and cheaper models just burn more
+of them. Prototypes and internal tools really are cheap, the video concedes,
+because nothing depends on them. So say "code is abundant" instead: faster
+generation only shifts the burden onto review, QA, testing and security.
+
+I agree with nearly all of it. It's what the closing section of this article
+already says: output was the cheap part. My title was about the typing, so
+I'll take the correction. Code got cheap to write. It didn't get cheap to own.
+And the line between a prototype and something people depend on is the one I
+drew in [Nobody Sees the Code](/article/articles-nobody-sees-the-code).
+
+Where I'd push back is the next step. The burden shifts to review, QA, testing
+and security, fine, but that's very nearly the list of what a harness does.
+Shifted isn't fixed. That work used to be done by hand, every time, by
+whoever remembered to do it. Now most of it is written once and runs on every
+change, and what's left, the judgement, stays with me, where it belongs.
+
+Tokens cost money, and that's a real limit. But the most expensive build is
+the wrong one, at any price per token, and the cheapest place to catch it is a
+plan you read before any code exists.
+
+"Abundant" is a fine word, and I'll take that too. What I won't take is the
+idea that because owning code is expensive, it doesn't matter how you make it.
+Owning it is exactly why the harness matters.
 
 ## The part you don't get to skip
 
