@@ -97,7 +97,11 @@ class WebControllerTest extends WebTestCase
             $crawler->filter('meta[property="og:image"]')->attr('content'),
             'og:image must be an absolute URL'
         );
-        $this->assertSame('summary', $crawler->filter('meta[name="twitter:card"]')->attr('content'));
+        // A wide card where og:image is the 1200x630 social card; About shows the square avatar.
+        $this->assertSame(
+            $path === '/about' ? 'summary' : 'summary_large_image',
+            $crawler->filter('meta[name="twitter:card"]')->attr('content')
+        );
 
         $generator = $crawler->filter('meta[name="generator"]');
         $this->assertSame(1, $generator->count(), 'Every page must declare AICMF as its generator');
@@ -237,6 +241,52 @@ class WebControllerTest extends WebTestCase
         $this->assertSame('Person', $data['author']['@type'] ?? null);
         $this->assertSame('Yevhen Matasar', $data['author']['name'] ?? null);
         $this->assertSame($baseUrl . '/about', $data['author']['url'] ?? null);
+    }
+
+    public function testHomePageExposesWebSiteJsonLd(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+
+        $this->assertResponseIsSuccessful();
+
+        $jsonLd = $crawler->filter('script[type="application/ld+json"]');
+        $this->assertSame(1, $jsonLd->count(), 'The home page must expose one JSON-LD block');
+
+        $data = json_decode($jsonLd->text(), true, 512, JSON_THROW_ON_ERROR);
+        $baseUrl = static::getContainer()->getParameter('site_base_url');
+        $this->assertSame('https://schema.org', $data['@context'] ?? null);
+        $this->assertSame('WebSite', $data['@type'] ?? null);
+        $this->assertSame('HCNOTES', $data['name'] ?? null);
+        $this->assertSame($baseUrl . '/', $data['url'] ?? null);
+        $this->assertSame(
+            $crawler->filter('meta[name="description"]')->attr('content'),
+            $data['description'] ?? null,
+            'The structured description must match the meta description'
+        );
+        $this->assertSame('Person', $data['author']['@type'] ?? null);
+        $this->assertSame('Yevhen Matasar', $data['author']['name'] ?? null);
+        $this->assertSame($baseUrl . '/about', $data['author']['url'] ?? null);
+    }
+
+    public function testDefaultSocialImageIsTheCard(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/');
+
+        $this->assertResponseIsSuccessful();
+
+        $baseUrl = static::getContainer()->getParameter('site_base_url');
+        $this->assertSame(
+            $baseUrl . '/shared/img/og-card.png',
+            $crawler->filter('meta[property="og:image"]')->attr('content')
+        );
+
+        $file = static::getContainer()->getParameter('kernel.project_dir') . '/public/shared/img/og-card.png';
+        $this->assertFileExists($file);
+        $size = getimagesize($file);
+        $this->assertNotFalse($size, 'og-card.png must be a readable image');
+        $this->assertSame([1200, 630, IMAGETYPE_PNG], [$size[0], $size[1], $size[2]], 'The social card is a 1200x630 PNG');
     }
 
     public static function pagePaths(): iterable
