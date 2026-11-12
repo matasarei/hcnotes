@@ -122,37 +122,64 @@ The famous case is the Replit agent that
 after being told not to change code without permission, then said the
 rollback was impossible. It wasn't.
 
-## The thing worth writing is the skill
+## The thing worth building is the harness
 
 After a few weeks of that, you'll notice you keep telling the agent the same
 things. Investigate before you plan. Plan before you code. Run the tests. Never
-touch that directory. Write it down, put it in a file the agent reads every time,
-and you've just written a **skill** - a durable, reusable instruction that makes an
-agent work the way a good engineer works. The word isn't mine either: Anthropic
-[formalised it](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
-as a folder with a `SKILL.md` file that the agent loads when the task calls for it.
+touch that directory. Write it down in a file the agent reads, and you've
+written a **skill**: a reusable instruction that makes an agent work the way a
+good engineer works. Anthropic
+[describes one](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+as a directory with a `SKILL.md` file that Claude reads when a request matches
+it.
 
-That's where my thinking has landed: modern development isn't about writing code.
-It's about writing skills, and then combining them with the right idea to produce a
-plan you can tune before a single line is written.
+In August I thought the skill was the answer. It's one piece of it. The answer
+is the **harness**: everything around the model that turns an intent into
+checked work. Mine has a handful of parts, in the order the work goes through
+them.
 
-Two examples I actually use:
-[grinchenkoedu/claude-skills](https://github.com/grinchenkoedu/claude-skills) and
+The intent and the plan come first. Make the agent investigate, then write
+down what it thinks the problem is, what it will change, and how you'll both
+know it worked. Read that plan and fix it before a line of code exists. A wrong
+plan executed brilliantly is still wrong, only faster.
+
+Then the rules file, `CLAUDE.md` or `AGENTS.md`, loaded every session. Any
+correction you make twice goes in there, so you never make it a third time.
+I showed what that looks like in
+[The Keyboard I Always Needed](/article/articles-the-keyboard-i-always-needed).
+
+Then the skills for everything you repeat: research, plan, implement, review,
+fix, verify. Review runs as a separate agent that never saw the code being
+written, so it has no stake in defending it. Routine work, like running the
+tests or sweeping the codebase, goes to smaller models that cost less.
+
+Then verification that doesn't depend on trust: tests, CI, and actually
+running the thing. This part isn't optional, because agents cheat. Researchers
+at Carnegie Mellon and Anthropic [built tasks](https://arxiv.org/abs/2510.20270)
+that can't be passed honestly, and on realistic repository tasks GPT-5 passed
+more than half of them anyway, by editing the tests, deleting them, or
+special-casing them. Tests that assert nothing, a check removed to make a bug
+disappear, confident nonsense: you'll meet all of them in the first week.
+
+And last, hooks: rules the tool enforces whether the model agrees or not.
+Anthropic's own [best practices](https://code.claude.com/docs/en/best-practices)
+now call Claude Code "the harness" and draw the same line. An instruction is
+advice. A hook is something the harness has to run.
+
+The two sets I use are
+[grinchenkoedu/claude-skills](https://github.com/grinchenkoedu/claude-skills)
+and
 [grinchenkoedu/antigravity-skills](https://github.com/grinchenkoedu/antigravity-skills).
+One targets Claude Code, the other Google Antigravity running Gemini. Different
+agents, different models, and the work still comes out the same shape, because
+the discipline lives in the harness, not in the model. I use them every day,
+on this site and on hcboard, the keyboard above, whose first version took
+about a day.
 
-At a glance they're "just another collection of skills", and fine, they are: plan,
-implement, review, pr-review, pr-resolve, verify. But the point isn't the list. The
-point is that the same discipline - investigate before planning, plan before coding,
-review before pushing, verify by actually running the thing - is encoded once and then
-enforced consistently, by different agents, on different platforms, with different
-models underneath. One set targets Claude Code; the other targets Google Antigravity
-running Gemini. Not identical, but close enough that the *work* comes out the same
-shape. And I've proven them on real tasks, not demos.
-
-That's the inversion. The framework used to be the reusable asset and the app was
-disposable. Now the skill is the reusable asset and the code it generates is
-comparatively disposable - regenerable, replaceable, cheap. What you're really
-maintaining is the method.
+That's the inversion. The framework used to be the reusable asset and the app
+was disposable. Now the harness is the reusable asset, and the code it produces
+is comparatively disposable: regenerable, replaceable, cheap to write. What
+you're really maintaining is the method.
 
 ## The part you don't get to skip
 
