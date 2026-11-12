@@ -66,7 +66,7 @@ class SyncCommand extends Command
                 'content'     => $parsed['html'],
                 'description' => $fm['description'] ?? null,
                 'tags'        => $tags,
-                'date'        => $fm['date'] ?? null,
+                'date'        => $this->validDate($fm['date'] ?? null, $file->getRelativePathname(), $io),
                 'embedding'   => null,
             ]);
 
@@ -76,5 +76,29 @@ class SyncCommand extends Command
 
         $io->success("Synced {$count} article(s).");
         return Command::SUCCESS;
+    }
+
+    /**
+     * A front-matter date is kept only as a real YYYY-MM-DD day; anything else is
+     * stored as null (the article falls back to its indexed-at time) and named in
+     * a warning, so a typo cannot reach the page, the sitemap or the JSON-LD.
+     */
+    private function validDate(mixed $value, string $file, SymfonyStyle $io): ?string
+    {
+        if ($value === null || $value === '') {
+            return null;
+        }
+
+        if (is_string($value)
+            && preg_match('/^(\d{4})-(\d{2})-(\d{2})$/', $value, $m)
+            && checkdate((int) $m[2], (int) $m[3], (int) $m[1])
+        ) {
+            return $value;
+        }
+
+        $shown = is_string($value) ? $value : json_encode($value);
+        $io->warning("Ignoring invalid date \"{$shown}\" in {$file}: expected YYYY-MM-DD.");
+
+        return null;
     }
 }
