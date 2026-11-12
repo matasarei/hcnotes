@@ -1,11 +1,11 @@
 ---
 title: Code Got Cheap. The Plan Didn't.
 date: 2026-08-01
-description: We built frameworks because writing code was expensive. That price collapsed. What's left expensive is the idea, the plan, and the judgement to know when the result is wrong. How to actually work that way, and why it's harder than the demos make it look.
-tags: [ai, skills, frameworks, architecture]
+description: Code got cheap to write, not to own. What's still expensive is the intent, the plan and the judgement, and the harness that makes an agent build things fast and right.
+tags: [ai, agents, skills, harness, architecture]
 ---
 
-> **TL;DR** — Frameworks existed because code was expensive. AI made code cheap, so
+> **TL;DR** - Frameworks existed because code was expensive. AI made code cheap, so
 > "I built my own framework" stopped being an achievement. The scarce things now are
 > the idea, the plan, and the judgement to tell when the result is wrong. Working
 > that way is a skill: it feels slower for a few weeks, the agent fails in
@@ -18,7 +18,7 @@ machinery to make writing software cheaper. Frameworks, libraries, generators,
 scaffolds, starters, meta-frameworks on top of frameworks. All of it aimed at one
 thing: fewer lines typed by hand.
 
-It half-worked. Look at the frontend — a decade of tools built to save developers
+It half-worked. Look at the frontend - a decade of tools built to save developers
 effort, and the result is a landscape you have to *study* before you can render a
 button. The abstractions got so expensive to learn and maintain that they ate the
 savings they promised. But it made sense at the time, because the underlying
@@ -29,12 +29,12 @@ That was the deal. Reuse was worth the complexity because code was worth a lot.
 
 ## The framework I wrote as a student
 
-Here's my own small exhibit: [HCPHP](https://github.com/matasarei/HCPHP) — a little
+Here's my own small exhibit: [HCPHP](https://github.com/matasarei/HCPHP) - a little
 MVC framework I wrote while I was still a student. Routing, DI, an object model,
 templates, i18n, events, caching, a CLI. It works. It's tested across PHP 7.4 to 8.5.
 I'm still fond of it.
 
-It's also not really a framework. It's a *demo* — a reference implementation you copy
+It's also not really a framework. It's a *demo* - a reference implementation you copy
 rather than a package you depend on. There's no Composer requirement, no version to
 bump. Every app built on it forked the foundation and drifted: its own fixes, its own
 little improvements, its own special reasons why file X can't be touched. After a
@@ -57,7 +57,7 @@ write you a framework this afternoon and an app on top of it by evening.
 The question is: **why?**
 
 Nothing about that is impressive anymore. Producing code is no longer the hard part,
-so it's no longer the valuable part. What's expensive now is upstream of it — having
+so it's no longer the valuable part. What's expensive now is upstream of it - having
 an idea worth building, and turning it into a plan that's actually right. That part
 didn't get automated. If anything it got harder, because the cost of building the
 wrong thing dropped to almost nothing, which means you'll build it faster and further
@@ -91,23 +91,23 @@ It was development with the slow part taken out.
 Here's the part the demos leave out. Typing a sentence and getting an app is
 real, and it is the easy part. Working with an agent day to day is a skill, and
 for the first few weeks it feels *slower* than working by hand, because you're
-learning a new job — planner, reviewer, editor — on top of the one you had.
+learning a new job - planner, reviewer, editor - on top of the one you had.
 
 This isn't a feeling. In 2025 METR ran
 [a randomised trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
 with experienced open-source developers working on their own repositories, and
-the ones allowed to use AI tools were 19% *slower* — while believing, afterwards,
+the ones allowed to use AI tools were 19% *slower* - while believing, afterwards,
 that they'd been 20% faster. Most of them had a few dozen hours with the tool.
 The authors note the learning effects that only show up after several hundred.
 People who try it for an afternoon come away either dazzled or disgusted, and
 neither tells you anything. The dip is normal. It's what every new tool costs.
 
 Start on ground you know cold: a stack you know well, a project you could have
-written yourself. Not because you'll learn more — you'll learn less — but because
+written yourself. Not because you'll learn more - you'll learn less - but because
 you have to be able to judge the output before you can learn to steer it. The
 single biggest complaint in the
-[2025 Stack Overflow survey](https://survey.stackoverflow.co/2025/ai) — two
-developers in three — is AI answers that are "almost right, but not quite". The
+[2025 Stack Overflow survey](https://survey.stackoverflow.co/2025/ai) - two
+developers in three - is AI answers that are "almost right, but not quite". The
 only defence against almost-right is knowing what right looks like. If you can't
 tell a good diff from a plausible one, you're not developing, you're gambling
 with better odds. Only once you trust your own review should you go somewhere
@@ -138,7 +138,7 @@ caught it, and looping on the same idea in slightly different words. None of thi
 is folklore. Researchers at Carnegie Mellon and Anthropic
 [built a benchmark](https://arxiv.org/abs/2510.20270) out of tasks that are
 impossible to pass honestly, and measured how often frontier models pass them
-anyway — by editing the tests, deleting the failing ones, or quietly redefining
+anyway - by editing the tests, deleting the failing ones, or quietly redefining
 "correct". The answer was: often. The phrase you'll use more than any other is
 "stop, that's wrong, go back".
 
@@ -147,7 +147,7 @@ anyway — by editing the tests, deleting the failing ones, or quietly redefinin
 After a few weeks of that, you'll notice you keep telling the agent the same
 things. Investigate before you plan. Plan before you code. Run the tests. Never
 touch that directory. Write it down, put it in a file the agent reads every time,
-and you've just written a **skill** — a durable, reusable instruction that makes an
+and you've just written a **skill** - a durable, reusable instruction that makes an
 agent work the way a good engineer works. The word isn't mine either: Anthropic
 [formalised it](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
 as a folder with a `SKILL.md` file that the agent loads when the task calls for it.
@@ -162,8 +162,8 @@ Two examples I actually use:
 
 At a glance they're "just another collection of skills", and fine, they are: plan,
 implement, review, pr-review, pr-resolve, verify. But the point isn't the list. The
-point is that the same discipline — investigate before planning, plan before coding,
-review before pushing, verify by actually running the thing — is encoded once and then
+point is that the same discipline - investigate before planning, plan before coding,
+review before pushing, verify by actually running the thing - is encoded once and then
 enforced consistently, by different agents, on different platforms, with different
 models underneath. One set targets Claude Code; the other targets Google Antigravity
 running Gemini. Not identical, but close enough that the *work* comes out the same
@@ -171,14 +171,14 @@ shape. And I've proven them on real tasks, not demos.
 
 That's the inversion. The framework used to be the reusable asset and the app was
 disposable. Now the skill is the reusable asset and the code it generates is
-comparatively disposable — regenerable, replaceable, cheap. What you're really
+comparatively disposable - regenerable, replaceable, cheap. What you're really
 maintaining is the method.
 
 ## The part you don't get to skip
 
 One caveat, and it's the whole thing: the code still has to be readable by a human.
 
-Not because a human will maintain it — increasingly the maintainer *is* the AI. But
+Not because a human will maintain it - increasingly the maintainer *is* the AI. But
 because full control is the entire game. You need to know what the app does and what
 the agent just did, at every step, and what the next step is. Unreadable code is
 code you can't audit, and code you can't audit is code you don't actually own. You
@@ -190,6 +190,6 @@ change to a colleague. That speed is still faster than typing.
 
 So: generate freely, but keep it plain. Keep it tested. Keep it something you could
 sit down and explain to someone. The moment you stop understanding your own system,
-you've traded ownership for output — and output was the cheap part.
+you've traded ownership for output - and output was the cheap part.
 
 Code got cheap. Judgement didn't. Neither did knowing where you're going.
