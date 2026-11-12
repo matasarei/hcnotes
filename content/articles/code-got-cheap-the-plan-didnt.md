@@ -99,59 +99,28 @@ It was development with the slow part taken out.
 
 ## It's not as easy as it looks
 
-Here's the part the demos leave out. Typing a sentence and getting an app is
-real, and it is the easy part. Working with an agent day to day is a skill, and
-for the first few weeks it feels *slower* than working by hand, because you're
-learning a new job - planner, reviewer, editor - on top of the one you had.
+Typing a sentence and getting an app is real, and it's the easy part. Working
+with an agent day to day is a skill, and for the first few weeks it feels
+*slower* than working by hand, because you're learning a new job on top of the
+one you had: planner, reviewer, editor. METR caught that dip in
+[a 2025 trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/):
+experienced developers with AI tools were 19% slower, while believing they'd
+been 20% faster. METR has since called those results out of date, and its
+[2026 follow-up](https://metr.org/blog/2026-02-24-uplift-update/) leans the
+other way, if only as weak evidence. The dip is real, and it passes.
 
-This isn't a feeling. In 2025 METR ran
-[a randomised trial](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
-with experienced open-source developers working on their own repositories, and
-the ones allowed to use AI tools were 19% *slower* - while believing, afterwards,
-that they'd been 20% faster. Most of them had a few dozen hours with the tool.
-The authors note the learning effects that only show up after several hundred.
-People who try it for an afternoon come away either dazzled or disgusted, and
-neither tells you anything. The dip is normal. It's what every new tool costs.
+Start on ground you know cold. Two developers in three named "AI solutions
+that are almost right, but not quite" as their biggest frustration in the
+[2025 Stack Overflow survey](https://survey.stackoverflow.co/2025/ai), and the
+only defence against almost-right is knowing what right looks like. If you
+can't tell a good diff from a plausible one, you're gambling with better odds.
 
-Start on ground you know cold: a stack you know well, a project you could have
-written yourself. Not because you'll learn more - you'll learn less - but because
-you have to be able to judge the output before you can learn to steer it. The
-single biggest complaint in the
-[2025 Stack Overflow survey](https://survey.stackoverflow.co/2025/ai) - two
-developers in three - is AI answers that are "almost right, but not quite". The
-only defence against almost-right is knowing what right looks like. If you can't
-tell a good diff from a plausible one, you're not developing, you're gambling
-with better odds. Only once you trust your own review should you go somewhere
-you couldn't have gone alone.
-
-Then plan before you let it type. Make the agent investigate first. Make it write
-down what it thinks the problem is, what it's going to change, and how you'll
-both know it worked. Read that plan and fix it before a line of code exists. This
-is not my invention; Anthropic's own
-[guidance for Claude Code](https://code.claude.com/docs/en/best-practices)
-puts it as "explore first, then plan, then code", and warns that letting the
-agent jump straight to coding produces code that solves the wrong problem. A
-wrong plan executed brilliantly is still wrong, only faster.
-
-Once it's coding, work in steps you can verify: one change, one test, one run,
-one look. Left alone, an agent will cheerfully do forty things in a row, and step
-thirty-one will be the one you didn't want. The famous version is the Replit agent
-that, in July 2025,
-[dropped a production database](https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/)
-during an explicit code freeze and then told its user the rollback was
-impossible, which it wasn't. Small steps aren't slower. They're the only way to
-keep the thing under control.
-
-And learn the failure modes on sight, because there are only a handful and you'll
-meet all of them in the first week: confident nonsense, tests that assert nothing,
-edits in files you didn't ask about, "fixing" a problem by removing the check that
-caught it, and looping on the same idea in slightly different words. None of this
-is folklore. Researchers at Carnegie Mellon and Anthropic
-[built a benchmark](https://arxiv.org/abs/2510.20270) out of tasks that are
-impossible to pass honestly, and measured how often frontier models pass them
-anyway - by editing the tests, deleting the failing ones, or quietly redefining
-"correct". The answer was: often. The phrase you'll use more than any other is
-"stop, that's wrong, go back".
+Then work in steps you can verify. Left alone, an agent will cheerfully do
+forty things in a row, and step thirty-one will be the one you didn't want.
+The famous case is the Replit agent that
+[deleted a production database](https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/)
+after being told not to change code without permission, then said the
+rollback was impossible. It wasn't.
 
 ## The thing worth writing is the skill
 
