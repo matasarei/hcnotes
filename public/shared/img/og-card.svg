@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Social card (og:image / twitter:image). Source for og-card.png, rendered
+       with headless Chrome at 1200x630; re-render the PNG after editing. -->
+  <rect width="1200" height="630" fill="#000000"/>
+  <rect x="24" y="24" width="1152" height="582" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
+  <g font-family="'JetBrains Mono','SFMono-Regular',Consolas,monospace">
+    <g font-weight="800" font-size="380" text-anchor="middle" dominant-baseline="central">
+      <!-- chromatic-split glitch, as in the favicon: red (left) + cyan (right) behind the white glyph -->
+      <text x="314" y="300" fill="#4cb8c9" fill-opacity="0.85">&#8501;</text>
+      <text x="286" y="300" fill="#d94c55" fill-opacity="0.85">&#8501;</text>
+      <text x="300" y="300" fill="#ffffff">&#8501;</text>
+    </g>
+    <text x="560" y="230" font-size="30" fill="#808080">&gt; whoami</text>
+    <text x="556" y="345" font-size="112" font-weight="800" fill="#ffffff" letter-spacing="2">HCNOTES</text>
+    <text x="560" y="420" font-size="42" font-weight="600" fill="#f2f2f2">Yevhen Matasar</text>
+    <text x="560" y="472" font-size="32" fill="#808080">software engineer</text>
+    <text x="1144" y="570" font-size="26" fill="#808080" text-anchor="end">hcnotes.cc</text>
+  </g>
+</svg>

@@ -14,8 +14,15 @@
     <meta property="og:url" content="{{ page_url }}">
     <meta property="og:title" content="{{ block('title') }}">
     <meta property="og:description" content="{{ block('description') }}">
-    <meta property="og:image" content="{% block og_image %}{{ site_base_url }}/apple-touch-icon.png{% endblock %}">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="{% block og_image %}{{ site_base_url }}{{ asset_v('/shared/img/og-card.png') }}{% endblock %}">
+    {# Describes the default card; a page that overrides og_image empties this block. #}
+    {% block og_image_meta %}
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="HCNOTES — Yevhen Matasar, software engineer">
+    {% endblock %}
+    {# Wide card for the 1200x630 og-card.png; a page with a square og_image overrides it to "summary". #}
+    <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
     {% block head_extra %}{% endblock %}
     <link rel="icon" href="{{ asset_v('/favicon.svg') }}" type="image/svg+xml">
     <link rel="icon" href="{{ asset_v('/favicon-32.png') }}" sizes="32x32" type="image/png">
