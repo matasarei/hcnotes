@@ -155,7 +155,8 @@ class WebControllerTest extends WebTestCase
 
     /**
      * The role is "software engineer" everywhere; the older web/backend developer
-     * wordings must not come back on any page a search engine reads.
+     * wordings must not come back on the home and About pages, the ones that carry
+     * the role. Articles are left out: one says "web developer" on purpose.
      *
      * @dataProvider pagePaths
      */

@@ -8,7 +8,7 @@
   --bg-soft:   #0e0e0e;
   --fg:        #f2f2f2;
   --fg-dim:    #808080;
-  --accent:    #ffffff;   /* links, prompts, headings: colour stays out of the text */
+  --accent:    var(--white); /* prompts, headings, hovers: colour stays out of the text */
   --accent-2:  #f5e400;   /* acid yellow: hover, selection, small marks */
   --tag:       #a0a0a0;   /* article tags */
   --glitch-l:  #d94c55;   /* chromatic split, red half: the only red on the page */
