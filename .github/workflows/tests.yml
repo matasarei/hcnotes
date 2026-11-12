@@ -20,11 +20,13 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       # The php container runs as www-data, but the bind-mounted checkout is
-      # owned by the runner user: open it up so composer can write vendor/ and
-      # the suite can write var/ and data/test.db. CI-only; docker-compose.yml
-      # stays as it is (AGENTS.md "Configuration rules").
-      - name: Make the checkout writable for the container user
-        run: chmod -R a+rwX .
+      # owned by the runner user. www-data creates vendor/, var/ and
+      # .phpunit.cache/ in the root and writes data/test.db, so only those two
+      # directories are opened up; tracked files and .git stay as checked out.
+      # A bundle with public assets would also need public/ (assets:install).
+      # CI-only; docker-compose.yml stays as it is (AGENTS.md "Configuration rules").
+      - name: Make the checkout root and data/ writable for the container user
+        run: chmod a+rwx . data
 
       # Same image as production, so RuntimeSecurityTest checks the real
       # php-fpm and docker/php/php.ini.
