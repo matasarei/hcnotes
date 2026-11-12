@@ -13,8 +13,9 @@ tags: [ai, agents, skills, harness, architecture]
 > intent, worked out before anything gets built. I work this way every day,
 > and it's how things get built fast *and* right. Some people say code isn't
 > cheap at all, and [a recent video](https://www.youtube.com/watch?v=66O6zpPpG5g)
-> makes that case well. It's partly right, so I answer it in a new section below. I
-> also cut "It's not as easy as it looks" down and rewrote the skill section.
+> makes that case well. It's partly right, so I answer it in a new section
+> below. I also cut "It's not as easy as it looks" down, rewrote the skill
+> section, and made the framework section say why I wouldn't build one today.
 
 > **TL;DR** - Frameworks existed because code was expensive. AI made code cheap, so
 > "I built my own framework" stopped being an achievement. The scarce things now are
@@ -55,13 +56,14 @@ reason for it is gone. An agent does the dirty work in whatever framework I
 pick, the way I decide and towards the result I have in mind, so a framework
 of my own doesn't save me anything. It costs me. It's one more thing to
 design, test, document and keep alive, and all of it repeats work someone else
-has already done, tested and shared. A framework of your own used to make
+has already done, tested and shared. A framework of my own used to make
 development easier. Now it's an extra step that makes it harder.
 
 ## So the question changed
 
-If code is cheap, you can generate as much of it as you want. You can have an agent
-write you a framework this afternoon and an app on top of it by evening.
+And it isn't only frameworks. If code is cheap, you can generate as much of it
+as you want: a framework this afternoon, an app on top of it by evening, three
+more by the weekend.
 
 The question is: **why?**
 
@@ -156,8 +158,9 @@ running the thing. This part isn't optional, because agents will cheat if
 they can. Researchers at Carnegie Mellon and Anthropic
 [built tasks](https://arxiv.org/abs/2510.20270) that can't be passed honestly,
 and on realistic repository tasks GPT-5 passed more than half of them anyway,
-by editing the tests, deleting them, or special-casing them. Tests that assert nothing, a check removed to make a bug
-disappear, confident nonsense: you'll meet all of them in the first week.
+by editing the tests, deleting them, or special-casing them. Tests that assert
+nothing, a check removed to make a bug disappear, confident nonsense: you'll
+meet all of them in the first week.
 
 And last, hooks: rules the tool enforces whether the model agrees or not.
 Anthropic's own [best practices](https://code.claude.com/docs/en/best-practices)
@@ -179,10 +182,10 @@ have its own harness, shaped around its code, its rules and the mistakes it
 has already paid for once. If you have nothing yet, mine is a good place to
 start. It just isn't the place to stop.
 
-That's the inversion. The framework used to be the reusable asset and the app
-was disposable. Now the harness is the reusable asset, and the code it produces
-is comparatively disposable: regenerable, replaceable, cheap to write. What
-you're really maintaining is the method.
+Either way, the inversion holds. The framework used to be the reusable asset
+and the app was disposable. Now the harness is the reusable asset, and the
+code it produces is comparatively disposable: regenerable, replaceable, cheap
+to write. What you're really maintaining is the method.
 
 ## "But code isn't cheap"
 
