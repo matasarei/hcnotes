@@ -277,13 +277,15 @@ class WebControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
 
         $baseUrl = static::getContainer()->getParameter('site_base_url');
+        $file = static::getContainer()->getParameter('kernel.project_dir') . '/public/shared/img/og-card.png';
+        $this->assertFileExists($file);
+
+        // Versioned like every other asset, so link-preview caches refetch a re-rendered card.
         $this->assertSame(
-            $baseUrl . '/shared/img/og-card.png',
+            $baseUrl . '/shared/img/og-card.png?v=' . filemtime($file),
             $crawler->filter('meta[property="og:image"]')->attr('content')
         );
 
-        $file = static::getContainer()->getParameter('kernel.project_dir') . '/public/shared/img/og-card.png';
-        $this->assertFileExists($file);
         $size = getimagesize($file);
         $this->assertNotFalse($size, 'og-card.png must be a readable image');
         $this->assertSame([1200, 630, IMAGETYPE_PNG], [$size[0], $size[1], $size[2]], 'The social card is a 1200x630 PNG');
