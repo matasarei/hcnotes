@@ -5,15 +5,15 @@ description: Code got cheap to write, not to own. What's still expensive is the 
 tags: [ai, agents, skills, harness, architecture]
 ---
 
-> **Update, 2026-11-12.** My mind hasn't changed since August, it has only
+> **Update, 2026-11-12.** My mind hasn't changed since August. It has only
 > got clearer. What I called "the skill" here has a better name now: the
 > **harness**. It's everything around the model: the skills, the rules file,
 > review by an agent that didn't write the code, tests and CI, and hooks the
-> tool runs whether the model agrees or not. And it starts with the intent,
-> worked out before anything gets built. I work this way every day, and it's
-> how things get built fast *and* right. Some people say code isn't cheap at
-> all, and [a recent video](https://www.youtube.com/watch?v=66O6zpPpG5g) makes
-> that case well. It's partly right, so I answer it in a new section below. I
+> tool runs no matter what the model thinks of them. And it starts with the
+> intent, worked out before anything gets built. I work this way every day,
+> and it's how things get built fast *and* right. Some people say code isn't
+> cheap at all, and [a recent video](https://www.youtube.com/watch?v=66O6zpPpG5g)
+> makes that case well. It's partly right, so I answer it in a new section below. I
 > also cut "It's not as easy as it looks" down and rewrote the skill section.
 
 > **TL;DR** - Frameworks existed because code was expensive. AI made code cheap, so
@@ -143,22 +143,22 @@ down what it thinks the problem is, what it will change, and how you'll both
 know it worked. Read that plan and fix it before a line of code exists. A wrong
 plan executed brilliantly is still wrong, only faster.
 
-Then the rules file, `CLAUDE.md` or `AGENTS.md`, loaded every session. Any
-correction you make twice goes in there, so you never make it a third time.
-I showed what that looks like in
+Next comes the rules file, `CLAUDE.md` or `AGENTS.md`, loaded every
+session. It's where the project's hard-won lessons live, so the agent starts
+each session knowing them. I showed what that looks like in
 [The Keyboard I Always Needed](/article/articles-the-keyboard-i-always-needed).
 
-Then the skills for everything you repeat: research, plan, implement, review,
+The skills cover everything you repeat: research, plan, implement, review,
 fix, verify. Review runs as a separate agent that never saw the code being
 written, so it has no stake in defending it. Routine work, like running the
 tests or sweeping the codebase, goes to smaller models that cost less.
 
 Then verification that doesn't depend on trust: tests, CI, and actually
-running the thing. This part isn't optional, because agents cheat. Researchers
-at Carnegie Mellon and Anthropic [built tasks](https://arxiv.org/abs/2510.20270)
-that can't be passed honestly, and on realistic repository tasks GPT-5 passed
-more than half of them anyway, by editing the tests, deleting them, or
-special-casing them. Tests that assert nothing, a check removed to make a bug
+running the thing. This part isn't optional, because agents will cheat if
+they can. Researchers at Carnegie Mellon and Anthropic
+[built tasks](https://arxiv.org/abs/2510.20270) that can't be passed honestly,
+and on realistic repository tasks GPT-5 passed more than half of them anyway,
+by editing the tests, deleting them, or special-casing them. Tests that assert nothing, a check removed to make a bug
 disappear, confident nonsense: you'll meet all of them in the first week.
 
 And last, hooks: rules the tool enforces whether the model agrees or not.
