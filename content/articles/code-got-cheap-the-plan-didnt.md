@@ -164,15 +164,20 @@ Anthropic's own [best practices](https://code.claude.com/docs/en/best-practices)
 now call Claude Code "the harness" and draw the same line. An instruction is
 advice. A hook is something the harness has to run.
 
-The two sets I use are
+For my own projects I use two sets,
 [grinchenkoedu/claude-skills](https://github.com/grinchenkoedu/claude-skills)
 and
 [grinchenkoedu/antigravity-skills](https://github.com/grinchenkoedu/antigravity-skills).
 One targets Claude Code, the other Google Antigravity running Gemini. Different
 agents, different models, and the work still comes out the same shape, because
 the discipline lives in the harness, not in the model. I use them every day,
-on this site and on hcboard, the keyboard from that article, whose first
-version took about a day.
+on this site and on hcboard, my Android keyboard, whose first version took
+about a day.
+
+They're made for pet projects, though, and that matters. A business should
+have its own harness, shaped around its code, its rules and the mistakes it
+has already paid for once. If you have nothing yet, mine is a good place to
+start. It just isn't the place to stop.
 
 That's the inversion. The framework used to be the reusable asset and the app
 was disposable. Now the harness is the reusable asset, and the code it produces
