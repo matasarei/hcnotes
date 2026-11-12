@@ -40,25 +40,23 @@ That was the deal. Reuse was worth the complexity because code was worth a lot.
 
 ## The framework I wrote as a student
 
-Here's my own small exhibit: [HCPHP](https://github.com/matasarei/HCPHP) - a little
-MVC framework I wrote while I was still a student. Routing, DI, an object model,
-templates, i18n, events, caching, a CLI. It works. It's tested across PHP 7.4 to 8.5.
-I'm still fond of it.
+Here's my own small exhibit: [HCPHP](https://github.com/matasarei/HCPHP), a
+little MVC framework I wrote while I was still a student. Routing, DI, an
+object model, templates, i18n, events, caching, a CLI. It works. It's tested
+across PHP 7.4 to 8.5. I'm still fond of it.
 
-It's also not really a framework. It's a *demo* - a reference implementation you copy
-rather than a package you depend on. There's no Composer requirement, no version to
-bump. Every app built on it forked the foundation and drifted: its own fixes, its own
-little improvements, its own special reasons why file X can't be touched. After a
-while, syncing anything back to the original repo is archaeology. That's not a bug in
-HCPHP specifically; it's what happens to any codebase where the shared part is
-copied instead of depended on.
+I wrote it for a simple reason: to make my own projects easier to build. Every
+new project started from the same pieces, and having them ready meant I could
+skip straight to the part that was actually new. When every line had to be
+typed by hand, that was a good trade.
 
-For years that divergence was simply the cost of the approach. Reconciling three
-forks by hand is a week nobody funds.
-
-Now? It's a prompt. Point an agent at both trees, tell it exactly what "in sync"
-means, and it does the boring reconciliation without complaining. The problem didn't
-get solved by better architecture. It got solved by the labour becoming free.
+I wouldn't write it today. Not because it was a bad idea, but because the
+reason for it is gone. An agent does the dirty work in whatever framework I
+pick, the way I decide and towards the result I have in mind, so a framework
+of my own doesn't save me anything. It costs me. It's one more thing to
+design, test, document and keep alive, and all of it repeats work someone else
+has already done, tested and shared. A framework of your own used to make
+development easier. Now it's an extra step that makes it harder.
 
 ## So the question changed
 
