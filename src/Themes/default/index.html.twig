@@ -1,6 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}HCNOTES — Yevhen Matasar, software engineer{% endblock %}
+{% block head_extra %}
+    {# Same pattern as article.html.twig: built as data, encoded once with
+       JSON_HEX_TAG, so no value can close the script element. #}
+    {% set website = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        'name': 'HCNOTES',
+        'url': site_base_url ~ '/',
+        'description': block('description'),
+        'author': {'@type': 'Person', 'name': 'Yevhen Matasar', 'url': site_base_url ~ '/about'},
+    } %}
+    <script type="application/ld+json">{{ website|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+{% endblock %}
 
 {% block content %}
 <section class="hero">
