@@ -310,6 +310,91 @@ class WebControllerTest extends WebTestCase
         );
     }
 
+    /**
+     * Experience is shown as stacks, and each stack proves itself with links to
+     * the repositories where the work can be seen.
+     */
+    public function testAboutPageGroupsExperienceIntoStacksWithRepoLinks(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/about');
+
+        $this->assertResponseIsSuccessful();
+        $stacks = $crawler->filter('.about .stack');
+        $this->assertGreaterThanOrEqual(4, $stacks->count(), 'The About page must show at least four stacks');
+
+        $stacks->each(function ($stack): void {
+            $title = trim($stack->filter('.stack__title')->text(''));
+            $this->assertNotSame('', $title, 'Every stack needs a title');
+            $this->assertGreaterThan(0, $stack->filter('.badge')->count(), "Stack \"$title\" needs badges");
+
+            $links = $stack->filter('.stack__repos a[href^="https://github.com/"]');
+            $this->assertGreaterThan(0, $links->count(), "Stack \"$title\" must link a repository that proves it");
+            $links->each(function ($link): void {
+                // The label names the repository, and the link must go to it (or into it).
+                $repoUrl = 'https://github.com/' . trim($link->text());
+                $href = (string) $link->attr('href');
+                $this->assertTrue(
+                    $href === $repoUrl || str_starts_with($href, $repoUrl . '/'),
+                    "Link \"$href\" must point at the repository its label names ($repoUrl)"
+                );
+                // A deep link into this very repository must name a file that exists here.
+                $ownBlob = 'https://github.com/matasarei/hcnotes/blob/main/';
+                if (str_starts_with($href, $ownBlob)) {
+                    $path = substr($href, strlen($ownBlob));
+                    $this->assertFileExists(dirname(__DIR__, 2) . '/' . $path, "Link \"$href\" points at a missing file");
+                }
+                $this->assertSame('_blank', $link->attr('target'));
+                $this->assertStringContainsString('noopener', (string) $link->attr('rel'));
+            });
+        });
+    }
+
+    public function testAboutPageAiStackShowsBuiltWorkNotVendorTools(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/about');
+
+        $this->assertResponseIsSuccessful();
+        $ai = $crawler->filter('.about .stack--ai');
+        $this->assertSame(1, $ai->count(), 'The About page must have one AI stack');
+
+        foreach (['grinchenkoedu/claude-skills', 'matasarei/lectern', 'matasarei/quest-hud'] as $repo) {
+            $this->assertSame(
+                1,
+                $ai->filter(sprintf('.stack__repos a[href="https://github.com/%s"]', $repo))->count(),
+                "The AI stack must link $repo"
+            );
+        }
+    }
+
+    /**
+     * Badges are claims; only the ones a public repository backs up stay. Vendor
+     * tools (Claude, Antigravity, ...) are not a skill on their own.
+     */
+    public function testAboutPageDropsBadgesWithoutPublicProof(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/about');
+
+        $this->assertResponseIsSuccessful();
+        $badges = $crawler->filter('.about .stack .badge')->each(fn ($b) => strtolower(trim($b->text())));
+        $this->assertNotEmpty($badges);
+
+        $dropped = ['claude', 'antigravity', 'ollama', 'lm studio', 'go', 'node.js', 'c#', 'mongodb',
+            'dynamodb', 'kubernetes', 'aws', 'jenkins', 'gitlab', 'esp32', 'rag'];
+        $this->assertSame([], array_values(array_intersect($badges, $dropped)));
+    }
+
+    public function testAboutPageLinksNoPrivateOrganisationRepos(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/about');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertSame(0, $crawler->filter('a[href*="github.com/profirealt"]')->count());
+    }
+
     public static function pagePaths(): iterable
     {
         yield 'home' => ['/'];
