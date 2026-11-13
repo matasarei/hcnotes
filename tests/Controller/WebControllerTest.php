@@ -371,6 +371,11 @@ class WebControllerTest extends WebTestCase
                 "The AI stack must link $repo"
             );
         }
+
+        $note = $ai->filter('.stack__note');
+        $this->assertSame(1, $note->count(), 'The AI stack must name its private work in a note');
+        $this->assertStringContainsString('Not public', $note->text());
+        $this->assertStringContainsString('team harness', $note->text());
     }
 
     /**
