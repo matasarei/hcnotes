@@ -62,7 +62,7 @@
                     Sadly, the current situation
                     <a href="https://www.americanbanker.com/payments/news/you-can-hear-the-bombs-a-fintech-developers-life-in-ukraine" target="_blank" rel="noopener">is worsening</a>&nbsp;🔥.
                     I still think better times are ahead&nbsp;🍀
-                    (<a href="/article/articles-better-times-are-ahead-bring-boots">What?!</a>).
+                    (<a href="/article/articles-better-times-are-ahead-bring-boots">How?</a>).
                 </p>
             </div>
             <div class="links-row">
@@ -71,68 +71,140 @@
         </div>
     </div>
 
+    {#
+        Experience as stacks: every stack is backed by public repositories where the
+        work can be checked. A badge with no repository behind it does not belong here.
+    #}
+    {% set stacks = [
+        {
+            modifier: 'ai',
+            title: 'AI engineering',
+            lead: 'What I build around coding agents: the harness, the tooling, the local workbench.',
+            badges: [
+                {name: 'Agent skills', class: 'b-skills'},
+                {name: 'MCP', class: 'b-mcp'},
+                {name: 'Local LLMs', class: 'b-llm'},
+                {name: 'Python', class: 'b-python'},
+                {name: 'Kotlin', class: 'b-kotlin'},
+                {name: 'TypeScript', class: 'b-ts'},
+            ],
+            repos: [
+                {repo: 'matasarei/lectern', desc: 'Local modular AI workbench: chat and OCR on your own hardware'},
+                {repo: 'matasarei/pi-dev-skills', desc: 'Development harness for Pi Coding Agent, tuned for local ~30B models'},
+                {repo: 'matasarei/quest-hud', desc: 'Claude Code mod that draws the session as a small game HUD'},
+                {repo: 'grinchenkoedu/claude-skills', desc: 'Chained Claude Code skills: plan, implement, review, verify'},
+                {repo: 'matasarei/antigravity-companion', desc: 'JetBrains plugin that gives the Antigravity CLI the IDE context over MCP'},
+                {repo: 'grinchenkoedu/antigravity-skills', desc: 'The same development workflow for Google Antigravity'},
+            ],
+            note: 'Not public: building a team harness and a custom development environment.',
+        },
+        {
+            title: 'Native apps',
+            badges: [
+                {name: 'Swift', class: 'b-swift'},
+                {name: 'Kotlin', class: 'b-kotlin'},
+                {name: 'Rust', class: 'b-rust'},
+            ],
+            repos: [
+                {repo: 'matasarei/hcboard', desc: 'Private Android keyboard with zero network access'},
+                {repo: 'matasarei/tunnelhop', desc: 'VPN server rotation for Windows, with a kill-switch'},
+                {repo: 'matasarei/wow-launcher', desc: 'Native macOS launcher for classic WoW on Apple Silicon (Wine, DXVK, Metal)'},
+                {repo: 'matasarei/mac-bottler', desc: 'Builds a self-contained macOS app for a Windows game from a small recipe'},
+            ],
+        },
+        {
+            title: 'Web platforms & APIs',
+            badges: [
+                {name: 'PHP', class: 'b-php'},
+                {name: 'Symfony', class: 'b-symfony'},
+                {name: 'SQL', class: 'b-sql'},
+                {name: 'GraphQL', class: 'b-graphql'},
+                {name: 'Moodle', class: 'b-moodle'},
+                {name: 'Docker', class: 'b-docker'},
+            ],
+            repos: [
+                {repo: 'matasarei/aicmf', desc: 'AI-first flat-file CMF: Markdown, SQLite, hybrid semantic search. This site is built on it'},
+                {repo: 'grinchenkoedu/local_cleanup', desc: 'Moodle admin plugin that reclaims disk space'},
+                {repo: 'matasarei/json-rpc', desc: 'JSON-RPC client and server for PHP'},
+                {repo: 'grinchenkoedu/diia-php', desc: 'Client for the Diia acquirer API: document signing and sharing'},
+            ],
+            note: 'Not public: university systems on Moodle and Symfony, and a CRM on a GraphQL API.',
+        },
+        {
+            title: 'Browser & graphics',
+            badges: [
+                {name: 'React', class: 'b-react'},
+                {name: 'Next.js', class: 'b-next'},
+                {name: 'JavaScript', class: 'b-js'},
+                {name: 'three.js', class: 'b-three'},
+                {name: 'PixiJS', class: 'b-pixi'},
+                {name: 'Canvas', class: 'badge--w'},
+            ],
+            repos: [
+                {repo: 'matasarei/tryonface', desc: 'Virtual glasses try-on with real-time webcam face tracking'},
+                {repo: 'matasarei/space-city', desc: 'Classic SimCity-like Mars colony city-builder in the browser'},
+                {repo: 'matasarei/hcnotes', href: 'https://github.com/matasarei/hcnotes/blob/main/public/assets/js/aleph.js', desc: 'aleph.js: the generative canvas background behind this page'},
+            ],
+            note: 'Not public: the CRM front end, on Next.js and React.',
+        },
+    ] %}
+    {# Work with no public repository: listed apart, with no links that would look like proof. #}
+    {% set earlier = [
+        {
+            title: 'Server applications',
+            badges: [
+                {name: 'Go', class: 'b-go'},
+                {name: 'Node.js', class: 'b-node'},
+                {name: 'C#', class: 'b-cs'},
+                {name: 'MongoDB', class: 'b-mongo'},
+                {name: 'DynamoDB', class: 'b-dynamo'},
+            ],
+            note: 'Work projects, not public.',
+        },
+        {
+            title: 'Embedded systems',
+            badges: [
+                {name: 'C', class: 'b-c'},
+                {name: 'C++', class: 'b-cpp'},
+                {name: 'ESP32', class: 'b-esp'},
+            ],
+            note: 'Work projects, not public.',
+        },
+    ] %}
+
     <div class="section">
-        <div class="section__h">my experience</div>
-        <div class="cards">
-            <div class="card">
-                <img src="/shared/img/symfony.jpg" alt="Web applications" loading="lazy">
-                <div class="card__overlay">
-                    <div class="card__badges">
-                        <span class="badge b-php">PHP</span>
-                        <span class="badge b-js">JavaScript</span>
-                        <span class="badge b-sql">MySQL</span>
-                    </div>
-                    <div class="card__title">Web applications</div>
+        <div class="section__h">stacks</div>
+        <div class="stacks">
+            {% for stack in stacks %}
+            <article class="stack{{ stack.modifier is defined ? ' stack--' ~ stack.modifier }}">
+                <h2 class="stack__title">{{ stack.title }}</h2>
+                {% if stack.lead is defined %}<p class="stack__lead">{{ stack.lead }}</p>{% endif %}
+                <div class="stack__badges">
+                    {% for badge in stack.badges %}<span class="badge {{ badge.class }}">{{ badge.name }}</span>{% endfor %}
                 </div>
-            </div>
-            <div class="card">
-                <img src="/shared/img/service.jpg" alt="Server applications" loading="lazy">
-                <div class="card__overlay">
-                    <div class="card__badges">
-                        <span class="badge b-go">Go</span>
-                        <span class="badge b-node">Node.js</span>
-                        <span class="badge b-cs">C#</span>
-                        <span class="badge b-mongo">MongoDB</span>
-                        <span class="badge b-dynamo">DynamoDB</span>
-                    </div>
-                    <div class="card__title">Server applications</div>
+                <ul class="stack__repos" role="list">
+                    {% for item in stack.repos %}
+                    <li>
+                        <a href="{{ item.href ?? ('https://github.com/' ~ item.repo) }}" target="_blank" rel="noopener">{{ item.repo }}</a>
+                        <span class="stack__desc">{{ item.desc }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% if stack.note is defined %}<p class="stack__note">{{ stack.note }}</p>{% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        <div class="section__h section__h--sub">earlier work, not public</div>
+        <div class="stacks stacks--earlier">
+            {% for stack in earlier %}
+            <article class="stack stack--earlier">
+                <h2 class="stack__title">{{ stack.title }}</h2>
+                <div class="stack__badges">
+                    {% for badge in stack.badges %}<span class="badge {{ badge.class }}">{{ badge.name }}</span>{% endfor %}
                 </div>
-            </div>
-            <div class="card">
-                <img src="/shared/img/docker.jpg" alt="Environments and CI" loading="lazy">
-                <div class="card__overlay">
-                    <div class="card__badges">
-                        <span class="badge b-docker">Docker</span>
-                        <span class="badge b-k8s">Kubernetes</span>
-                        <span class="badge b-gitlab">GitLab</span>
-                        <span class="badge b-jenkins">Jenkins</span>
-                        <span class="badge b-aws">AWS</span>
-                    </div>
-                    <div class="card__title">Environments &amp; CI</div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="/shared/img/micro_and_cpp.jpg" alt="Embedded systems" loading="lazy">
-                <div class="card__overlay">
-                    <div class="card__badges">
-                        <span class="badge b-c">C</span>
-                        <span class="badge b-cpp">C++</span>
-                        <span class="badge b-esp">ESP32</span>
-                    </div>
-                    <div class="card__title">Embedded systems</div>
-                </div>
-            </div>
-            <div class="card card--wide">
-                <div class="card__badges">
-                    <span class="badge b-claude">Claude</span>
-                    <span class="badge b-mcp">MCP</span>
-                    <span class="badge b-agy">Antigravity</span>
-                    <span class="badge b-mongo">RAG</span>
-                    <span class="badge badge--w">Ollama</span>
-                    <span class="badge badge--a2">LM Studio</span>
-                </div>
-                <div class="card__title">AI &amp; Agents</div>
-            </div>
+                <p class="stack__note">{{ stack.note }}</p>
+            </article>
+            {% endfor %}
         </div>
         <div class="links-row">
             <a class="btn-link" href="https://github.com/matasarei" target="_blank" rel="me noopener">› See more on GitHub</a>
