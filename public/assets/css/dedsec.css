@@ -547,6 +547,7 @@ body.lightbox-open { overflow: hidden; }
 .b-php    { --bc: #b388ff; }   /* indigo  → toxic violet  */
 .b-symfony{ --bc: #e6e6e6; }   /* black/white → steel     */
 .b-sql    { --bc: #38c5ff; }   /* blue    → electric blue */
+.b-graphql{ --bc: #ff3d9a; }   /* graphql pink → hot pink */
 .b-moodle { --bc: #ff9a3d; }   /* moodle orange → toxic   */
 .b-docker { --bc: #36b6ff; }   /* docker blue → toxic sky */
 .b-swift  { --bc: #ff6a3d; }   /* swift orange-red        */
