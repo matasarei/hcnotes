@@ -118,7 +118,7 @@
             badges: [
                 {name: 'PHP', class: 'b-php'},
                 {name: 'Symfony', class: 'b-symfony'},
-                {name: 'SQLite', class: 'b-sqlite'},
+                {name: 'SQL', class: 'b-sql'},
                 {name: 'Moodle', class: 'b-moodle'},
                 {name: 'Docker', class: 'b-docker'},
             ],
@@ -146,6 +146,29 @@
             ],
         },
     ] %}
+    {# Work with no public repository: listed apart, with no links that would look like proof. #}
+    {% set earlier = [
+        {
+            title: 'Server applications',
+            badges: [
+                {name: 'Go', class: 'b-go'},
+                {name: 'Node.js', class: 'b-node'},
+                {name: 'C#', class: 'b-cs'},
+                {name: 'MongoDB', class: 'b-mongo'},
+                {name: 'DynamoDB', class: 'b-dynamo'},
+            ],
+            note: 'Work projects for employers, not public.',
+        },
+        {
+            title: 'Embedded systems',
+            badges: [
+                {name: 'C', class: 'b-c'},
+                {name: 'C++', class: 'b-cpp'},
+                {name: 'ESP32', class: 'b-esp'},
+            ],
+            note: 'Work projects, not public.',
+        },
+    ] %}
 
     <div class="section">
         <div class="section__h">stacks</div>
@@ -166,6 +189,18 @@
                     {% endfor %}
                 </ul>
                 {% if stack.note is defined %}<p class="stack__note">{{ stack.note }}</p>{% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        <div class="section__h section__h--sub">earlier work, not public</div>
+        <div class="stacks stacks--earlier">
+            {% for stack in earlier %}
+            <article class="stack stack--earlier">
+                <h2 class="stack__title">{{ stack.title }}</h2>
+                <div class="stack__badges">
+                    {% for badge in stack.badges %}<span class="badge {{ badge.class }}">{{ badge.name }}</span>{% endfor %}
+                </div>
+                <p class="stack__note">{{ stack.note }}</p>
             </article>
             {% endfor %}
         </div>

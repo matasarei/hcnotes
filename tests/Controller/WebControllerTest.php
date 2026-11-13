@@ -320,7 +320,8 @@ class WebControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/about');
 
         $this->assertResponseIsSuccessful();
-        $stacks = $crawler->filter('.about .stack');
+        // Earlier, non-public work is listed apart and claims no proof; see the test below.
+        $stacks = $crawler->filter('.about .stack:not(.stack--earlier)');
         $this->assertGreaterThanOrEqual(4, $stacks->count(), 'The About page must show at least four stacks');
 
         $stacks->each(function ($stack): void {
@@ -373,8 +374,9 @@ class WebControllerTest extends WebTestCase
     }
 
     /**
-     * Badges are claims; only the ones a public repository backs up stay. Vendor
-     * tools (Claude, Antigravity, ...) are not a skill on their own.
+     * Badges on a proven stack are claims a public repository backs up. Vendor
+     * tools (Claude, Antigravity, ...) are not a skill on their own, and work
+     * with no public repo belongs in the earlier-work block, not here.
      */
     public function testAboutPageDropsBadgesWithoutPublicProof(): void
     {
@@ -382,12 +384,40 @@ class WebControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/about');
 
         $this->assertResponseIsSuccessful();
-        $badges = $crawler->filter('.about .stack .badge')->each(fn ($b) => strtolower(trim($b->text())));
+        $badges = $crawler->filter('.about .stack:not(.stack--earlier) .badge')->each(fn ($b) => strtolower(trim($b->text())));
         $this->assertNotEmpty($badges);
 
         $dropped = ['claude', 'antigravity', 'ollama', 'lm studio', 'go', 'node.js', 'c#', 'mongodb',
             'dynamodb', 'kubernetes', 'aws', 'jenkins', 'gitlab', 'esp32', 'rag'];
         $this->assertSame([], array_values(array_intersect($badges, $dropped)));
+    }
+
+    /**
+     * Server and embedded work has no public repository to show, so it is listed
+     * apart from the proven stacks: badges and a note, and no links that would
+     * look like proof.
+     */
+    public function testAboutPageListsEarlierWorkWithoutClaimingProof(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/about');
+
+        $this->assertResponseIsSuccessful();
+        $earlier = $crawler->filter('.about .stack--earlier');
+        $titles = $earlier->filter('.stack__title')->each(fn ($t) => trim($t->text()));
+        $this->assertSame(['Server applications', 'Embedded systems'], $titles);
+
+        $earlier->each(function ($stack): void {
+            $title = trim($stack->filter('.stack__title')->text());
+            $this->assertGreaterThan(0, $stack->filter('.badge')->count(), "Stack \"$title\" needs badges");
+            $this->assertSame(0, $stack->filter('a')->count(), "Stack \"$title\" has no public repo and must link none");
+            $this->assertStringContainsStringIgnoringCase('not public', $stack->filter('.stack__note')->text(''));
+        });
+
+        $badges = $earlier->filter('.badge')->each(fn ($b) => trim($b->text()));
+        foreach (['Go', 'Node.js', 'C#', 'ESP32'] as $badge) {
+            $this->assertContains($badge, $badges);
+        }
     }
 
     public function testAboutPageLinksNoPrivateOrganisationRepos(): void
