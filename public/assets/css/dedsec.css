@@ -555,6 +555,8 @@ body.lightbox-open { overflow: hidden; }
 .b-rust   { --bc: #ffb07a; }   /* rust → copper           */
 .b-java   { --bc: #ff4d6d; }   /* java red → toxic red    */
 .b-ts     { --bc: #3a9bff; }   /* TS blue → toxic azure   */
+.b-react  { --bc: #61dafb; }   /* react cyan-blue         */
+.b-next   { --bc: #f2f2f2; }   /* next.js black/white     */
 .b-js     { --bc: #f4ff3a; }   /* yellow  → toxic lime    */
 .b-three  { --bc: #9fffe0; }   /* three.js → pale mint    */
 .b-pixi   { --bc: #ff4fd8; }   /* pixi pink → neon pink   */
