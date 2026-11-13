@@ -328,6 +328,10 @@ class WebControllerTest extends WebTestCase
             $this->assertNotSame('', $title, 'Every stack needs a title');
             $this->assertGreaterThan(0, $stack->filter('.badge')->count(), "Stack \"$title\" needs badges");
 
+            // Its items are display: contents, which drops list semantics in some
+            // browsers; the explicit role keeps the repos announced as a list.
+            $this->assertSame('list', $stack->filter('.stack__repos')->attr('role'), "Stack \"$title\" repo list needs role=list");
+
             $links = $stack->filter('.stack__repos a[href^="https://github.com/"]');
             $this->assertGreaterThan(0, $links->count(), "Stack \"$title\" must link a repository that proves it");
             $links->each(function ($link): void {

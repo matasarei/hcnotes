@@ -159,7 +159,7 @@
                 <div class="stack__badges">
                     {% for badge in stack.badges %}<span class="badge {{ badge.class }}">{{ badge.name }}</span>{% endfor %}
                 </div>
-                <ul class="stack__repos">
+                <ul class="stack__repos" role="list">
                     {% for item in stack.repos %}
                     <li>
                         <a href="{{ item.href ?? ('https://github.com/' ~ item.repo) }}" target="_blank" rel="noopener">{{ item.repo }}</a>
