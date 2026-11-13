@@ -553,7 +553,6 @@ body.lightbox-open { overflow: hidden; }
 .b-swift  { --bc: #ff6a3d; }   /* swift orange-red        */
 .b-kotlin { --bc: #e36bff; }   /* kotlin purple → magenta */
 .b-rust   { --bc: #ffb07a; }   /* rust → copper           */
-.b-java   { --bc: #ff4d6d; }   /* java red → toxic red    */
 .b-ts     { --bc: #3a9bff; }   /* TS blue → toxic azure   */
 .b-react  { --bc: #61dafb; }   /* react cyan-blue         */
 .b-next   { --bc: #f2f2f2; }   /* next.js black/white     */
