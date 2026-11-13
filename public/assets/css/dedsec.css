@@ -562,7 +562,6 @@ body.lightbox-open { overflow: hidden; }
 /* earlier work (no public repos) */
 .b-go     { --bc: #2de2e6; }   /* gopher cyan             */
 .b-node   { --bc: #57ff3a; }   /* green   → toxic green   */
-.b-java   { --bc: #ff4d6d; }   /* java red → toxic red    */
 .b-cs     { --bc: #c77dff; }   /* purple  → toxic magenta-violet */
 .b-mongo  { --bc: #2dff9e; }   /* green   → toxic mint    */
 .b-dynamo { --bc: #6c8bff; }   /* AWS blue → neon indigo  */
