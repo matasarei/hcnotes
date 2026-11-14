@@ -5,18 +5,6 @@ description: Code got cheap to write, not to own. What's still expensive is the 
 tags: [ai, agents, skills, harness, architecture]
 ---
 
-> **Update, 2026-11-12.** My mind hasn't changed since August. It has only
-> got clearer. What I called "the skill" here has a better name now: the
-> **harness**. It's everything around the model: the skills, the rules file,
-> review by an agent that didn't write the code, tests and CI, and hooks the
-> tool runs no matter what the model thinks of them. And it starts with the
-> intent, worked out before anything gets built. I work this way every day,
-> and it's how things get built fast *and* right. Some people say code isn't
-> cheap at all, and [a recent video](https://www.youtube.com/watch?v=66O6zpPpG5g)
-> makes that case well. It's partly right, so I answer it in a new section
-> below. I also cut "It's not as easy as it looks" down, rewrote the skill
-> section, and made the framework section say why I wouldn't build one today.
-
 > **TL;DR** - Frameworks existed because code was expensive. AI made code cheap, so
 > "I built my own framework" stopped being an achievement. The scarce things now are
 > the idea, the plan, and the judgement to tell when the result is wrong. Working
@@ -243,3 +231,16 @@ sit down and explain to someone. The moment you stop understanding your own syst
 you've traded ownership for output - and output was the cheap part.
 
 Code got cheap. Judgement didn't. Neither did knowing where you're going.
+
+> **Update, 2026-11-12.** My mind hasn't changed since August. It has only
+> got clearer. What I called "the skill" here has a better name now: the
+> **harness**. It's everything around the model: the skills, the rules file,
+> review by an agent that didn't write the code, tests and CI, and hooks the
+> tool runs no matter what the model thinks of them. And it starts with the
+> intent, worked out before anything gets built. I work this way every day,
+> and it's how things get built fast *and* right. Some people say code isn't
+> cheap at all, and [a recent video](https://www.youtube.com/watch?v=66O6zpPpG5g)
+> makes that case well. It's partly right, so I answer it in a new section,
+> "But code isn't cheap". I also cut "It's not as easy as it looks" down,
+> rewrote the skill section, and made the framework section say why I
+> wouldn't build one today.
