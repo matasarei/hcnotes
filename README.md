@@ -42,6 +42,11 @@ itself, go to the AICMF repo; this repo is the website. The first article,
 [*Why AI-First Content Management Changes Everything*](https://hcnotes.cc/article/articles-aicmf-ai-first-cms),
 explains the philosophy — and notes that this very site is its proof of concept.
 
+How we got here, from building inside a CMS and uploading over FTP in 2008 to a
+development harness built around agents, is laid out era by era in
+[*From CMS to Harness*](https://hcnotes.cc/article/articles-from-cms-to-harness) —
+a timeline of how I remember each stage.
+
 ## Tech stack
 
 - **Backend:** PHP 8.4, [Symfony 7](https://symfony.com) Flex micro-kernel

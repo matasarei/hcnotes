@@ -357,6 +357,72 @@ a:hover { color: var(--accent-2); }
 .prose img.is-zoomable { cursor: zoom-in; }
 .prose img.is-zoomable:hover { border-color: var(--accent); }
 
+/* ---- article timeline (infographic articles) ------------------------ */
+/* overview bar: one segment per era, flex-grow = its length in years (set inline) */
+.prose .timeline-bar {
+  display: flex; gap: 2px; margin: 1.8rem 0 2.4rem;
+  font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.3;
+}
+.timeline-bar__seg {
+  flex: 1 1 0; min-width: 4.4rem;   /* one-year eras still fit their label */
+  padding: 0.55rem 0.45rem 0.5rem;
+  border-top: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+  color: var(--fg-dim);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.timeline-bar__seg b { display: block; color: var(--white); font-weight: 600; letter-spacing: 0.04em; }
+.timeline-bar__seg--ai { border-top-color: var(--accent-2); background: color-mix(in srgb, var(--accent-2) 8%, transparent); }
+.timeline-bar__seg--ai b { color: var(--accent-2); }
+
+/* vertical timeline: a spine on the left, a square node and a card per era */
+.prose .timeline {
+  list-style: none; margin: 0 0 2.4rem; padding: 0 0 0 1.9rem;
+  position: relative;
+}
+.prose .timeline::before {
+  content: ""; position: absolute; left: 0.45rem; top: 0.4rem; bottom: 0.4rem;
+  border-left: 1px solid var(--line);
+}
+.era {
+  position: relative;
+  margin: 0 0 1.3rem;
+  padding: 1rem 1.2rem 1.05rem;
+  background: rgba(0, 0, 0, 0.86);
+  border: 1px solid var(--line);
+}
+.era:last-child { margin-bottom: 0; }
+.era::before {                       /* the node on the spine */
+  content: ""; position: absolute; left: calc(-1.9rem + 0.45rem - 5px); top: 1.35rem;
+  width: 9px; height: 9px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+.era--ai { border-color: color-mix(in srgb, var(--accent-2) 35%, transparent); }
+.era--ai::before { background: var(--accent-2); box-shadow: 0 0 0 3px var(--bg), 0 0 10px color-mix(in srgb, var(--accent-2) 60%, transparent); }
+.prose .era__years {
+  margin: 0 0 0.55rem;
+  color: var(--white); font-size: 1.12rem; letter-spacing: 0.04em; line-height: 1.4;
+}
+.era--ai .era__years { color: var(--accent-2); }
+.era__name {
+  display: block; margin-top: 0.1rem;
+  color: var(--fg-dim); font-size: 0.78rem; font-weight: normal;
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.era__name::before { content: "// "; color: var(--accent-2); }
+.era__felt { margin: 0 0 0.7rem; font-size: 0.96rem; line-height: 1.7; }
+.era__stack { line-height: 1.95; margin-bottom: 0.6rem; }
+.era__stack .badge { font-size: 0.72rem; padding: 0.16rem 0.5rem; margin: 0.16rem 0.28rem 0.16rem 0; }
+.era__facts { list-style: none; margin: 0; padding: 0.55rem 0 0; border-top: 1px dashed var(--line); }
+.era__fact {
+  position: relative; padding-left: 1.2em; margin: 0.25rem 0;
+  color: var(--fg-dim); font-size: 0.8rem; line-height: 1.55;
+}
+.era__fact::before { content: "#"; position: absolute; left: 0; color: var(--accent-2); }
+.era__more { margin: 0.6rem 0 0; font-size: 0.82rem; line-height: 1.55; color: var(--fg-dim); }
+.era__more::before { content: "› "; color: var(--accent-2); }
+
 /* ---- image lightbox ------------------------------------------------- */
 .lightbox {
   position: fixed; inset: 0; z-index: 100;
@@ -614,6 +680,13 @@ body.lightbox-open { overflow: hidden; }
   .about__head { gap: 0.9rem; }
   .avatar { width: 70px; height: 70px; }
   .prose { margin-top: 5.5rem; padding: 1.6rem 1.3rem 2rem; }
+  .prose .timeline-bar { font-size: 0.6rem; gap: 1px; }
+  .timeline-bar__seg { padding: 0.45rem 0.2rem 0.4rem; color: transparent; min-width: 2.1rem; }   /* years only: the names don't fit */
+  .timeline-bar__seg b { letter-spacing: 0; font-size: 0.58rem; }
+  .prose .timeline { padding-left: 1.2rem; }
+  .prose .timeline::before { left: 0.2rem; }
+  .era { padding: 0.85rem 0.9rem 0.9rem; }
+  .era::before { left: calc(-1.2rem + 0.2rem - 4px); width: 8px; height: 8px; }
 }
 
 /* respect reduced motion: kill the CSS animations (canvas self-stills) */
