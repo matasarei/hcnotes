@@ -37,6 +37,21 @@ class WebControllerTest extends WebTestCase
         );
     }
 
+    public function testAboutPageLinksExperienceToTheTimelineArticle(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/about');
+
+        $this->assertResponseIsSuccessful();
+
+        $link = $crawler->filter('.about__bio a[href="/article/articles-from-cms-to-harness"]');
+        $this->assertSame(
+            1,
+            $link->count(),
+            'The years of experience in the bio must link to the timeline of how the work changed'
+        );
+    }
+
     public function testAboutPageHasPersonFocusedSeoMetadata(): void
     {
         $client = static::createClient();
